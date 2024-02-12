@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using CodeBase.Gameplay.PlayerSystem;
 
-public class PlayerProvider 
+public class PlayerProvider
 {
+    public Player Player;
 
 }

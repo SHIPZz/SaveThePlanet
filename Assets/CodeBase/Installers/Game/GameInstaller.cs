@@ -1,6 +1,8 @@
 ﻿using CodeBase.EntryPointSystem;
 using CodeBase.Services.Factories;
+using CodeBase.Services.Providers.CameraProviders;
 using CodeBase.Services.Providers.LocationProviders;
+using CodeBase.Services.StaticData;
 using UnityEngine;
 using Zenject;
 
@@ -12,9 +14,15 @@ namespace CodeBase.Installers.Game
         
         public override void InstallBindings()
         {
-            BindLocationProvider();
+            BindProviders();
             BindGameFactory();
+            BindStaticDataServices();
             InitEntryPoint();
+        }
+
+        private void BindStaticDataServices()
+        {
+            Container.Bind<GameStaticDataService>().AsSingle();
         }
 
         private void InitEntryPoint()
@@ -27,9 +35,11 @@ namespace CodeBase.Installers.Game
             Container.Bind<GameFactory>().AsSingle();
         }
 
-        private void BindLocationProvider()
+        private void BindProviders()
         {
             Container.BindInstance(_locationProvider);
+            Container.Bind<CameraProvider>().AsSingle();
+            Container.Bind<PlayerProvider>().AsSingle();
         }
     }
 }
