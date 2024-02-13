@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.4478156, g: 0.49780184, b: 0.57543576, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2738,6 +2738,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementDuration: 0.5
+  RotationSpeed: 5
   GarbageType: 1
 --- !u!64 &114070374
 MeshCollider:
@@ -3277,6 +3278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementDuration: 0.5
+  RotationSpeed: 5
   GarbageType: 3
 --- !u!64 &124223706
 MeshCollider:
@@ -3450,6 +3452,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementDuration: 0.5
+  RotationSpeed: 5
   GarbageType: 1
 --- !u!64 &127210485
 MeshCollider:
@@ -4311,6 +4314,7 @@ MonoBehaviour:
   GarbageObserver: {fileID: 0}
   GarbageType: 2
   GarbagePosition: {fileID: 1137361220}
+  EffectType: 0
 --- !u!65 &160173314
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6224,6 +6228,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementDuration: 0.5
+  RotationSpeed: 5
   GarbageType: 1
 --- !u!64 &218469319
 MeshCollider:
@@ -7112,6 +7117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementDuration: 0.5
+  RotationSpeed: 5
   GarbageType: 1
 --- !u!64 &240550537
 MeshCollider:
@@ -8284,6 +8290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementDuration: 0.5
+  RotationSpeed: 5
   GarbageType: 1
 --- !u!64 &276640058
 MeshCollider:
@@ -12003,6 +12010,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementDuration: 0.5
+  RotationSpeed: 5
   GarbageType: 1
 --- !u!64 &415222179
 MeshCollider:
@@ -12320,6 +12328,7 @@ MonoBehaviour:
   GarbageObserver: {fileID: 0}
   GarbageType: 3
   GarbagePosition: {fileID: 1119231709}
+  EffectType: 0
 --- !u!65 &417576239
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14417,6 +14426,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementDuration: 0.5
+  RotationSpeed: 5
   GarbageType: 1
 --- !u!64 &491040443
 MeshCollider:
@@ -25817,6 +25827,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementDuration: 0.5
+  RotationSpeed: 5
   GarbageType: 1
 --- !u!64 &898423462
 MeshCollider:
@@ -33440,6 +33451,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementDuration: 0.5
+  RotationSpeed: 5
   GarbageType: 1
 --- !u!64 &1140306475
 MeshCollider:
@@ -34774,6 +34786,7 @@ MonoBehaviour:
   GarbageObserver: {fileID: 0}
   GarbageType: 1
   GarbagePosition: {fileID: 1777523735}
+  EffectType: 0
 --- !u!65 &1173355732
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -37400,6 +37413,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementDuration: 0.5
+  RotationSpeed: 5
   GarbageType: 1
 --- !u!64 &1233834403
 MeshCollider:
@@ -39794,6 +39808,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementDuration: 0.5
+  RotationSpeed: 5
   GarbageType: 1
 --- !u!64 &1301129657
 MeshCollider:
@@ -41784,6 +41799,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementDuration: 0.5
+  RotationSpeed: 5
   GarbageType: 1
 --- !u!64 &1368047885
 MeshCollider:
@@ -41957,6 +41973,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementDuration: 0.5
+  RotationSpeed: 5
   GarbageType: 1
 --- !u!64 &1368906656
 MeshCollider:
@@ -44399,6 +44416,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementDuration: 0.5
+  RotationSpeed: 5
   GarbageType: 1
 --- !u!64 &1468472462
 MeshCollider:
@@ -45020,6 +45038,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementDuration: 0.5
+  RotationSpeed: 5
   GarbageType: 1
 --- !u!64 &1492803250
 MeshCollider:
@@ -52511,6 +52530,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementDuration: 0.5
+  RotationSpeed: 5
   GarbageType: 1
 --- !u!64 &1756459944
 MeshCollider:
@@ -53166,6 +53186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementDuration: 0.5
+  RotationSpeed: 5
   GarbageType: 1
 --- !u!64 &1776950554
 MeshCollider:
@@ -55695,6 +55716,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementDuration: 0.5
+  RotationSpeed: 5
   GarbageType: 0
 --- !u!64 &1845754557
 MeshCollider:
@@ -58823,6 +58845,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementDuration: 0.5
+  RotationSpeed: 5
   GarbageType: 1
 --- !u!64 &1945433636
 MeshCollider:
@@ -60614,6 +60637,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementDuration: 0.5
+  RotationSpeed: 5
   GarbageType: 1
 --- !u!64 &2001150681
 MeshCollider:
@@ -61683,6 +61707,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementDuration: 0.5
+  RotationSpeed: 5
   GarbageType: 1
 --- !u!64 &2031045952
 MeshCollider:
@@ -64549,6 +64574,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementDuration: 0.5
+  RotationSpeed: 5
   GarbageType: 1
 --- !u!64 &2138137083
 MeshCollider:
@@ -77464,6 +77490,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementDuration: 0.5
+  RotationSpeed: 5
   GarbageType: 1
 --- !u!54 &64070302629243281
 Rigidbody:
@@ -77550,6 +77577,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementDuration: 0.5
+  RotationSpeed: 5
   GarbageType: 1
 --- !u!54 &64070302853667687
 Rigidbody:
@@ -77636,6 +77664,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementDuration: 0.5
+  RotationSpeed: 5
   GarbageType: 3
 --- !u!54 &64111315904958929
 Rigidbody:
@@ -77722,6 +77751,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementDuration: 0.5
+  RotationSpeed: 5
   GarbageType: 1
 --- !u!54 &64201048949477092
 Rigidbody:
@@ -77808,6 +77838,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementDuration: 0.5
+  RotationSpeed: 5
   GarbageType: 1
 --- !u!54 &64327694362948328
 Rigidbody:
@@ -77894,6 +77925,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementDuration: 0.5
+  RotationSpeed: 5
   GarbageType: 1
 --- !u!54 &64406357237743976
 Rigidbody:
@@ -77980,6 +78012,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementDuration: 0.5
+  RotationSpeed: 5
   GarbageType: 3
 --- !u!54 &64411309846369366
 Rigidbody:
@@ -78066,6 +78099,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementDuration: 0.5
+  RotationSpeed: 5
   GarbageType: 0
 --- !u!54 &64486381238821917
 Rigidbody:
@@ -83831,6 +83865,7 @@ MonoBehaviour:
   GarbageObserver: {fileID: 0}
   GarbageType: 0
   GarbagePosition: {fileID: 1406420383}
+  EffectType: 0
 --- !u!65 &7934673043920931428
 BoxCollider:
   m_ObjectHideFlags: 0

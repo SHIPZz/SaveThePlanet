@@ -1,5 +1,6 @@
 ﻿using System;
 using CodeBase.Constant;
+using CodeBase.Gameplay.SoundPlayer;
 using CodeBase.Services.TriggerObserve;
 using UnityEngine;
 using Zenject;
@@ -9,6 +10,7 @@ namespace CodeBase.Gameplay.PlayerSystem
     public class PlayerGarbagePickUp : PlayerPickUp
     {
         public Transform Anchor;
+        public SoundPlayerSystem SoundPlayerSystem;
         public TriggerObserver GarbageObserver;
         public Vector3 Offset;
         private bool _hasItem;
@@ -46,6 +48,7 @@ namespace CodeBase.Gameplay.PlayerSystem
             _takeable.Transform.parent = Anchor;
             _takeable.Transform.localPosition = Offset;
             _takeable.Transform.localRotation = Quaternion.identity;
+            SoundPlayerSystem.PlayActiveSound();
             _takeable.Dropped += OnTakeableDropped;
             _playerHandContainer.CurrentObject = _takeable;
         }

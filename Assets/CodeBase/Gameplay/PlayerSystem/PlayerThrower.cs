@@ -1,4 +1,5 @@
 ﻿using System;
+using CodeBase.Gameplay.SoundPlayer;
 using CodeBase.Services.StaticData;
 using UnityEngine;
 using Zenject;
@@ -7,6 +8,8 @@ namespace CodeBase.Gameplay.PlayerSystem
 {
     public class PlayerThrower : MonoBehaviour
     {
+        public SoundPlayerSystem SoundPlayerSystem;
+    
         public Transform CameraPivot;
         private ITakeable _takeable;
         private PlayerHandContainer _playerHandContainer;
@@ -56,6 +59,7 @@ namespace CodeBase.Gameplay.PlayerSystem
             throwableRb.interpolation = RigidbodyInterpolation.Interpolate;
             throwableRb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
             throwableRb.AddForce(CameraPivot.forward * speed, ForceMode.Impulse);
+            SoundPlayerSystem.PlayActiveSound();
             throwable.SetRotation();
             throwableCollider.enabled = true;
 

@@ -23,6 +23,7 @@ namespace CodeBase.Installers.Game
         private void BindStaticDataServices()
         {
             Container.Bind<GameStaticDataService>().AsSingle();
+            Container.Bind<UIStaticDataService>().AsSingle();
         }
 
         private void InitEntryPoint()
@@ -33,6 +34,7 @@ namespace CodeBase.Installers.Game
         private void BindGameFactory()
         {
             Container.Bind<GameFactory>().AsSingle();
+            Container.Bind<UIFactory>().AsSingle();
         }
 
         private void BindProviders()
