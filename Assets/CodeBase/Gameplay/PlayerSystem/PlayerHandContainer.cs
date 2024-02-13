@@ -4,13 +4,25 @@ namespace CodeBase.Gameplay.PlayerSystem
 {
     public class PlayerHandContainer
     {
-        public ITakeable CurrentObject;
+        private ITakeable _currentTakeable;
 
         public event Action Cleared;
+        public event Action<ITakeable> Set;
+
+        public ITakeable Takeable => _currentTakeable;
+
+        public void TrySetCurrentObject(ITakeable takeable)
+        {
+            if(_currentTakeable != null)
+                return;
+            
+            _currentTakeable = takeable;
+            Set?.Invoke(_currentTakeable);
+        }
         
         public void Clear()
         {
-            CurrentObject = null;
+            _currentTakeable = null;
             Cleared?.Invoke();
         }
     }

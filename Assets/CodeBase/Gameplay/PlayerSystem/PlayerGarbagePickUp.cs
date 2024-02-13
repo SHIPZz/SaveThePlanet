@@ -13,6 +13,7 @@ namespace CodeBase.Gameplay.PlayerSystem
         public SoundPlayerSystem SoundPlayerSystem;
         public TriggerObserver GarbageObserver;
         public Vector3 Offset;
+        
         private bool _hasItem;
         private ITakeable _takeable;
         private PlayerHandContainer _playerHandContainer;
@@ -49,21 +50,13 @@ namespace CodeBase.Gameplay.PlayerSystem
             _takeable.Transform.localPosition = Offset;
             _takeable.Transform.localRotation = Quaternion.identity;
             SoundPlayerSystem.PlayActiveSound();
-            _takeable.Dropped += OnTakeableDropped;
-            _playerHandContainer.CurrentObject = _takeable;
+            _playerHandContainer.TrySetCurrentObject(_takeable);
         }
 
         private void OnCleared()
         {
             _hasItem = false;
             _takeable = null;
-        }
-
-        private void OnTakeableDropped(ITakeable takeable)
-        {
-            _hasItem = false;
-            _takeable = null;
-            takeable.Dropped -= OnTakeableDropped;
         }
     }
 }

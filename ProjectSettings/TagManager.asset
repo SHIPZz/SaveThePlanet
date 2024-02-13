@@ -18,9 +18,9 @@ TagManager:
   - OnlyGarbage
   - IgnorePlayer
   - ObjectPart
-  - 
-  - 
-  - 
+  - Particle
+  - Extinguisherable
+  - OnlyExtinguisherable
   - 
   - 
   - 
@@ -41,4 +41,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Particle
+    uniqueID: 3442969941
     locked: 0

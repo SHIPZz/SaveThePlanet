@@ -23,7 +23,7 @@ namespace CodeBase.Animations
 
         private void Awake()
         {
-            if(_unscaleOnStart)
+            if (_unscaleOnStart)
                 UnScale();
 
             if (_getTransformOnAwake)
@@ -35,17 +35,22 @@ namespace CodeBase.Animations
             _transform.gameObject.SetActive(true);
             SetTween(Vector3.one * _targetScale, _scaleDuration, onComplete);
         }
-        
+
+        public void UnScaleQuickly(Action onComplete = null)
+        {
+            SetTween(Vector3.one * _unScale, 0.1f, onComplete);
+        }
+
         public async void ToScaleAsync(Action onComplete = null)
         {
             await UniTask.WaitForSeconds(_scaleDelay);
-            
+
             SetTween(Vector3.one * _targetScale, _scaleDuration, onComplete);
         }
 
         public void UnScale(Action onComplete = null)
         {
-            SetTween(Vector3.one * _unScale, _unScaleDuration,onComplete);
+            SetTween(Vector3.one * _unScale, _unScaleDuration, onComplete);
         }
 
         private void SetTween(Vector3 scale, float duration, Action onComplete = null)
@@ -55,16 +60,16 @@ namespace CodeBase.Animations
             switch (true)
             {
                 case bool _ when _scaleX:
-                    _tween = _transform.DOScaleX(scale.x, duration).OnComplete(()=>onComplete?.Invoke());
+                    _tween = _transform.DOScaleX(scale.x, duration).OnComplete(() => onComplete?.Invoke());
                     break;
                 case bool _ when _scaleY:
-                    _tween = _transform.DOScaleY(scale.y, duration).OnComplete(()=>onComplete?.Invoke());
+                    _tween = _transform.DOScaleY(scale.y, duration).OnComplete(() => onComplete?.Invoke());
                     break;
                 case bool _ when _scaleZ:
-                    _tween = _transform.DOScaleZ(scale.z, duration).OnComplete(()=>onComplete?.Invoke());
+                    _tween = _transform.DOScaleZ(scale.z, duration).OnComplete(() => onComplete?.Invoke());
                     break;
                 default:
-                    _tween = _transform.DOScale(scale, duration).OnComplete(()=>onComplete?.Invoke());
+                    _tween = _transform.DOScale(scale, duration).OnComplete(() => onComplete?.Invoke());
                     break;
             }
         }

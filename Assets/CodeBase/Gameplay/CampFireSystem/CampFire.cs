@@ -3,64 +3,50 @@ using CodeBase.Animations;
 using CodeBase.Gameplay.MaterialChange;
 using CodeBase.Gameplay.SoundPlayer;
 using CodeBase.Services.TriggerObserve;
+using CodeBase.UI.Effects;
 using DG.Tweening;
 using UnityEngine;
 
 namespace CodeBase.Gameplay.CampFireSystem
 {
-    public class CampFire : MonoBehaviour
+    public class CampFire : MonoBehaviour, IFireable
     {
         public ParticleSystem Effect;
-        public ParticleSystem SmokeEffect;
         public TriggerObserver PlayerTriggerObserver;
         public TransformScaleAnim ButtonScaleAnim;
         public SoundPlayerSystem SoundPlayerSystem;
+        public EffectPlayer EffectPlayer;
+        public float DestroyDelay = 3f;
 
-        private bool _playerEntered;
-        private bool _pressed;
         private MaterialChanger _materialChanger;
 
-        private void Awake()
-        {
+        public Transform Anchor => transform;
+
+        private void Awake() => 
             _materialChanger = GetComponent<MaterialChanger>();
-        }
 
-        private void OnEnable()
-        {
-            PlayerTriggerObserver.TriggerEntered += PlayerEntered;
-            PlayerTriggerObserver.TriggerExited += PlayerExited;
+        private void OnEnable() => 
             Effect.Play();
-        }
 
-        private void OnDisable()
+        public void Disable()
         {
-            PlayerTriggerObserver.TriggerEntered -= PlayerEntered;
-            PlayerTriggerObserver.TriggerExited -= PlayerExited;
-        }
-
-        public void TryDisable()
-        {
-            if (_pressed || !_playerEntered)
-                return;
-
             Effect.Stop();
-            SmokeEffect.Play();
+            EffectPlayer.PlayEffects();
             _materialChanger.Change();
+            ButtonScaleAnim.UnScaleQuickly();
             SoundPlayerSystem.PlayInactiveSound();
-            DOTween.Sequence().AppendInterval(1f)
+            DOTween.Sequence().AppendInterval(DestroyDelay)
                 .OnComplete(() => transform.DOScale(0, 0.5f).OnComplete(() => Destroy(gameObject)));
         }
 
         private void PlayerExited(Collider obj)
         {
-            _playerEntered = false;
             ButtonScaleAnim.UnScale();
         }
 
         private void PlayerEntered(Collider obj)
         {
-            _playerEntered = true;
-            ButtonScaleAnim.ToScale();
+            // ButtonScaleAnim.ToScale();
         }
     }
 }

@@ -2,6 +2,7 @@
 using CodeBase.Enums;
 using CodeBase.Services.Factories;
 using CodeBase.Services.TriggerObserve;
+using CodeBase.UI.Effects;
 using Unity.VisualScripting;
 using UnityEngine;
 using Zenject;
@@ -13,15 +14,14 @@ namespace CodeBase.Gameplay.Garbages
         public TriggerObserver GarbageObserver;
         public GarbageType GarbageType;
         public Transform GarbagePosition;
-        public EffectType EffectType;
-        
-        private UIFactory _uiFactory;
 
-        [Inject]
-        private void Construct(UIFactory uiFactory)
+        private EffectCreator _effectCreator;
+
+        private void Awake()
         {
-            _uiFactory = uiFactory;
+            _effectCreator = GetComponent<EffectCreator>();
         }
+
 
         private void OnCollisionEnter(Collision other)
         {
@@ -31,7 +31,7 @@ namespace CodeBase.Gameplay.Garbages
             if(garbage.GarbageType != GarbageType)
                 return;
             
-            _uiFactory.CreateAndPlay(EffectType, null, GarbagePosition.position, Quaternion.identity);
+            _effectCreator.CreateAndPlay(null, GarbagePosition.position);
         }
     }
 }

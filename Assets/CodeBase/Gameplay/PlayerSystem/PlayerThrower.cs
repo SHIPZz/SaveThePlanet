@@ -32,7 +32,7 @@ namespace CodeBase.Gameplay.PlayerSystem
 
         private void Update()
         {
-            _takeable = _playerHandContainer.CurrentObject;
+            _takeable = _playerHandContainer.Takeable;
 
             if (_takeable == null)
                 return;
