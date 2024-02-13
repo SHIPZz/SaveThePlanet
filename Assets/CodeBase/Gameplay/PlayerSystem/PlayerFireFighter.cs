@@ -1,4 +1,6 @@
 ﻿using System;
+using CodeBase.Gameplay.Extinguishables;
+using CodeBase.Gameplay.Pickeables;
 using CodeBase.Services.TriggerObserve;
 using UnityEngine;
 using Zenject;
@@ -10,7 +12,7 @@ namespace CodeBase.Gameplay.PlayerSystem
         public TriggerObserver TriggerObserver;
         
         private PlayerHandContainer _playerHandContainer;
-        private IFireExtinguishable _fireExtinguishable;
+        private Extinguishable _fireExtinguishable;
 
         [Inject]
         private void Construct(PlayerHandContainer playerHandContainer) => 
@@ -36,16 +38,15 @@ namespace CodeBase.Gameplay.PlayerSystem
             if (_fireExtinguishable == null)
                 return;
             
-            _fireExtinguishable.Anchor.SetParent(null);
-            _fireExtinguishable.MoveTo(fireable.Anchor.position, _fireExtinguishable.PutOut);
-            _fireExtinguishable.RotateTo(fireable.Anchor.up * -1);
+            _playerHandContainer.Pickeable.Drop();
+            _fireExtinguishable.SetPutOut(fireable.Anchor.position, fireable.Anchor.up * -1);
             _fireExtinguishable = null;
             _playerHandContainer.Clear();
         }
 
-        private void OnPlayerPickedUp(ITakeable takeable)
+        private void OnPlayerPickedUp(Pickeable pickeable)
         {
-            if (takeable is IFireExtinguishable extinguishable)
+            if (pickeable.TryGetComponent(out Extinguishable extinguishable))
             {
                 _fireExtinguishable = extinguishable;
                 return;

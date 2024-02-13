@@ -1,5 +1,6 @@
 ﻿using System;
 using CodeBase.Enums;
+using CodeBase.Gameplay.Pickeables;
 using CodeBase.Services.Factories;
 using CodeBase.Services.TriggerObserve;
 using CodeBase.UI.Effects;
@@ -17,20 +18,27 @@ namespace CodeBase.Gameplay.Garbages
 
         private EffectCreator _effectCreator;
 
+        public event Action<Garbage> WrongGarbage;
+
         private void Awake()
         {
             _effectCreator = GetComponent<EffectCreator>();
         }
 
-
         private void OnCollisionEnter(Collision other)
         {
-            if(!other.gameObject.TryGetComponent(out Garbage garbage))
+            if (!other.gameObject.TryGetComponent(out Garbage garbage))
                 return;
-            
-            if(garbage.GarbageType != GarbageType)
+
+            if (garbage.GarbageType != GarbageType)
+            {
+                WrongGarbage?.Invoke(garbage);
                 return;
-            
+            }
+
+            var pickeable = garbage.GetComponent<Pickeable>();
+            pickeable.PickUpWithMovement(GarbagePosition);
+
             _effectCreator.CreateAndPlay(null, GarbagePosition.position);
         }
     }

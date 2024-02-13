@@ -14,8 +14,8 @@ TagManager:
   - UI
   - Player
   - OnlyPlayer
-  - Garbage
-  - OnlyGarbage
+  - Pickeable
+  - OnlyPickeable
   - IgnorePlayer
   - ObjectPart
   - Particle

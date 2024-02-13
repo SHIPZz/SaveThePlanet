@@ -1,5 +1,7 @@
 ﻿using System;
+using CodeBase.Gameplay.Pickeables;
 using CodeBase.Gameplay.SoundPlayer;
+using CodeBase.Gameplay.Throwables;
 using CodeBase.Services.StaticData;
 using UnityEngine;
 using Zenject;
@@ -9,9 +11,9 @@ namespace CodeBase.Gameplay.PlayerSystem
     public class PlayerThrower : MonoBehaviour
     {
         public SoundPlayerSystem SoundPlayerSystem;
-    
+
         public Transform CameraPivot;
-        private ITakeable _takeable;
+        private Pickeable _pickeable;
         private PlayerHandContainer _playerHandContainer;
         private GameStaticDataService _gameStaticDataService;
         private float _leftClickThrowSpeed;
@@ -32,39 +34,31 @@ namespace CodeBase.Gameplay.PlayerSystem
 
         private void Update()
         {
-            _takeable = _playerHandContainer.Takeable;
+            _pickeable = _playerHandContainer.Pickeable;
 
-            if (_takeable == null)
+            if (_pickeable == null)
                 return;
 
-            if (Input.GetMouseButton(0) && _takeable is IThrowable)
+            if (Input.GetMouseButtonDown(0))
             {
-                Throw(_leftClickThrowSpeed);
+                TryThrow(_leftClickThrowSpeed);
             }
 
-            if (Input.GetMouseButton(1) && _takeable is IThrowable)
+            if (Input.GetMouseButtonDown(1))
             {
-                Throw(_rightClickThrowSpeed);
+                TryThrow(_rightClickThrowSpeed);
             }
         }
 
-        private void Throw(float speed)
+        private void TryThrow(float speed)
         {
-            _takeable.Transform.parent = null;
-            var throwable = _takeable as IThrowable;
-            var throwableCollider = throwable.Transform.GetComponent<Collider>();
-            throwable.Transform.gameObject.AddComponent<Rigidbody>();
+            if (!_pickeable.gameObject.TryGetComponent(out Throwable throwable))
+                return;
 
-            var throwableRb = throwable.Transform.GetComponent<Rigidbody>();
-            throwableRb.interpolation = RigidbodyInterpolation.Interpolate;
-            throwableRb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
-            throwableRb.AddForce(CameraPivot.forward * speed, ForceMode.Impulse);
-            SoundPlayerSystem.PlayActiveSound();
-            throwable.SetRotation();
-            throwableCollider.enabled = true;
+            _pickeable.Drop();
+            throwable.Throw(CameraPivot.forward, speed);
 
             _playerHandContainer.Clear();
-            _takeable = null;
         }
     }
 }

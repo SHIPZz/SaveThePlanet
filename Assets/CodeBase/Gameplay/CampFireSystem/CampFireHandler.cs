@@ -1,16 +1,17 @@
 ﻿using System;
+using CodeBase.Gameplay.Extinguishables;
 using CodeBase.Services.TriggerObserve;
 using UnityEngine;
 
 namespace CodeBase.Gameplay.CampFireSystem
 {
-    public class CampFireMediator : MonoBehaviour
+    public class CampFireHandler : MonoBehaviour
     {
         public TriggerObserver PlayerObserver;
         public TriggerObserver ExtinguisherObserver;
 
         private CampFire _campFire;
-        private IFireExtinguishable _extinguishable;
+        private Extinguishable _extinguishable;
 
         private void Awake() => 
             _campFire = GetComponent<CampFire>();
@@ -29,7 +30,7 @@ namespace CodeBase.Gameplay.CampFireSystem
 
         private void OnExtinguisherExited(Collider collider)
         {
-            if(!collider.gameObject.TryGetComponent(out IFireExtinguishable fireExtinguishable))
+            if(!collider.gameObject.TryGetComponent(out Extinguishable fireExtinguishable))
                 return;
             
             _extinguishable = null;
@@ -37,17 +38,11 @@ namespace CodeBase.Gameplay.CampFireSystem
 
         private void OnExtinguisherEntered(Collider collider)
         {
-            if(!collider.gameObject.TryGetComponent(out IFireExtinguishable fireExtinguishable))
+            if(!collider.gameObject.TryGetComponent(out Extinguishable fireExtinguishable))
                 return;
 
             _extinguishable = fireExtinguishable;
-            _extinguishable.Done += OnPutOut;
-        }
-
-        private void OnPutOut(IFireExtinguishable extinguishable)
-        {
-            _campFire.Disable();
-            _extinguishable.Done -= OnPutOut;
+            _extinguishable.Finished +=  _campFire.Disable;
         }
     }
 }

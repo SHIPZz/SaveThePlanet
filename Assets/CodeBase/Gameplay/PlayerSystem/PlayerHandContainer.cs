@@ -1,28 +1,31 @@
 ﻿using System;
+using CodeBase.Gameplay.Pickeables;
 
 namespace CodeBase.Gameplay.PlayerSystem
 {
     public class PlayerHandContainer
     {
-        private ITakeable _currentTakeable;
+        private Pickeable _currentPickeable;
 
         public event Action Cleared;
-        public event Action<ITakeable> Set;
+        public event Action<Pickeable> Set;
 
-        public ITakeable Takeable => _currentTakeable;
+        public Pickeable Pickeable => _currentPickeable;
 
-        public void TrySetCurrentObject(ITakeable takeable)
+        public bool HasItem => _currentPickeable != null;
+
+        public void TrySetCurrentObject(Pickeable takeable)
         {
-            if(_currentTakeable != null)
+            if(_currentPickeable != null)
                 return;
             
-            _currentTakeable = takeable;
-            Set?.Invoke(_currentTakeable);
+            _currentPickeable = takeable;
+            Set?.Invoke(_currentPickeable);
         }
         
         public void Clear()
         {
-            _currentTakeable = null;
+            _currentPickeable = null;
             Cleared?.Invoke();
         }
     }
