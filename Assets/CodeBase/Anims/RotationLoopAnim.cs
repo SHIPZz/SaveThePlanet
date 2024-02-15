@@ -1,7 +1,7 @@
 ﻿using DG.Tweening;
 using UnityEngine;
 
-namespace CodeBase.Animations
+namespace CodeBase.Anims
 {
     public class RotationLoopAnim : MonoBehaviour
     {

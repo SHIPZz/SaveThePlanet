@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace CodeBase.Animations
+namespace CodeBase.Anims
 {
     [RequireComponent(typeof(RectTransform))]
     public class OnPointerAnimation : MonoBehaviour, IPointerDownHandler, IPointerUpHandler

@@ -1,5 +1,5 @@
 ﻿using System;
-using CodeBase.Animations;
+using CodeBase.Anims;
 using CodeBase.UI.Effects;
 using DG.Tweening;
 using UnityEngine;

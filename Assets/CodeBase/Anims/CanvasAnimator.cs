@@ -3,7 +3,7 @@ using DG.Tweening;
 using JetBrains.Annotations;
 using UnityEngine;
 
-namespace CodeBase.Animations
+namespace CodeBase.Anims
 {
     public class CanvasAnimator : MonoBehaviour
     {

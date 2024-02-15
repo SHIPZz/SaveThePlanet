@@ -1,13 +1,12 @@
-﻿using CodeBase.Data;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 
-namespace CodeBase.Services
+namespace CodeBase.Services.WorldData
 {
     public interface IWorldDataService
     {
         UniTask Load();
         void Save();
-        WorldData WorldData { get; }
+        Data.WorldData WorldData { get; }
         void Reset();
     }
 }

@@ -1,7 +1,10 @@
 using CodeBase.Gameplay.PlayerSystem;
 
-public class PlayerProvider
+namespace CodeBase.Services.Providers.PlayerProviders
 {
-    public Player Player;
+    public class PlayerProvider
+    {
+        public Player Player;
 
+    }
 }

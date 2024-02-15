@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using DG.Tweening;
+﻿using DG.Tweening;
 using UnityEngine;
 
-namespace CodeBase.Animations
+namespace CodeBase.Anims
 {
     public class PositionLoopAnim : MonoBehaviour
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace CodeBase.Services.TriggerObserve
+namespace CodeBase.Services.TriggerObserves
 {
     public class TriggerObserver : MonoBehaviour
     {

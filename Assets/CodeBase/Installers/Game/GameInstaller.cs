@@ -2,6 +2,7 @@
 using CodeBase.Services.Factories;
 using CodeBase.Services.Providers.CameraProviders;
 using CodeBase.Services.Providers.LocationProviders;
+using CodeBase.Services.Providers.PlayerProviders;
 using CodeBase.Services.StaticData;
 using UnityEngine;
 using Zenject;

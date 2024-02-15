@@ -1,7 +1,7 @@
-﻿using System;
+﻿using CodeBase.Gameplay.Garbages;
 using UnityEngine;
 
-namespace CodeBase.Gameplay.Garbages
+namespace CodeBase.Gameplay.Bins
 {
     public class PushAwayOnWrongGarbage : MonoBehaviour
     {

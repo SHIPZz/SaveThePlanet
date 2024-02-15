@@ -1,18 +1,15 @@
 ﻿using System;
 using CodeBase.Enums;
+using CodeBase.Gameplay.Garbages;
 using CodeBase.Gameplay.Pickeables;
-using CodeBase.Services.Factories;
-using CodeBase.Services.TriggerObserve;
+using CodeBase.Services.TriggerObserves;
 using CodeBase.UI.Effects;
-using Unity.VisualScripting;
 using UnityEngine;
-using Zenject;
 
-namespace CodeBase.Gameplay.Garbages
+namespace CodeBase.Gameplay.Bins
 {
     public class Bin : MonoBehaviour
     {
-        public TriggerObserver GarbageObserver;
         public GarbageType GarbageType;
         public Transform GarbagePosition;
 

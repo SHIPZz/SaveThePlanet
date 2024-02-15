@@ -1,8 +1,8 @@
 ﻿using System;
-using CodeBase.Animations;
+using CodeBase.Anims;
 using CodeBase.Gameplay.MaterialChange;
 using CodeBase.Gameplay.SoundPlayer;
-using CodeBase.Services.TriggerObserve;
+using CodeBase.Services.TriggerObserves;
 using CodeBase.UI.Effects;
 using DG.Tweening;
 using UnityEngine;

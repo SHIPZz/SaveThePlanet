@@ -1,4 +1,4 @@
-﻿using CodeBase.Animations;
+﻿using CodeBase.Anims;
 using UnityEngine;
 
 namespace CodeBase.Gameplay.Extinguishables

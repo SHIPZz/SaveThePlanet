@@ -3,7 +3,7 @@ using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
 
-namespace CodeBase.Animations
+namespace CodeBase.Anims
 {
     public class TransformScaleAnim : MonoBehaviour
     {

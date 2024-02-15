@@ -1,14 +1,14 @@
 ﻿using CodeBase.InfraStructure;
-using CodeBase.Services;
 using CodeBase.Services.Input;
 using CodeBase.Services.Providers.Asset;
 using CodeBase.Services.SaveSystem;
+using CodeBase.Services.WorldData;
 using UnityEngine;
 using Zenject;
 using CoroutineRunner = CodeBase.InfraStructure.CoroutineRunner;
 using IInitializable = Zenject.IInitializable;
 
-namespace CodeBase.Bootstrap
+namespace CodeBase.Installers.Bootstrap
 {
     public class BootstrapInstaller : MonoInstaller, IInitializable
     {

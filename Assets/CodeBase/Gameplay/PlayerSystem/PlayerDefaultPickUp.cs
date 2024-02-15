@@ -2,7 +2,6 @@
 using CodeBase.Constant;
 using CodeBase.Gameplay.Pickeables;
 using CodeBase.Gameplay.SoundPlayer;
-using CodeBase.Services.TriggerObserve;
 using UnityEngine;
 using Zenject;
 

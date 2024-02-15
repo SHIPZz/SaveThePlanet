@@ -1,8 +1,10 @@
 ﻿using CodeBase.Constant;
+using CodeBase.Gameplay.Camera;
 using CodeBase.Gameplay.PlayerSystem;
 using CodeBase.Services.Factories;
 using CodeBase.Services.Providers.CameraProviders;
 using CodeBase.Services.Providers.LocationProviders;
+using CodeBase.Services.Providers.PlayerProviders;
 using UnityEngine;
 using Zenject;
 

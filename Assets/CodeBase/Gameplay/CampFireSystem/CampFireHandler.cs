@@ -1,6 +1,6 @@
 ﻿using System;
 using CodeBase.Gameplay.Extinguishables;
-using CodeBase.Services.TriggerObserve;
+using CodeBase.Services.TriggerObserves;
 using UnityEngine;
 
 namespace CodeBase.Gameplay.CampFireSystem

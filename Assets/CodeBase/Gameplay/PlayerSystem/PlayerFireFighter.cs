@@ -1,7 +1,7 @@
 ﻿using System;
 using CodeBase.Gameplay.Extinguishables;
 using CodeBase.Gameplay.Pickeables;
-using CodeBase.Services.TriggerObserve;
+using CodeBase.Services.TriggerObserves;
 using UnityEngine;
 using Zenject;
 

@@ -1,5 +1,5 @@
 ﻿using System;
-using CodeBase.Services.TriggerObserve;
+using CodeBase.Services.TriggerObserves;
 using UnityEngine;
 
 namespace CodeBase.Gameplay.PlayerSystem

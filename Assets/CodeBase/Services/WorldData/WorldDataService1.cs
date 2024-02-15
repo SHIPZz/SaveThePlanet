@@ -1,7 +1,7 @@
 ﻿using CodeBase.Services.SaveSystem;
 using Cysharp.Threading.Tasks;
 
-namespace CodeBase.Services
+namespace CodeBase.Services.WorldData
 {
     public class WorldDataService : IWorldDataService
     {
