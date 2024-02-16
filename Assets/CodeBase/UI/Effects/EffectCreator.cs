@@ -10,16 +10,25 @@ namespace CodeBase.UI.Effects
         public Vector3 Rotation;
         public EffectType EffectType;
         private UIFactory _uiFactory;
-        
+        private Effect _lastCreatedEffect;
+
         [Inject]
         private void Construct(UIFactory uiFactory)
         {
             _uiFactory = uiFactory;
         }
 
-        public void CreateAndPlay(Transform parent, Vector3 at)
+        public Effect CreateAndPlay(Transform parent, Vector3 at)
         {
-            _uiFactory.CreateAndPlay(EffectType, parent, at, Quaternion.Euler(Rotation));
+           return _uiFactory.CreateAndPlay(EffectType, parent, at, Quaternion.Euler(Rotation));
+        }
+
+        public Effect CreateAndPlay(Transform parent, Vector3 at, bool setLocalPosition)
+        {
+            Effect effect = _uiFactory.CreateAndPlay(EffectType, parent, at, Quaternion.Euler(Rotation));
+
+            effect.transform.localPosition = at;
+            return effect;
         }
     }
 }

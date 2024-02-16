@@ -29,6 +29,8 @@ GameObject:
   - component: {fileID: 7175431170910506976}
   - component: {fileID: 6779069201289617639}
   - component: {fileID: 4861760320952580864}
+  - component: {fileID: 5820261507249139849}
+  - component: {fileID: -7381964543936043406}
   m_Layer: 8
   m_Name: SM_Prop_Can_01 (2)
   m_TagString: Untagged
@@ -508,6 +510,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementSpeed: 0.5
+  JumpPower: 1
+  NumJumps: 1
 --- !u!114 &6779069201289617639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -533,3 +537,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GarbageType: 1
+--- !u!114 &5820261507249139849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8755021544503260299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4aa7b8dd7ead40d89aee2a7bcff020c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Rotation: {x: -90, y: 0, z: 0}
+  EffectType: 2
+--- !u!114 &-7381964543936043406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8755021544503260299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 079ee1c8bd334255a893b439e271cb35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EffectType: 0

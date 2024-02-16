@@ -29,6 +29,8 @@ GameObject:
   - component: {fileID: 4964612267156421751}
   - component: {fileID: 6936645601118831600}
   - component: {fileID: 8159767864331722743}
+  - component: {fileID: -966320283576488128}
+  - component: {fileID: -7721536494967063930}
   m_Layer: 8
   m_Name: SM_Prop_Tool_Bucket_01
   m_TagString: Untagged
@@ -508,6 +510,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementSpeed: 0.5
+  JumpPower: 1
+  NumJumps: 1
 --- !u!114 &6936645601118831600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -533,3 +537,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GarbageType: 1
+--- !u!114 &-966320283576488128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5685825601210058439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4aa7b8dd7ead40d89aee2a7bcff020c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Rotation: {x: -90, y: 0, z: 0}
+  EffectType: 2
+--- !u!114 &-7721536494967063930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5685825601210058439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 079ee1c8bd334255a893b439e271cb35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EffectType: 0

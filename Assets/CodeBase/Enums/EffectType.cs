@@ -3,6 +3,7 @@
     public enum EffectType
     {
         MagicBuffGreen,
-        MagicZoneGreen
+        MagicZoneGreen,
+        TreasureChestGlowRays
     }
 }

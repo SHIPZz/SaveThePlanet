@@ -153,6 +153,8 @@ GameObject:
   - component: {fileID: 2347276026701426950}
   - component: {fileID: 7211822040316064655}
   - component: {fileID: 2985316229225460065}
+  - component: {fileID: -651845845191841270}
+  - component: {fileID: -5879273819911054044}
   m_Layer: 8
   m_Name: SM_Prop_Tyre_01
   m_TagString: Untagged
@@ -636,8 +638,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementSpeed: 0.5
-  TransformPoints:
-  - {fileID: 71129831305861891}
   JumpPower: 2
   NumJumps: 1
 --- !u!114 &7211822040316064655
@@ -665,3 +665,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GarbageType: 3
+--- !u!114 &-651845845191841270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7546795163825771419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4aa7b8dd7ead40d89aee2a7bcff020c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Rotation: {x: -90, y: 0, z: 0}
+  EffectType: 2
+--- !u!114 &-5879273819911054044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7546795163825771419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 079ee1c8bd334255a893b439e271cb35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EffectType: 0

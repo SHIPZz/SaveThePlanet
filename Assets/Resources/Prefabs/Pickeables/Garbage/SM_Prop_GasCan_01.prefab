@@ -29,6 +29,8 @@ GameObject:
   - component: {fileID: 8193388376594424099}
   - component: {fileID: 1543512437743864525}
   - component: {fileID: 713578737131007154}
+  - component: {fileID: 5755541772016302544}
+  - component: {fileID: 1137779465820879316}
   m_Layer: 8
   m_Name: SM_Prop_GasCan_01
   m_TagString: Untagged
@@ -508,6 +510,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MovementSpeed: 0.5
+  JumpPower: 1
+  NumJumps: 1
 --- !u!114 &1543512437743864525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -533,3 +537,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GarbageType: 3
+--- !u!114 &5755541772016302544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7889753518102203775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4aa7b8dd7ead40d89aee2a7bcff020c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Rotation: {x: -90, y: 0, z: 0}
+  EffectType: 2
+--- !u!114 &1137779465820879316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7889753518102203775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 079ee1c8bd334255a893b439e271cb35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EffectType: 0
