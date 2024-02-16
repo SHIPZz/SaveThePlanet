@@ -1,5 +1,6 @@
 ﻿using CodeBase.EntryPointSystem;
 using CodeBase.Services.Factories;
+using CodeBase.Services.GarbageDeathableServices;
 using CodeBase.Services.Providers.CameraProviders;
 using CodeBase.Services.Providers.LocationProviders;
 using CodeBase.Services.Providers.PlayerProviders;
@@ -18,7 +19,13 @@ namespace CodeBase.Installers.Game
             BindProviders();
             BindGameFactory();
             BindStaticDataServices();
+            BindGarbageDeathableService();
             InitEntryPoint();
+        }
+
+        private void BindGarbageDeathableService()
+        {
+            Container.Bind<GarbageDeathableService>().AsSingle();
         }
 
         private void BindStaticDataServices()

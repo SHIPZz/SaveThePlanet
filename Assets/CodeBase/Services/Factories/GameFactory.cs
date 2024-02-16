@@ -1,6 +1,9 @@
-﻿using CodeBase.Constant;
+﻿using System.Collections.Generic;
+using CodeBase.Constant;
 using CodeBase.Enums;
 using CodeBase.Gameplay.DestroyableObjects;
+using CodeBase.Gameplay.GarbageDetection;
+using CodeBase.Gameplay.Garbages;
 using CodeBase.Gameplay.PlayerSystem;
 using CodeBase.Services.Providers.Asset;
 using CodeBase.Services.StaticData;
@@ -13,27 +16,45 @@ namespace CodeBase.Services.Factories
     {
         private readonly IInstantiator _instantiator;
         private readonly IAssetProvider _assetProvider;
-        private GameStaticDataService _gameStaticDataService;
+        private readonly GameStaticDataService _gameStaticDataService;
 
-        public GameFactory(IInstantiator instantiator, IAssetProvider assetProvider, GameStaticDataService gameStaticDataService)
+        public GameFactory(IInstantiator instantiator, IAssetProvider assetProvider,
+            GameStaticDataService gameStaticDataService)
         {
             _gameStaticDataService = gameStaticDataService;
             _assetProvider = assetProvider;
             _instantiator = instantiator;
         }
 
-        public DestroyableObjectPart Create(DestroyableTypeId destroyableTypeId, Transform parent, Vector3 at, Quaternion rotation)
+        public DestroyableObjectPart Create(DestroyableTypeId destroyableTypeId, Transform parent, Vector3 at,
+            Quaternion rotation)
         {
             DestroyableObjectPart prefab = _gameStaticDataService.Get(destroyableTypeId);
 
-            return _instantiator.InstantiatePrefabForComponent<DestroyableObjectPart>(prefab, at, rotation,parent);
+            return _instantiator.InstantiatePrefabForComponent<DestroyableObjectPart>(prefab, at, rotation, parent);
         }
-        
+
+        public GarbageDeathable Create(string id, Transform parent, Vector3 at, Quaternion rotation)
+        {
+            GarbageDeathable prefab = _gameStaticDataService.Get(id);
+
+            return _instantiator.InstantiatePrefabForComponent<GarbageDeathable>(prefab, at, rotation, parent);
+        }
+
+        public Garbage CreateRandomGarbage(Vector3 at, Transform parent, Quaternion rotation)
+        {
+            List<Garbage> garbages = _gameStaticDataService.GetAllGarbages();
+
+            Garbage randomGarbagePrefab = garbages[Random.Range(0, garbages.Count)];
+
+            return _instantiator.InstantiatePrefabForComponent<Garbage>(randomGarbagePrefab, at, rotation, parent);
+        }
+
         public T Create<T>(Transform parent, Vector3 at, Quaternion rotation, string path) where T : Component
         {
             var prefab = _assetProvider.Get<T>(path);
 
-            return _instantiator.InstantiatePrefabForComponent<T>(prefab, at, rotation,parent);
+            return _instantiator.InstantiatePrefabForComponent<T>(prefab, at, rotation, parent);
         }
     }
 }

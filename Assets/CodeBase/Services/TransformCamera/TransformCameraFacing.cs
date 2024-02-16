@@ -17,7 +17,7 @@ namespace CodeBase.Services.TransformCamera
         
         private void Update()
         {
-            if(_cameraProvider.Camera == null)
+            if( _cameraProvider.Camera == null)
                 return;
 
             transform.rotation = Quaternion.LookRotation(_cameraProvider.Camera.transform.forward);

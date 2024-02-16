@@ -9,20 +9,14 @@ namespace CodeBase.Gameplay.GarbageDetection
 
         public event Action Dead;
 
-        private void Awake()
-        {
+        private void Awake() => 
             _garbageDetector = GetComponent<GarbageDetector>();
-        }
 
-        private void OnEnable()
-        {
+        private void OnEnable() => 
             _garbageDetector.Detected += Die;
-        }
 
-        private void OnDisable()
-        {
+        private void OnDisable() => 
             _garbageDetector.Detected -= Die;
-        }
 
         private void Die(GarbageDetector garbageDetector)
         {

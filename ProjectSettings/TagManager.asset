@@ -23,8 +23,8 @@ TagManager:
   - OnlyExtinguisherable
   - Animal
   - Fish
-  - 
-  - 
+  - GarbageSpawnZoneDetection
+  - GarbageSpawnZone
   - 
   - 
   - 

@@ -11,15 +11,11 @@ namespace CodeBase.Gameplay.GarbageDetection
 
         public event Action<GarbageDetector> Detected;
 
-        private void OnEnable()
-        {
+        private void OnEnable() => 
             TriggerObserver.TriggerEntered += OnDetected;
-        }
 
-        private void OnDisable()
-        {
+        private void OnDisable() => 
             TriggerObserver.TriggerEntered -= OnDetected;
-        }
 
         private void OnDetected(Collider collider)
         {
