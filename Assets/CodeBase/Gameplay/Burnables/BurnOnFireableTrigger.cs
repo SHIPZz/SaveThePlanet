@@ -16,9 +16,10 @@ namespace CodeBase.Gameplay.Burnables
 
         private void OnTriggerEnter(Collider other)
         {
-            print(other.gameObject.name);
-            
             if(!other.gameObject.TryGetComponent(out Fireable fireable))
+                return;
+            
+            if(_fireable != null)
                 return;
 
             _fireable = fireable;
