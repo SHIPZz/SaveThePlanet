@@ -1,20 +1,20 @@
 ﻿using System;
 using CodeBase.Gameplay.Extinguishables;
+using CodeBase.Gameplay.Fireables;
 using CodeBase.Services.TriggerObserves;
 using UnityEngine;
 
 namespace CodeBase.Gameplay.CampFireSystem
 {
-    public class CampFireHandler : MonoBehaviour
+    public class PutOutOnExtinguishable : MonoBehaviour
     {
-        public TriggerObserver PlayerObserver;
         public TriggerObserver ExtinguisherObserver;
 
-        private CampFire _campFire;
+        private Fireable _fireable;
         private Extinguishable _extinguishable;
 
         private void Awake() => 
-            _campFire = GetComponent<CampFire>();
+            _fireable = GetComponent<Fireable>();
 
         private void OnEnable()
         {
@@ -38,11 +38,12 @@ namespace CodeBase.Gameplay.CampFireSystem
 
         private void OnExtinguisherEntered(Collider collider)
         {
+            print(collider.gameObject.name);
             if(!collider.gameObject.TryGetComponent(out Extinguishable fireExtinguishable))
                 return;
 
             _extinguishable = fireExtinguishable;
-            _extinguishable.Finished +=  _campFire.Disable;
+            _extinguishable.Finished +=  _fireable.PutOut;
         }
     }
 }

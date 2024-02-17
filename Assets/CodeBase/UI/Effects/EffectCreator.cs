@@ -30,5 +30,6 @@ namespace CodeBase.UI.Effects
             effect.transform.localPosition = at;
             return effect;
         }
+        
     }
 }

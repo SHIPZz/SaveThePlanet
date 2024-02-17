@@ -4,6 +4,7 @@
     {
         MagicBuffGreen,
         MagicZoneGreen,
-        TreasureChestGlowRays
+        TreasureChestGlowRays,
+        FlamethrowerToonyFire
     }
 }

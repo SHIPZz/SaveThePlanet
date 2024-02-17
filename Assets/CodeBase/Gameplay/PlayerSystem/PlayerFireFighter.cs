@@ -1,5 +1,6 @@
 ﻿using System;
 using CodeBase.Gameplay.Extinguishables;
+using CodeBase.Gameplay.Fireables;
 using CodeBase.Gameplay.Pickeables;
 using CodeBase.Services.TriggerObserves;
 using UnityEngine;
@@ -21,25 +22,25 @@ namespace CodeBase.Gameplay.PlayerSystem
         public void OnEnable()
         {
             _playerHandContainer.Set += OnPlayerPickedUp;
-            TriggerObserver.CollisionEntered += OnFireDetected;
+            TriggerObserver.TriggerEntered += OnFireDetected;
         }
 
         public void OnDisable()
         {
             _playerHandContainer.Set -= OnPlayerPickedUp;
-            TriggerObserver.CollisionEntered -= OnFireDetected;
+            TriggerObserver.TriggerEntered -= OnFireDetected;
         }
 
-        private void OnFireDetected(Collision collision)
+        private void OnFireDetected(Collider collision)
         {
-            if(!collision.gameObject.TryGetComponent(out IFireable fireable))
+            if(!collision.gameObject.TryGetComponent(out Fireable fireable))
                 return;
 
             if (_fireExtinguishable == null)
                 return;
             
             _playerHandContainer.Pickeable.Drop();
-            _fireExtinguishable.SetPutOut(fireable.Anchor.position, fireable.Anchor.up * -1);
+            _fireExtinguishable.SetPutOut(fireable.transform.position, fireable.transform.up * -1);
             _fireExtinguishable = null;
             _playerHandContainer.Clear();
         }
