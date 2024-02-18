@@ -22,16 +22,16 @@ namespace CodeBase.Gameplay.PlayerSystem
         public void OnEnable()
         {
             _playerHandContainer.Set += OnPlayerPickedUp;
-            TriggerObserver.TriggerEntered += OnFireDetected;
+            TriggerObserver.CollisionEntered += OnFireDetected;
         }
 
         public void OnDisable()
         {
             _playerHandContainer.Set -= OnPlayerPickedUp;
-            TriggerObserver.TriggerEntered -= OnFireDetected;
+            TriggerObserver.CollisionEntered -= OnFireDetected;
         }
 
-        private void OnFireDetected(Collider collision)
+        private void OnFireDetected(Collision collision)
         {
             if(!collision.gameObject.TryGetComponent(out Fireable fireable))
                 return;
