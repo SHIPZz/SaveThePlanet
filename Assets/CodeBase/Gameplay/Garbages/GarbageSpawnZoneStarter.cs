@@ -16,9 +16,8 @@ namespace CodeBase.Gameplay.Garbages
             _garbageSpawnZone = GetComponent<GarbageSpawnZone>();
         }
 
-        private IEnumerator Start()
+        private void Start()
         {
-            yield return new WaitForSeconds(SpawnDelay);
             _spawnCoroutine = StartCoroutine(InitSpawnCoroutine());
         }
 

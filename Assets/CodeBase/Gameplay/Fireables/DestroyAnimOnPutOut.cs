@@ -1,4 +1,5 @@
-﻿using CodeBase.Anims;
+﻿using System;
+using CodeBase.Anims;
 using DG.Tweening;
 using UnityEngine;
 
@@ -13,23 +14,29 @@ namespace CodeBase.Gameplay.Fireables
         private Fireable _fireable;
         private TransformScaleAnim _transformScaleAnim;
 
+        public event Action Destroyed;
+
         private void Awake()
         {
             _fireable = GetComponent<Fireable>();
             _transformScaleAnim = GetComponent<TransformScaleAnim>();
         }
 
-        private void OnEnable() => 
+        private void OnEnable() =>
             _fireable.OnPutOut += PlayAnim;
 
-        private void OnDisable() => 
-        _fireable.OnPutOut -= PlayAnim;
+        private void OnDisable() =>
+            _fireable.OnPutOut -= PlayAnim;
 
         private void PlayAnim()
         {
             DOTween.Sequence()
                 .AppendInterval(DestroyDelay)
-                .OnComplete(() => _transformScaleAnim.UnScale(() => Destroy(gameObject)));
+                .OnComplete(() =>
+                {
+                    Destroyed?.Invoke();
+                    _transformScaleAnim.UnScale(() => Destroy(gameObject));
+                });
         }
     }
 }
