@@ -5,6 +5,7 @@ using CodeBase.Enums;
 using CodeBase.Gameplay.DestroyableObjects;
 using CodeBase.Gameplay.GarbageDetection;
 using CodeBase.Gameplay.Garbages;
+using CodeBase.Gameplay.NatureDamageables;
 using CodeBase.ScriptableObjects.Player;
 using UnityEngine;
 
@@ -16,6 +17,7 @@ namespace CodeBase.Services.StaticData
         private readonly PlayerData _playerData;
         private readonly Garbage[] _garbages;
         private readonly Dictionary<string, GarbageDeathable> _garbageDeathables;
+        private readonly Dictionary<DamagedNatureType, DamagedNature> _damagedNatures;
 
         public GameStaticDataService()
         {
@@ -27,6 +29,9 @@ namespace CodeBase.Services.StaticData
             _garbageDeathables = Resources.LoadAll<GarbageDeathable>(AssetPath.GarbageDeathables)
                 .ToDictionary(x => x.Id, x => x);
 
+            _damagedNatures = Resources.LoadAll<DamagedNature>(AssetPath.DamagedNatures)
+                .ToDictionary(x => x.DamagedNatureType, x => x);
+
             _playerData = Resources.Load<PlayerData>(AssetPath.PlayerData);
         }
 
@@ -35,6 +40,11 @@ namespace CodeBase.Services.StaticData
             return _garbageDeathables[id];
         }
 
+        public DamagedNature Get(DamagedNatureType id)
+        {
+            return _damagedNatures[id];
+        }
+        
         public List<Garbage> GetAllGarbages()
         {
             return _garbages.ToList();
@@ -45,7 +55,7 @@ namespace CodeBase.Services.StaticData
             return _playerData;
         }
 
-        public DestroyableObjectPart Get(DestroyableTypeId destroyableTypeId) => 
+        public DestroyableObjectPart Get(DestroyableTypeId destroyableTypeId) =>
             _destroyableObjectPrefabs[destroyableTypeId];
     }
 }

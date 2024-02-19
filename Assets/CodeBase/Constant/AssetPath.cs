@@ -9,5 +9,6 @@
         public const string Effects = "Prefabs/UI/Effects";
         public const string Garbages = "Prefabs/Pickeables/Garbage";
         public const string GarbageDeathables = "Prefabs/GarbageDeathables";
+        public const string DamagedNatures = "Prefabs/DamagedNatures";
     }
 }

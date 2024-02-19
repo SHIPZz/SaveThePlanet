@@ -25,7 +25,6 @@ namespace CodeBase.Gameplay.CampFireSystem
 
         private void OnTriggerEnter(Collider collider)
         {
-            print(collider.gameObject.name);
             if(!collider.gameObject.TryGetComponent(out Extinguishable fireExtinguishable))
                 return;
 

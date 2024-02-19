@@ -4,6 +4,7 @@ using CodeBase.Enums;
 using CodeBase.Gameplay.DestroyableObjects;
 using CodeBase.Gameplay.GarbageDetection;
 using CodeBase.Gameplay.Garbages;
+using CodeBase.Gameplay.NatureDamageables;
 using CodeBase.Gameplay.PlayerSystem;
 using CodeBase.Services.Providers.Asset;
 using CodeBase.Services.StaticData;
@@ -32,6 +33,14 @@ namespace CodeBase.Services.Factories
             DestroyableObjectPart prefab = _gameStaticDataService.Get(destroyableTypeId);
 
             return _instantiator.InstantiatePrefabForComponent<DestroyableObjectPart>(prefab, at, rotation, parent);
+        }
+
+        public DamagedNature Create(DamagedNatureType damagedNatureType, Transform parent, Vector3 at,
+            Quaternion rotation)
+        {
+            DamagedNature prefab = _gameStaticDataService.Get(damagedNatureType);
+
+            return _instantiator.InstantiatePrefabForComponent<DamagedNature>(prefab, at, rotation, parent);
         }
 
         public GarbageDeathable Create(string id, Transform parent, Vector3 at, Quaternion rotation)
