@@ -2,6 +2,7 @@
 {
     public enum DestroyableTypeId
     {
-        Silo
+        Silo,
+        IndustryFactory
     }
 }

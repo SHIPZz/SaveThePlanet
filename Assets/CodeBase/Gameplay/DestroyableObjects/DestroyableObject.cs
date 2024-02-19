@@ -1,31 +1,25 @@
-﻿using CodeBase.Enums;
-using CodeBase.Gameplay.Garbages;
-using CodeBase.Services.Factories;
+﻿using System;
+using CodeBase.Enums;
+using CodeBase.Gameplay.CleanUpSystem;
 using UnityEngine;
-using Zenject;
 
 namespace CodeBase.Gameplay.DestroyableObjects
 {
-    public class DestroyableObject : MonoBehaviour
+    public class DestroyableObject : MonoBehaviour, ICleanUp
     {
         public DestroyableTypeId DestroyableTypeId;
-        
-        private GameFactory _gameFactory;
+        public event Action Destroyed;
 
-        [Inject]
-        private void Construct(GameFactory gameFactory)
+        public event Action CleanedUp;
+
+        public void Destroy()
         {
-            _gameFactory = gameFactory;
+            CleanedUp?.Invoke();
         }
 
-        private void OnCollisionEnter(Collision other)
+        public void CleanUp()
         {
-            if (!other.gameObject.TryGetComponent(out Garbage garbage))
-                return;
-            
-            DestroyableObjectPart destroyablePart = _gameFactory.Create(DestroyableTypeId, null, transform.position, transform.rotation);
-            destroyablePart.Activate();
-            Destroy(gameObject);
+            Destroyed?.Invoke();
         }
     }
 }

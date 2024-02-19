@@ -1,15 +1,20 @@
 ﻿using DG.Tweening;
 using UnityEngine;
 
-namespace CodeBase.Anims
+namespace CodeBase.Animations
 {
-    public class RotationLoopAnim : MonoBehaviour
+    public class PositionLoopAnim : MonoBehaviour
     {
         [SerializeField] private float _duration = 1f;
-        [SerializeField] private Vector3 _targetRotation;
-        [SerializeField] private LoopType _loopType;
+        [SerializeField] private Vector3 _targetPosition;
         
         private Tween _animationTween;
+        private Vector3 _initialPosition;
+
+        private void Awake()
+        {
+            _initialPosition = transform.position;
+        }
 
         private void OnEnable()
         {
@@ -23,10 +28,8 @@ namespace CodeBase.Anims
 
         private void StartAnimation()
         {
-            print("startAnim");
-            _animationTween = transform.DORotate(_targetRotation, _duration, RotateMode.FastBeyond360)
-                .SetLoops(-1, _loopType)
-                .SetEase(Ease.Linear)
+            _animationTween = transform.DOMove(_initialPosition + _targetPosition, _duration)
+                .SetLoops(-1, LoopType.Yoyo)
                 .SetUpdate(true);
         }
 

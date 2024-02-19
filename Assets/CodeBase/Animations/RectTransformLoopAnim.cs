@@ -1,7 +1,7 @@
 ﻿using DG.Tweening;
 using UnityEngine;
 
-namespace CodeBase.Anims
+namespace CodeBase.Animations
 {
     [RequireComponent(typeof(RectTransform))]
     public class RectTransformLoopAnim : MonoBehaviour

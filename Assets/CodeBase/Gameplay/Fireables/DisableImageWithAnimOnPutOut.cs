@@ -1,5 +1,5 @@
 ﻿using System;
-using CodeBase.Anims;
+using CodeBase.Animations;
 using UnityEngine;
 using UnityEngine.UI;
 

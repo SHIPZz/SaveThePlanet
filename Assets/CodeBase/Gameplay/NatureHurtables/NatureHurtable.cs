@@ -1,26 +1,31 @@
 ﻿using System;
+using CodeBase.Gameplay.CleanUpSystem;
 using CodeBase.Gameplay.NatureDamageables;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace CodeBase.Gameplay.NatureHurtables
 {
-    public class NatureHurtable : MonoBehaviour
+    public class NatureHurtable : MonoBehaviour, ICleanUp
     {
-        public event Action OnHurt;
-        public event Action OnDestroyed;
-        
+        public event Action<NatureDamageable> OnHurt;
+        public event Action Destroyed;
+
+        public event Action CleanedUp;
+
         public void Hurt(NatureDamageable natureDamageable)
         {
             natureDamageable.TakeDamage();
-            OnHurt?.Invoke();
+            OnHurt?.Invoke(natureDamageable);
         }
 
-        [Button]
         public void Destroy()
         {
-            OnDestroyed?.Invoke();
-            Destroy(gameObject);
+            CleanedUp?.Invoke();
+        }
+
+        public void CleanUp()
+        {
+            Destroyed?.Invoke();
         }
     }
 }

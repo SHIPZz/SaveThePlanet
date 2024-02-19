@@ -1,4 +1,4 @@
-﻿using CodeBase.Anims;
+﻿using CodeBase.Animations;
 using UnityEngine;
 
 namespace CodeBase.Gameplay.Fireables

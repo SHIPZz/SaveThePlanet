@@ -11,20 +11,16 @@ namespace CodeBase.Gameplay.NatureHurtables
 
         private NatureHurtable _natureHurtable;
 
-        private void Awake()
-        {
+        public event Action<NatureDamageable> Damaged;
+
+        private void Awake() => 
             _natureHurtable = GetComponent<NatureHurtable>();
-        }
 
-        private void OnEnable()
-        {
+        private void OnEnable() => 
             TriggerObserver.TriggerEntered += OnTriggerEntered;
-        }
 
-        private void OnDisable()
-        {
+        private void OnDisable() => 
             TriggerObserver.TriggerEntered -= OnTriggerEntered;
-        }
 
         private void OnTriggerEntered(Collider other)
         {
@@ -32,6 +28,7 @@ namespace CodeBase.Gameplay.NatureHurtables
                 return;
 
             _natureHurtable.Hurt(natureDamageable);
+            Damaged?.Invoke(natureDamageable);
         }
     }
 }
