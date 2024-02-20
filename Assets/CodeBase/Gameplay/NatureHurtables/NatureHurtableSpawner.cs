@@ -18,6 +18,8 @@ namespace CodeBase.Gameplay.NatureHurtables
         private NatureHurtable _hurtableNature;
         private Coroutine _coroutine;
 
+        public event Action Spawned;
+
         [Inject]
         private void Construct(GameFactory gameFactory) => 
             _gameFactory = gameFactory;
@@ -40,14 +42,6 @@ namespace CodeBase.Gameplay.NatureHurtables
             Spawn();
         }
 
-        private void Spawn()
-        {
-            _hurtableNature = _gameFactory.Create(HurtableType, transform, Vector3.zero, Quaternion.identity);
-            _hurtableNature.transform.localPosition = Vector3.zero;
-            _hurtableNature.transform.localRotation = Quaternion.identity;
-            _hurtableNature.Destroyed += StartNewCoroutine;
-        }
-
         [Button]
         private void StartNewCoroutine()
         {
@@ -55,6 +49,15 @@ namespace CodeBase.Gameplay.NatureHurtables
                 StopCoroutine(_coroutine);
 
             _coroutine = StartCoroutine(StartSpawnCoroutine());
+        }
+
+        private void Spawn()
+        {
+            _hurtableNature = _gameFactory.Create(HurtableType, transform, Vector3.zero, Quaternion.identity);
+            _hurtableNature.transform.localPosition = Vector3.zero;
+            _hurtableNature.transform.localRotation = Quaternion.identity;
+            _hurtableNature.Destroyed += StartNewCoroutine;
+            Spawned?.Invoke();
         }
     }
 }

@@ -960,6 +960,7 @@ GameObject:
   - component: {fileID: 7834133634168675422}
   - component: {fileID: 2508790478247581511}
   - component: {fileID: 8663697094668215151}
+  - component: {fileID: -8796819510049133028}
   m_Layer: 23
   m_Name: industry-factory (3)
   m_TagString: Untagged
@@ -1226,6 +1227,21 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &-8796819510049133028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8740676380006071549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38c797e630c641418a0ba309f59b892c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Strength: 20
+  Duration: 2
+  Vibration: 7
 --- !u!1001 &1327826827557220421
 PrefabInstance:
   m_ObjectHideFlags: 0

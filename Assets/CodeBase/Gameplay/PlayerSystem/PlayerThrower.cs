@@ -3,6 +3,7 @@ using CodeBase.Gameplay.Pickeables;
 using CodeBase.Gameplay.SoundPlayer;
 using CodeBase.Gameplay.Throwables;
 using CodeBase.Services.StaticData;
+using DG.Tweening;
 using UnityEngine;
 using Zenject;
 
@@ -18,6 +19,8 @@ namespace CodeBase.Gameplay.PlayerSystem
         private GameStaticDataService _gameStaticDataService;
         private float _leftClickThrowSpeed;
         private float _rightClickThrowSpeed;
+
+        public event Action Thrown;
 
         [Inject]
         private void Construct(PlayerHandContainer playerHandContainer, GameStaticDataService gameStaticDataService)
@@ -59,6 +62,8 @@ namespace CodeBase.Gameplay.PlayerSystem
             throwable.Throw(CameraPivot.forward, speed);
 
             _playerHandContainer.Clear();
+            
+            Thrown?.Invoke();
         }
     }
 }

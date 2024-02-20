@@ -3,6 +3,7 @@ using System.Linq;
 using CodeBase.Constant;
 using CodeBase.Enums;
 using CodeBase.Gameplay.DestroyableObjects;
+using CodeBase.Gameplay.Destroyers;
 using CodeBase.Gameplay.GarbageDetection;
 using CodeBase.Gameplay.Garbages;
 using CodeBase.Gameplay.NatureDamageables;
@@ -20,6 +21,7 @@ namespace CodeBase.Services.StaticData
         private readonly Dictionary<string, GarbageDeathable> _garbageDeathables;
         private readonly Dictionary<DamagedNatureType, DamagedNature> _damagedNatures;
         private readonly Dictionary<NatureHurtableType, NatureHurtable> _hurtableNatures;
+        private readonly Dictionary<DestroyerType, Destroyer> _destroyers;
 
         public GameStaticDataService()
         {
@@ -38,30 +40,28 @@ namespace CodeBase.Services.StaticData
 
             _hurtableNatures = Resources.LoadAll<NatureHurtable>(AssetPath.NatureHurtables)
                 .ToDictionary(x => x.Id, x => x);
+            
+            _destroyers = Resources.LoadAll<Destroyer>(AssetPath.Destroyers)
+                .ToDictionary(x => x.DestroyerType, x => x);
         }
 
         public NatureHurtable Get(NatureHurtableType id)
             => _hurtableNatures[id];
 
-        public GarbageDeathable Get(string id)
-        {
-            return _garbageDeathables[id];
-        }
+        public GarbageDeathable Get(string id) => 
+            _garbageDeathables[id];
 
-        public DamagedNature Get(DamagedNatureType id)
-        {
-            return _damagedNatures[id];
-        }
-        
-        public List<Garbage> GetAllGarbages()
-        {
-            return _garbages.ToList();
-        }
+        public DamagedNature Get(DamagedNatureType id) => 
+            _damagedNatures[id];
 
-        public PlayerData GetPlayerData()
-        {
-            return _playerData;
-        }
+        public List<Garbage> GetAllGarbages() => 
+            _garbages.ToList();
+
+        public PlayerData GetPlayerData() => 
+            _playerData;
+
+        public Destroyer Get(DestroyerType id) => 
+            _destroyers[id];
 
         public DestroyableObjectPart Get(DestroyableTypeId destroyableTypeId) =>
             _destroyableObjectPrefabs[destroyableTypeId];

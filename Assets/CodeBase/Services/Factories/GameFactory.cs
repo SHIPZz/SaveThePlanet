@@ -2,6 +2,7 @@
 using CodeBase.Constant;
 using CodeBase.Enums;
 using CodeBase.Gameplay.DestroyableObjects;
+using CodeBase.Gameplay.Destroyers;
 using CodeBase.Gameplay.GarbageDetection;
 using CodeBase.Gameplay.Garbages;
 using CodeBase.Gameplay.NatureDamageables;
@@ -71,6 +72,13 @@ namespace CodeBase.Services.Factories
             NatureHurtable prefab = _gameStaticDataService.Get(destroyableTypeId);
 
             return _instantiator.InstantiatePrefabForComponent<NatureHurtable>(prefab, position, rotation, parent);
+        }
+
+        public Destroyer Create(DestroyerType destroyerTypeId, Transform parent, Vector3 position, Quaternion rotation)
+        {
+            Destroyer prefab = _gameStaticDataService.Get(destroyerTypeId);
+
+            return _instantiator.InstantiatePrefabForComponent<Destroyer>(prefab, position, rotation, parent);
         }
     }
 }
