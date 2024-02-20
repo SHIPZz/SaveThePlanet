@@ -1,7 +1,9 @@
 ﻿using CodeBase.EntryPointSystem;
+using CodeBase.Gameplay.Terrain;
 using CodeBase.Services.Factories;
 using CodeBase.Services.GarbageDeathableServices;
 using CodeBase.Services.Providers.CameraProviders;
+using CodeBase.Services.Providers.GameProviders;
 using CodeBase.Services.Providers.LocationProviders;
 using CodeBase.Services.Providers.PlayerProviders;
 using CodeBase.Services.StaticData;
@@ -13,6 +15,7 @@ namespace CodeBase.Installers.Game
     public class GameInstaller : MonoInstaller
     {
         [SerializeField] private LocationProvider _locationProvider;
+        [SerializeField] private GameProvider _gameProvider;
         
         public override void InstallBindings()
         {
@@ -21,6 +24,12 @@ namespace CodeBase.Installers.Game
             BindStaticDataServices();
             BindGarbageDeathableService();
             InitEntryPoint();
+            BindTerrainLayerChanger();
+        }
+
+        private void BindTerrainLayerChanger()
+        {
+            Container.Bind<TerrainLayerChanger>().AsSingle();
         }
 
         private void BindGarbageDeathableService()
@@ -48,6 +57,7 @@ namespace CodeBase.Installers.Game
         private void BindProviders()
         {
             Container.BindInstance(_locationProvider);
+            Container.BindInstance(_gameProvider);
             Container.Bind<CameraProvider>().AsSingle();
             Container.Bind<PlayerProvider>().AsSingle();
         }

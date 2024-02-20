@@ -1,25 +1,23 @@
-﻿using System;
-using CodeBase.Enums;
-using CodeBase.Gameplay.CleanUpSystem;
+﻿using CodeBase.Enums;
+using CodeBase.Gameplay.DoDestroySystem;
 using UnityEngine;
 
 namespace CodeBase.Gameplay.DestroyableObjects
 {
-    public class DestroyableObject : MonoBehaviour, ICleanUp
+    public class DestroyableObject : MonoBehaviour
     {
         public DestroyableTypeId DestroyableTypeId;
-        public event Action Destroyed;
 
-        public event Action CleanedUp;
+        private DoDestroy _doDestroy;
+
+        private void Awake()
+        {
+            _doDestroy = GetComponent<DoDestroy>();
+        }
 
         public void Destroy()
         {
-            CleanedUp?.Invoke();
-        }
-
-        public void CleanUp()
-        {
-            Destroyed?.Invoke();
+            _doDestroy.Do();
         }
     }
 }

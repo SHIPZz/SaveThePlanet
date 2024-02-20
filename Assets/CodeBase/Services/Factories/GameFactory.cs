@@ -5,6 +5,7 @@ using CodeBase.Gameplay.DestroyableObjects;
 using CodeBase.Gameplay.GarbageDetection;
 using CodeBase.Gameplay.Garbages;
 using CodeBase.Gameplay.NatureDamageables;
+using CodeBase.Gameplay.NatureHurtables;
 using CodeBase.Gameplay.PlayerSystem;
 using CodeBase.Services.Providers.Asset;
 using CodeBase.Services.StaticData;
@@ -19,8 +20,7 @@ namespace CodeBase.Services.Factories
         private readonly IAssetProvider _assetProvider;
         private readonly GameStaticDataService _gameStaticDataService;
 
-        public GameFactory(IInstantiator instantiator, IAssetProvider assetProvider,
-            GameStaticDataService gameStaticDataService)
+        public GameFactory(IInstantiator instantiator, IAssetProvider assetProvider, GameStaticDataService gameStaticDataService)
         {
             _gameStaticDataService = gameStaticDataService;
             _assetProvider = assetProvider;
@@ -64,6 +64,13 @@ namespace CodeBase.Services.Factories
             var prefab = _assetProvider.Get<T>(path);
 
             return _instantiator.InstantiatePrefabForComponent<T>(prefab, at, rotation, parent);
+        }
+
+        public NatureHurtable Create(NatureHurtableType destroyableTypeId, Transform parent, Vector3 position, Quaternion rotation)
+        {
+            NatureHurtable prefab = _gameStaticDataService.Get(destroyableTypeId);
+
+            return _instantiator.InstantiatePrefabForComponent<NatureHurtable>(prefab, position, rotation, parent);
         }
     }
 }

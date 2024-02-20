@@ -6,6 +6,7 @@ using CodeBase.Gameplay.DestroyableObjects;
 using CodeBase.Gameplay.GarbageDetection;
 using CodeBase.Gameplay.Garbages;
 using CodeBase.Gameplay.NatureDamageables;
+using CodeBase.Gameplay.NatureHurtables;
 using CodeBase.ScriptableObjects.Player;
 using UnityEngine;
 
@@ -18,6 +19,7 @@ namespace CodeBase.Services.StaticData
         private readonly Garbage[] _garbages;
         private readonly Dictionary<string, GarbageDeathable> _garbageDeathables;
         private readonly Dictionary<DamagedNatureType, DamagedNature> _damagedNatures;
+        private readonly Dictionary<NatureHurtableType, NatureHurtable> _hurtableNatures;
 
         public GameStaticDataService()
         {
@@ -33,7 +35,13 @@ namespace CodeBase.Services.StaticData
                 .ToDictionary(x => x.DamagedNatureType, x => x);
 
             _playerData = Resources.Load<PlayerData>(AssetPath.PlayerData);
+
+            _hurtableNatures = Resources.LoadAll<NatureHurtable>(AssetPath.NatureHurtables)
+                .ToDictionary(x => x.Id, x => x);
         }
+
+        public NatureHurtable Get(NatureHurtableType id)
+            => _hurtableNatures[id];
 
         public GarbageDeathable Get(string id)
         {

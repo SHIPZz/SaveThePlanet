@@ -10,15 +10,7 @@ namespace CodeBase.Gameplay.DoDestroySystem
         private void Awake() => 
             _cleanUps = GetComponents<ICleanUp>();
 
-        private void OnEnable()
-        {
-            foreach (ICleanUp cleanUp in _cleanUps)
-            {
-                cleanUp.CleanedUp += Do;
-            }
-        }
-
-        private void Do()
+        public void Do()
         {
             foreach (ICleanUp targetCleanUp in _cleanUps)
             {

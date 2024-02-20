@@ -1,11 +1,12 @@
 ﻿using CodeBase.Animations;
+using CodeBase.Gameplay.Recoverables;
 using UnityEngine;
 
 namespace CodeBase.Gameplay.NatureDamageables
 {
     [RequireComponent(typeof(TransformScaleAnim))]
     [RequireComponent(typeof(NatureDamageable))]
-    public class ScaleOnDamageable : MonoBehaviour
+    public class ScaleOnDamageable : MonoBehaviour, IRecoverableEvent
     {
         private NatureDamageable _natureDamageable;
         private TransformScaleAnim _transformScaleAnim;
@@ -16,17 +17,14 @@ namespace CodeBase.Gameplay.NatureDamageables
             _transformScaleAnim = GetComponent<TransformScaleAnim>();
         }
 
-        private void OnEnable()
-        {
-            _natureDamageable.Recovered += ToScale;
+        private void OnEnable() => 
             _natureDamageable.Damaged += UnScale;
-        }
 
-        private void OnDisable()
-        {
-            _natureDamageable.Recovered -= ToScale;
+        private void OnDisable() => 
             _natureDamageable.Damaged -= UnScale;
-        }
+
+        public void OnRecovered() => 
+            ToScale();
 
         private void UnScale() => 
             _transformScaleAnim.UnScale();

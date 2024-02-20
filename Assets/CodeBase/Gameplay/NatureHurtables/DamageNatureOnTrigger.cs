@@ -11,8 +11,6 @@ namespace CodeBase.Gameplay.NatureHurtables
 
         private NatureHurtable _natureHurtable;
 
-        public event Action<NatureDamageable> Damaged;
-
         private void Awake() => 
             _natureHurtable = GetComponent<NatureHurtable>();
 
@@ -28,7 +26,6 @@ namespace CodeBase.Gameplay.NatureHurtables
                 return;
 
             _natureHurtable.Hurt(natureDamageable);
-            Damaged?.Invoke(natureDamageable);
         }
     }
 }

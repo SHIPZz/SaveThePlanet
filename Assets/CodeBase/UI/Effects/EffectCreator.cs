@@ -9,6 +9,8 @@ namespace CodeBase.UI.Effects
     {
         public Vector3 Rotation;
         public EffectType EffectType;
+        public Vector3 Offset;
+        
         private UIFactory _uiFactory;
         private Effect _lastCreatedEffect;
 
@@ -20,7 +22,9 @@ namespace CodeBase.UI.Effects
 
         public Effect CreateAndPlay(Transform parent, Vector3 at)
         {
-           return _uiFactory.CreateAndPlay(EffectType, parent, at, Quaternion.Euler(Rotation));
+           Effect effect = _uiFactory.CreateAndPlay(EffectType, parent, at, Quaternion.Euler(Rotation));
+           effect.transform.position += Offset;
+           return effect;
         }
 
         public Effect CreateAndPlay(Transform parent, Vector3 at, bool setLocalPosition)

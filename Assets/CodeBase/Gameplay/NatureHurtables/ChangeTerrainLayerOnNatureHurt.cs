@@ -1,52 +1,63 @@
-﻿using CodeBase.Enums;
+﻿using System;
+using System.Collections.Generic;
+using CodeBase.Enums;
+using CodeBase.Gameplay.CleanUpSystem;
 using CodeBase.Gameplay.NatureDamageables;
 using CodeBase.Gameplay.Terrain;
+using CodeBase.Services.Providers.GameProviders;
 using UnityEngine;
+using Zenject;
 
 namespace CodeBase.Gameplay.NatureHurtables
 {
-    [RequireComponent(typeof(TerrainLayerChanger))]
     [RequireComponent(typeof(NatureHurtable))]
-    public class ChangeTerrainLayerOnNatureHurt : MonoBehaviour
+    public class ChangeTerrainLayerOnNatureHurt : MonoBehaviour, ICleanUp
     {
         public TerrainLayerType HurtLayerType;
         public TerrainLayerType NormalLayerType;
+        public List<Transform> Positions;
+        public float BrushSize;
 
         private NatureHurtable _natureHurtable;
         private TerrainLayerChanger _terrainLayerChanger;
+        private GameProvider _gameProvider;
+        private bool _isMud;
 
-        private void Awake()
+        [Inject]
+        private void Construct(GameProvider gameProvider, TerrainLayerChanger terrainLayerChanger)
         {
+            _terrainLayerChanger = terrainLayerChanger;
+            _gameProvider = gameProvider;
+        }
+        
+        private void Awake() => 
             _natureHurtable = GetComponent<NatureHurtable>();
-            _terrainLayerChanger = GetComponent<TerrainLayerChanger>();
-        }
 
-        private void OnEnable()
-        {
+        private void OnEnable() => 
             _natureHurtable.OnHurt += ChangeToMud;
-            _natureHurtable.Destroyed += ChangeToGrass;
-        }
 
-        private void OnDisable()
-        {
+        private void OnDisable() => 
             _natureHurtable.OnHurt -= ChangeToMud;
-            _natureHurtable.Destroyed -= ChangeToGrass;
-        }
+
+        private void OnApplicationQuit() => 
+            ChangeToGrass();
+
+        public void CleanUp() => 
+            ChangeToGrass();
 
         private void ChangeToGrass()
         {
-            print("grass");
-            _terrainLayerChanger.SetTerrainLayer(NormalLayerType);
-            Change();
+            _terrainLayerChanger.Change(_gameProvider.Terrain, NormalLayerType, Positions, BrushSize);
+            _isMud = false;
         }
 
         private void ChangeToMud(NatureDamageable natureDamageable)
         {
-            _terrainLayerChanger.SetTerrainLayer(HurtLayerType);
-            Change();
+            if(_isMud)
+                return;
+            
+            _isMud = true;
+            _terrainLayerChanger.Change(_gameProvider.Terrain, HurtLayerType, Positions, BrushSize);
         }
-
-        private void Change() => 
-            _terrainLayerChanger.Change();
     }
 }

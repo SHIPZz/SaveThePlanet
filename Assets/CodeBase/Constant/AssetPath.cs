@@ -10,5 +10,6 @@
         public const string Garbages = "Prefabs/Pickeables/Garbage";
         public const string GarbageDeathables = "Prefabs/GarbageDeathables";
         public const string DamagedNatures = "Prefabs/DamagedNatures";
+        public const string NatureHurtables = "Prefabs/NatureHurtable";
     }
 }

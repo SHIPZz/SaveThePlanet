@@ -5,6 +5,8 @@
         MagicBuffGreen,
         MagicZoneGreen,
         TreasureChestGlowRays,
-        FlamethrowerToonyFire
+        FlamethrowerToonyFire,
+        LevelUpCylinderGreen,
+        LevelUpCylinderRed
     }
 }

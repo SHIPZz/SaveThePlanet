@@ -1,31 +1,29 @@
-﻿using System;
+﻿using CodeBase.Gameplay.CleanUpSystem;
 using CodeBase.Gameplay.NatureDamageables;
+using CodeBase.Gameplay.Recoverables;
 using UnityEngine;
 
 namespace CodeBase.Gameplay.NatureHurtables
 {
-    public class RecoverDamagedNatureOnDestroy : MonoBehaviour
+    public class RecoverDamagedNatureOnDestroy : MonoBehaviour, ICleanUp
     {
-        private NatureHurtable _natureHurtable;
         private AddHurtNatureToListOnHurt _addHurtNatureToListOnHurt;
 
         private void Awake()
         {
-            _natureHurtable = GetComponent<NatureHurtable>();
             _addHurtNatureToListOnHurt = GetComponent<AddHurtNatureToListOnHurt>();
         }
 
-        private void OnEnable() => 
-            _natureHurtable.Destroyed += Recover;
-
-        private void OnDisable() => 
-            _natureHurtable.Destroyed -= Recover;
+        public void CleanUp()
+        {
+            Recover();
+        }
 
         private void Recover()
         {
             foreach (NatureDamageable natureDamageable in _addHurtNatureToListOnHurt.NatureDamageables)
             {
-                natureDamageable.Recover();
+                natureDamageable.GetComponent<Recoverable>().Recover();
             }
         }
     }

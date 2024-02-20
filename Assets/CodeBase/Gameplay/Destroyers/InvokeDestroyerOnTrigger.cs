@@ -1,11 +1,10 @@
-﻿using System;
-using CodeBase.Gameplay.DestroyableObjects;
+﻿using CodeBase.Gameplay.DestroyableObjects;
 using CodeBase.Services.TriggerObserves;
 using UnityEngine;
 
 namespace CodeBase.Gameplay.Destroyers
 {
-    public class InvokeDestroyOnTrigger : MonoBehaviour
+    public class InvokeDestroyerOnTrigger : MonoBehaviour
     {
         public TriggerObserver TriggerObserver;
 

@@ -1,12 +1,13 @@
 ﻿using System;
 using CodeBase.Enums;
+using CodeBase.Gameplay.Recoverables;
 using CodeBase.Services.Factories;
 using UnityEngine;
 using Zenject;
 
 namespace CodeBase.Gameplay.NatureDamageables
 {
-    public class SpawnDamagedNatureOnDamaged : MonoBehaviour
+    public class SpawnDamagedNatureOnDamaged : MonoBehaviour, IRecoverableEvent
     {
         public DamagedNatureType DamagedNatureType;
 
@@ -28,16 +29,14 @@ namespace CodeBase.Gameplay.NatureDamageables
         private void OnEnable()
         {
             _natureDamageable.Damaged += Spawn;
-            _natureDamageable.Recovered += DestroySpawnedDamagedNature;
         }
 
         private void OnDisable()
         {
             _natureDamageable.Damaged -= Spawn;
-            _natureDamageable.Recovered -= DestroySpawnedDamagedNature;
         }
 
-        private void DestroySpawnedDamagedNature()
+        public void OnRecovered()
         {
             Destroy(_damagedNature.gameObject);
         }

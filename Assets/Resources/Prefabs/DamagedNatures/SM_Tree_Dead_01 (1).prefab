@@ -179,6 +179,8 @@ GameObject:
   - component: {fileID: 8754086845194937123}
   - component: {fileID: 6487694620456394532}
   - component: {fileID: 5799340395434876618}
+  - component: {fileID: -7629729834180048998}
+  - component: {fileID: -2886541326745363504}
   m_Layer: 0
   m_Name: SM_Tree_Dead_01 (1)
   m_TagString: Untagged
@@ -260,3 +262,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DamagedNatureType: 2
+--- !u!114 &-7629729834180048998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6758879098210989563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4aa7b8dd7ead40d89aee2a7bcff020c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Rotation: {x: 0, y: 0, z: 0}
+  EffectType: 5
+  Offset: {x: 0, y: 0.7, z: 0}
+--- !u!114 &-2886541326745363504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6758879098210989563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fb5d198db6c4d0db93418cb610d343e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

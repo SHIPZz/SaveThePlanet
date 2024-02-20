@@ -1,34 +1,26 @@
 ﻿using System;
+using CodeBase.Gameplay.CleanUpSystem;
 using CodeBase.Services.Factories;
 using UnityEngine;
 using Zenject;
 
 namespace CodeBase.Gameplay.DestroyableObjects
 {
-    public class SpawnDestroyablePartOnDestroy : MonoBehaviour
+    public class SpawnDestroyablePartOnDestroy : MonoBehaviour,ICleanUp
     {
         private DestroyableObject _destroyableObject;
         private GameFactory _gameFactory;
 
         [Inject]
-        private void Construct(GameFactory gameFactory)
-        {
+        private void Construct(GameFactory gameFactory) => 
             _gameFactory = gameFactory;
-        }
 
-        private void Awake()
-        {
+        private void Awake() => 
             _destroyableObject = GetComponent<DestroyableObject>();
-        }
 
-        private void OnEnable()
+        public void CleanUp()
         {
-            _destroyableObject.Destroyed += Spawn;
-        }
-
-        private void OnDisable()
-        {
-            _destroyableObject.Destroyed -= Spawn;
+            Spawn();
         }
 
         private void Spawn()

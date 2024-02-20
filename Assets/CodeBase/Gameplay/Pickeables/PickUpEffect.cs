@@ -1,10 +1,10 @@
-﻿using System;
-using CodeBase.Enums;
-using CodeBase.UI.Effects;
+﻿using CodeBase.UI.Effects;
 using UnityEngine;
 
 namespace CodeBase.Gameplay.Pickeables
 {
+    [RequireComponent(typeof(EffectCreator))]
+    [RequireComponent(typeof(Pickeable))]
     public class PickUpEffect : MonoBehaviour
     {
         private EffectCreator _effectCreator;

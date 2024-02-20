@@ -11,25 +11,17 @@ namespace CodeBase.Gameplay.Garbages
         private GarbageSpawnZone _garbageSpawnZone;
         private Coroutine _spawnCoroutine;
 
-        private void Awake()
-        {
+        private void Awake() => 
             _garbageSpawnZone = GetComponent<GarbageSpawnZone>();
-        }
 
-        private void Start()
-        {
+        private void Start() => 
             _spawnCoroutine = StartCoroutine(InitSpawnCoroutine());
-        }
 
-        private void OnEnable()
-        {
+        private void OnEnable() => 
             _garbageSpawnZone.GarbagesDestroyed += StartNewCoroutine;
-        }
 
-        private void OnDisable()
-        {
+        private void OnDisable() => 
             _garbageSpawnZone.GarbagesDestroyed -= StartNewCoroutine;
-        }
 
         private void StartNewCoroutine()
         {
