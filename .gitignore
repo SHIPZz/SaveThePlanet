@@ -68,6 +68,7 @@ Assets/ImportResources
 Assets/WebGLTemplates
 Assets/YandexGame
 Assets/Plugins
+Assets/MeshCombineStudio
 
 # Packed Addressables
 /[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*

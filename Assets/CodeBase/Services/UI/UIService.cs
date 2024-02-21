@@ -17,12 +17,12 @@ namespace CodeBase.Services.UI
 
         public void Initialize()
         {
-#if UNITY_WEBGL
-            if (YandexGame.EnvironmentData.deviceType == "mobile")
-            {
-                _windowService.Open<JoystickWindow>();
-            }
-#endif
+// #if UNITY_WEBGL
+//             if (YandexGame.EnvironmentData.deviceType == "mobile")
+//             {
+//                 _windowService.Open<JoystickWindow>();
+//             }
+// #endif
             
         }
     }
