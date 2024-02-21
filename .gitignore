@@ -65,6 +65,9 @@ sysinfo.txt
 crashlytics-build.properties
 
 Assets/ImportResources
+Assets/WebGLTemplates
+Assets/YandexGame
+Assets/Plugins
 
 # Packed Addressables
 /[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*

@@ -5,6 +5,7 @@ using CodeBase.Gameplay.CleanUpSystem;
 using CodeBase.Gameplay.NatureDamageables;
 using CodeBase.Gameplay.Terrain;
 using CodeBase.Services.Providers.GameProviders;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;
 
@@ -45,12 +46,14 @@ namespace CodeBase.Gameplay.NatureHurtables
         public void CleanUp() => 
             ChangeToGrass();
 
+        [Button]
         private void ChangeToGrass()
         {
             _terrainLayerChanger.Change(_gameProvider.Terrain, NormalLayerType, Positions, BrushSize);
             _isMud = false;
         }
 
+        [Button]
         private void ChangeToMud(NatureDamageable natureDamageable)
         {
             if(_isMud)

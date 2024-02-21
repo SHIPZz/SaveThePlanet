@@ -11,21 +11,15 @@ namespace CodeBase.Gameplay.Extinguishables
         
         private Extinguishable _extinguishable;
 
-        private void Awake()
-        {
+        private void Awake() => 
             _extinguishable = GetComponent<Extinguishable>();
-        }
 
-        private void OnEnable()
-        {
+        private void OnEnable() => 
             _extinguishable.PutOut += OnPutOut;
-        }
 
-        private void OnDisable()
-        {
+        private void OnDisable() => 
             _extinguishable.PutOut -= OnPutOut;
-        }
-        
+
         private void OnPutOut(Vector3 target, Vector3 rotation)
         {
             transform.DOLocalJump(target + Offset, 1, 1, MovementTime);

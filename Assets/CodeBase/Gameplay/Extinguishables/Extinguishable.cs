@@ -1,4 +1,5 @@
 ﻿using System;
+using CodeBase.Enums;
 using DG.Tweening;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ namespace CodeBase.Gameplay.Extinguishables
 {
     public class Extinguishable : MonoBehaviour
     {
+        public ExtinguishableType ExtinguishableType;
         public float Time = 3f;
         
         public event Action<Vector3, Vector3> PutOut;

@@ -7,6 +7,7 @@ namespace CodeBase.Gameplay.Garbages
     public class GarbageSpawnZoneStarter : MonoBehaviour
     {
         public float SpawnDelay = 300f;
+        public bool SpawnOnStart;
 
         private GarbageSpawnZone _garbageSpawnZone;
         private Coroutine _spawnCoroutine;
@@ -14,8 +15,16 @@ namespace CodeBase.Gameplay.Garbages
         private void Awake() => 
             _garbageSpawnZone = GetComponent<GarbageSpawnZone>();
 
-        private void Start() => 
+        private void Start()
+        {
+            if (SpawnOnStart)
+            {
+                _garbageSpawnZone.Spawn();
+                return;
+            }
+            
             _spawnCoroutine = StartCoroutine(InitSpawnCoroutine());
+        }
 
         private void OnEnable() => 
             _garbageSpawnZone.GarbagesDestroyed += StartNewCoroutine;

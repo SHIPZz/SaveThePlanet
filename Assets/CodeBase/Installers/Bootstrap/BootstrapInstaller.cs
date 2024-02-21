@@ -1,9 +1,12 @@
-﻿using CodeBase.InfraStructure;
+﻿using Agava.YandexGames;
+using CodeBase.InfraStructure;
 using CodeBase.Services.Input;
 using CodeBase.Services.Providers.Asset;
 using CodeBase.Services.SaveSystem;
 using CodeBase.Services.WorldData;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
+using YG;
 using Zenject;
 using CoroutineRunner = CodeBase.InfraStructure.CoroutineRunner;
 using IInitializable = Zenject.IInitializable;
@@ -38,13 +41,19 @@ namespace CodeBase.Installers.Bootstrap
             Container.Bind<IInputService>().To<InputService>().AsSingle();
         }
 
-
-        public void Initialize()
+        public async void Initialize()
         {
+#if UNITY_WEBGL
+            while (!YandexGame.SDKEnabled)
+            {
+                await UniTask.Yield();
+            }
+#endif
+
             var gameStateMachine = Container.Resolve<IGameStateMachine>();
             gameStateMachine.ChangeState<BootstrapState>();
         }
-        
+
         private void BindWorldDataService() =>
             Container
                 .Bind<IWorldDataService>()

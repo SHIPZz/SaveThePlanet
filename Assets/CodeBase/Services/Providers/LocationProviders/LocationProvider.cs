@@ -5,5 +5,6 @@ namespace CodeBase.Services.Providers.LocationProviders
     public class LocationProvider : MonoBehaviour
     {
         public Transform PlayerSpawnPoint;
+        public Transform UIParent;
     }
 }

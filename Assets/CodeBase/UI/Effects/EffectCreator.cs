@@ -29,9 +29,13 @@ namespace CodeBase.UI.Effects
 
         public Effect CreateAndPlay(Transform parent, Vector3 at, bool setLocalPosition)
         {
-            Effect effect = _uiFactory.CreateAndPlay(EffectType, parent, at, Quaternion.Euler(Rotation));
+            Effect effect = _uiFactory.CreateAndPlay(EffectType, parent);
 
             effect.transform.localPosition = at;
+            
+            if(effect.transform.rotation == Quaternion.identity)
+                effect.transform.localRotation = Quaternion.Euler(Rotation);
+                
             return effect;
         }
         

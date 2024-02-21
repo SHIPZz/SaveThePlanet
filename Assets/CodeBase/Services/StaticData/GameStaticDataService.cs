@@ -4,6 +4,8 @@ using CodeBase.Constant;
 using CodeBase.Enums;
 using CodeBase.Gameplay.DestroyableObjects;
 using CodeBase.Gameplay.Destroyers;
+using CodeBase.Gameplay.Extinguishables;
+using CodeBase.Gameplay.Fireables;
 using CodeBase.Gameplay.GarbageDetection;
 using CodeBase.Gameplay.Garbages;
 using CodeBase.Gameplay.NatureDamageables;
@@ -22,6 +24,8 @@ namespace CodeBase.Services.StaticData
         private readonly Dictionary<DamagedNatureType, DamagedNature> _damagedNatures;
         private readonly Dictionary<NatureHurtableType, NatureHurtable> _hurtableNatures;
         private readonly Dictionary<DestroyerType, Destroyer> _destroyers;
+        private readonly Dictionary<ExtinguishableType, Extinguishable> _extinguishables;
+        private readonly Dictionary<FireableType, Fireable> _fireables;
 
         public GameStaticDataService()
         {
@@ -40,27 +44,40 @@ namespace CodeBase.Services.StaticData
 
             _hurtableNatures = Resources.LoadAll<NatureHurtable>(AssetPath.NatureHurtables)
                 .ToDictionary(x => x.Id, x => x);
-            
+
             _destroyers = Resources.LoadAll<Destroyer>(AssetPath.Destroyers)
                 .ToDictionary(x => x.DestroyerType, x => x);
+
+            _fireables = Resources.LoadAll<Fireable>(AssetPath.Fireables)
+                .ToDictionary(x => x.FireableType, x => x);
+            
+            _extinguishables = Resources.LoadAll<Extinguishable>(AssetPath.Extinguishables)
+                .ToDictionary(x => x.ExtinguishableType, x => x);
         }
+
+
+        public Fireable Get(FireableType id)
+            => _fireables[id];
+        
+        public Extinguishable Get(ExtinguishableType id)
+            => _extinguishables[id];
 
         public NatureHurtable Get(NatureHurtableType id)
             => _hurtableNatures[id];
 
-        public GarbageDeathable Get(string id) => 
+        public GarbageDeathable Get(string id) =>
             _garbageDeathables[id];
 
-        public DamagedNature Get(DamagedNatureType id) => 
+        public DamagedNature Get(DamagedNatureType id) =>
             _damagedNatures[id];
 
-        public List<Garbage> GetAllGarbages() => 
+        public List<Garbage> GetAllGarbages() =>
             _garbages.ToList();
 
-        public PlayerData GetPlayerData() => 
+        public PlayerData GetPlayerData() =>
             _playerData;
 
-        public Destroyer Get(DestroyerType id) => 
+        public Destroyer Get(DestroyerType id) =>
             _destroyers[id];
 
         public DestroyableObjectPart Get(DestroyableTypeId destroyableTypeId) =>

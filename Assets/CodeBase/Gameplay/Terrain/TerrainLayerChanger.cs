@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
 using CodeBase.Enums;
+using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using UnityEngine;
 
 namespace CodeBase.Gameplay.Terrain
 {
     public class TerrainLayerChanger
     {
-        public void Change(UnityEngine.Terrain terrain, TerrainLayerType terrainLayerType, List<Transform> targetPositions, float brushSize)
+        public async void Change(UnityEngine.Terrain terrain, TerrainLayerType terrainLayerType, List<Transform> targetPositions, float brushSize)
         {
             foreach (Transform targetPosition in targetPositions)
             {

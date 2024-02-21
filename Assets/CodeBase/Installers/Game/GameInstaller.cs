@@ -7,6 +7,7 @@ using CodeBase.Services.Providers.GameProviders;
 using CodeBase.Services.Providers.LocationProviders;
 using CodeBase.Services.Providers.PlayerProviders;
 using CodeBase.Services.StaticData;
+using CodeBase.Services.UI;
 using UnityEngine;
 using Zenject;
 
@@ -25,6 +26,18 @@ namespace CodeBase.Installers.Game
             BindGarbageDeathableService();
             InitEntryPoint();
             BindTerrainLayerChanger();
+            BindWindowService();
+            BindUIService();
+        }
+
+        private void BindUIService()
+        {
+            Container.BindInterfacesAndSelfTo<UIService>().AsSingle();
+        }
+
+        private void BindWindowService()
+        {
+            Container.Bind<WindowService>().AsSingle();
         }
 
         private void BindTerrainLayerChanger()

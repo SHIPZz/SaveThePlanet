@@ -30,14 +30,10 @@ namespace CodeBase.Gameplay.Pickeables
             _pickeable.OnDropped -= PlayEffect;
         }
 
-        private void PlayEffect(Transform obj)
-        {
+        private void PlayEffect(Transform obj) => 
             _effect.Particle.Play();
-        }
 
-        private void DisableEffect(Transform parent)
-        {
+        private void DisableEffect(Transform parent) => 
             _effect.Particle.Stop();
-        }
     }
 }

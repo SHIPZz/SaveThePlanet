@@ -3,6 +3,8 @@ using CodeBase.Constant;
 using CodeBase.Enums;
 using CodeBase.Gameplay.DestroyableObjects;
 using CodeBase.Gameplay.Destroyers;
+using CodeBase.Gameplay.Extinguishables;
+using CodeBase.Gameplay.Fireables;
 using CodeBase.Gameplay.GarbageDetection;
 using CodeBase.Gameplay.Garbages;
 using CodeBase.Gameplay.NatureDamageables;
@@ -58,6 +60,20 @@ namespace CodeBase.Services.Factories
             Garbage randomGarbagePrefab = garbages[Random.Range(0, garbages.Count)];
 
             return _instantiator.InstantiatePrefabForComponent<Garbage>(randomGarbagePrefab, at, rotation, parent);
+        }
+        
+        public Fireable Create(FireableType fireableType, Transform parent, Vector3 position, Quaternion rotation)
+        {
+            Fireable prefab = _gameStaticDataService.Get(fireableType);
+
+            return _instantiator.InstantiatePrefabForComponent<Fireable>(prefab, position, rotation, parent);
+        }
+        
+        public Extinguishable Create(ExtinguishableType id, Transform parent, Vector3 position, Quaternion rotation)
+        {
+            Extinguishable prefab = _gameStaticDataService.Get(id);
+
+            return _instantiator.InstantiatePrefabForComponent<Extinguishable>(prefab, position, rotation, parent);
         }
 
         public T Create<T>(Transform parent, Vector3 at, Quaternion rotation, string path) where T : Component

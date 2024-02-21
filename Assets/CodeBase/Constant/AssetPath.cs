@@ -12,5 +12,8 @@
         public const string DamagedNatures = "Prefabs/DamagedNatures";
         public const string NatureHurtables = "Prefabs/NatureHurtable";
         public const string Destroyers = "Prefabs/Destroyers";
+        public const string Windows = "Prefabs/UI/Windows";
+        public const string Fireables = "Prefabs/Fireables";
+        public const string Extinguishables = "Prefabs/Extinguishables";
     }
 }

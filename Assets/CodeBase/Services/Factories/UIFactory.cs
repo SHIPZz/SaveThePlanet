@@ -1,6 +1,8 @@
 ﻿using CodeBase.Enums;
+using CodeBase.Services.Providers.LocationProviders;
 using CodeBase.Services.StaticData;
 using CodeBase.UI.Effects;
+using CodeBase.UI.Windows;
 using UnityEngine;
 using Zenject;
 
@@ -10,9 +12,11 @@ namespace CodeBase.Services.Factories
     {
         private readonly UIStaticDataService _uiStaticDataService;
         private readonly IInstantiator _instantiator;
+        private readonly LocationProvider _locationProvider;
 
-        public UIFactory(UIStaticDataService uiStaticDataService, IInstantiator instantiator)
+        public UIFactory(UIStaticDataService uiStaticDataService, IInstantiator instantiator, LocationProvider locationProvider)
         {
+            _locationProvider = locationProvider;
             _uiStaticDataService = uiStaticDataService;
             _instantiator = instantiator;
         }
@@ -24,6 +28,15 @@ namespace CodeBase.Services.Factories
             return _instantiator.InstantiatePrefabForComponent<Effect>(prefab, at, rotation,parent);
         }
         
+        public Effect CreateAndPlay(EffectType effectType, Transform parent)
+        {
+            Effect prefab = _uiStaticDataService.Get(effectType);
+            
+            var effect = _instantiator.InstantiatePrefabForComponent<Effect>(prefab, parent);
+            effect.Particle.Play();
+            return effect;
+        }
+        
         public Effect CreateAndPlay(EffectType effectType, Transform parent, Vector3 at, Quaternion rotation)
         {
             Effect prefab = _uiStaticDataService.Get(effectType);
@@ -31,6 +44,13 @@ namespace CodeBase.Services.Factories
             var effect = _instantiator.InstantiatePrefabForComponent<Effect>(prefab, at, rotation,parent);
             effect.Particle.Play();
             return effect;
+        }
+
+        public WindowBase CreateWindow<T>() where T : WindowBase
+        {
+            var prefab = _uiStaticDataService.Get<T>();
+
+            return _instantiator.InstantiatePrefabForComponent<T>(prefab, _locationProvider.UIParent);
         }
     }
 }
