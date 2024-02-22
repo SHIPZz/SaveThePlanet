@@ -1,8 +1,12 @@
 ﻿using Agava.YandexGames;
+using CodeBase.UI.Windows.Hud;
 using CodeBase.UI.Windows.Joystick;
+using CodeBase.UI.Windows.Pause;
+using Unity.VisualScripting;
 using UnityEngine;
 using YG;
 using Zenject;
+using IInitializable = Zenject.IInitializable;
 
 namespace CodeBase.Services.UI
 {
@@ -17,6 +21,7 @@ namespace CodeBase.Services.UI
 
         public void Initialize()
         {
+            _windowService.Open<HudWindow>();
 // #if UNITY_WEBGL
 //             if (YandexGame.EnvironmentData.deviceType == "mobile")
 //             {

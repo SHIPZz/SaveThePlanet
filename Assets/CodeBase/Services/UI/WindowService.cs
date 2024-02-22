@@ -22,6 +22,12 @@ namespace CodeBase.Services.UI
         {
             ClearDestroyedWindows();
 
+            if (CurrentWindow != null && typeof(T) == CurrentWindow.GetType())
+                return;
+
+            if (_createdWindows.ContainsKey(typeof(T)))
+                return;
+
             var targetWindow = Get<T>();
             targetWindow.Open();
 

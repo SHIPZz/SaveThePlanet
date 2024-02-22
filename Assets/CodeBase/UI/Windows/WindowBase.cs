@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 namespace CodeBase.UI.Windows
 {
+    [RequireComponent(typeof(CanvasAnimator))]
     public abstract class WindowBase : MonoBehaviour
     {
         [SerializeField] protected Button CloseButton;

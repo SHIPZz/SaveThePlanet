@@ -15,5 +15,7 @@
         public const string Windows = "Prefabs/UI/Windows";
         public const string Fireables = "Prefabs/Fireables";
         public const string Extinguishables = "Prefabs/Extinguishables";
+        public const string WarningItemDatas = "Data/WarningItems";
+        public const string AudioMixer = "Prefabs/UI/AudioMixer";
     }
 }

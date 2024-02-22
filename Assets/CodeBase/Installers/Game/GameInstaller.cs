@@ -6,8 +6,10 @@ using CodeBase.Services.Providers.CameraProviders;
 using CodeBase.Services.Providers.GameProviders;
 using CodeBase.Services.Providers.LocationProviders;
 using CodeBase.Services.Providers.PlayerProviders;
+using CodeBase.Services.Settings;
 using CodeBase.Services.StaticData;
 using CodeBase.Services.UI;
+using CodeBase.UI.Windows.Pause;
 using UnityEngine;
 using Zenject;
 
@@ -28,6 +30,18 @@ namespace CodeBase.Installers.Game
             BindTerrainLayerChanger();
             BindWindowService();
             BindUIService();
+            BindWindowControllers();
+            BindSettingService();
+        }
+
+        private void BindSettingService()
+        {
+            Container.BindInterfacesAndSelfTo<SettingService>().AsSingle();
+        }
+
+        private void BindWindowControllers()
+        {
+            Container.BindInterfacesAndSelfTo<PauseWindowController>().AsSingle();
         }
 
         private void BindUIService()

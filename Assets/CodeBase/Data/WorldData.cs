@@ -7,5 +7,6 @@ namespace CodeBase.Data
     public class WorldData
     {
         public Dictionary<string, GarbageDeathableData> GarbageDeathableDatas = new();
+        public SettingsData SettingsData = new();
     }
 }
