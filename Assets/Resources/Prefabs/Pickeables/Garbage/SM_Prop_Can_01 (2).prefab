@@ -552,6 +552,7 @@ MonoBehaviour:
   Rotation: {x: -90, y: 0, z: 0}
   EffectType: 2
   Offset: {x: 0, y: 0, z: 0}
+  Scale: {x: 0.35, y: 0.35, z: 0.35}
 --- !u!114 &-7381964543936043406
 MonoBehaviour:
   m_ObjectHideFlags: 0

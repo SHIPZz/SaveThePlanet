@@ -1,20 +1,22 @@
-﻿using System;
-using System.Collections;
+﻿using CodeBase.Gameplay.TimerSystem;
 using UnityEngine;
 
 namespace CodeBase.Gameplay.Garbages
 {
     public class GarbageSpawnZoneStarter : MonoBehaviour
     {
-        public float SpawnDelay = 300f;
         public bool SpawnOnStart;
 
         private GarbageSpawnZone _garbageSpawnZone;
         private Coroutine _spawnCoroutine;
+        private Timer _timer;
 
-        private void Awake() => 
+        private void Awake()
+        {
             _garbageSpawnZone = GetComponent<GarbageSpawnZone>();
-
+            _timer = GetComponent<Timer>();
+        }
+        
         private void Start()
         {
             if (SpawnOnStart)
@@ -23,27 +25,19 @@ namespace CodeBase.Gameplay.Garbages
                 return;
             }
             
-            _spawnCoroutine = StartCoroutine(InitSpawnCoroutine());
+            _timer.StartTimer();
         }
 
-        private void OnEnable() => 
-            _garbageSpawnZone.GarbagesDestroyed += StartNewCoroutine;
-
-        private void OnDisable() => 
-            _garbageSpawnZone.GarbagesDestroyed -= StartNewCoroutine;
-
-        private void StartNewCoroutine()
+        private void OnEnable()
         {
-            if (_spawnCoroutine != null)
-                StopCoroutine(_spawnCoroutine);
-
-            _spawnCoroutine = StartCoroutine(InitSpawnCoroutine());
+            _timer.Stopped += _garbageSpawnZone.Spawn;
+            _garbageSpawnZone.GarbagesDestroyed += _timer.StartTimer;
         }
 
-        private IEnumerator InitSpawnCoroutine()
+        private void OnDisable()
         {
-            yield return new WaitForSeconds(SpawnDelay);
-            _garbageSpawnZone.Spawn();
+            _timer.Stopped -= _garbageSpawnZone.Spawn;
+            _garbageSpawnZone.GarbagesDestroyed -= _timer.StartTimer;
         }
     }
 }

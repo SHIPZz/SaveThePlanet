@@ -46,7 +46,7 @@ namespace CodeBase.Services.Factories
             return effect;
         }
 
-        public WindowBase CreateWindow<T>() where T : WindowBase
+        public T CreateWindow<T>() where T : WindowBase
         {
             var prefab = _uiStaticDataService.Get<T>();
 

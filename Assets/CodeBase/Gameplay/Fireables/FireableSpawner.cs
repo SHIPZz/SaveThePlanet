@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using CodeBase.Enums;
+using CodeBase.Gameplay.TimerSystem;
 using CodeBase.Services.Factories;
 using UnityEngine;
 using Zenject;
@@ -11,11 +12,11 @@ namespace CodeBase.Gameplay.Fireables
     {
         public FireableType FireableType;
         public float StartSpawnDelay = 3f;
-        public float SpawnDelay = 300f;
+        public bool NeedSpawnOnStart;
 
         private GameFactory _gameFactory;
         private Fireable _fireable;
-        private Coroutine _coroutine;
+        private Timer _timer;
 
         public event Action Spawned;
 
@@ -25,38 +26,47 @@ namespace CodeBase.Gameplay.Fireables
             _gameFactory = gameFactory;
         }
 
+        private void Awake()
+        {
+            _timer = GetComponent<Timer>();
+        }
+
         private IEnumerator Start()
         {
+            if (!NeedSpawnOnStart)
+            {
+                _timer.StartTimer();
+                yield break;
+            }
+
             yield return new WaitForSeconds(StartSpawnDelay);
             Spawn();
         }
 
+        private void OnEnable()
+        {
+            _timer.Stopped += Spawn;
+        }
+        
         private void OnDisable()
         {
             if (_fireable != null)
-                _fireable.OnPutOut -= StartNewCoroutine;
+                _fireable.OnPutOut -= OnPutOut;
+
+            _timer.Stopped -= Spawn;
         }
 
-        private void StartNewCoroutine()
+        private void OnPutOut()
         {
+            _timer.Stop();
+            _timer.StartTimer();
             _fireable = null;
-            
-            if (_coroutine != null)
-                StopCoroutine(_coroutine);
-
-            _coroutine = StartCoroutine(SpawnCoroutine());
-        }
-
-        private IEnumerator SpawnCoroutine()
-        {
-            yield return new WaitForSeconds(SpawnDelay);
-            Spawn();
         }
 
         private void Spawn()
         {
             _fireable = _gameFactory.Create(FireableType, null, transform.position, transform.rotation);
-            _fireable.OnPutOut += StartNewCoroutine;
+            _fireable.OnPutOut += OnPutOut;
             Spawned?.Invoke();
         }
     }

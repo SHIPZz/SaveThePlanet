@@ -10,6 +10,7 @@ namespace CodeBase.UI.Effects
         public Vector3 Rotation;
         public EffectType EffectType;
         public Vector3 Offset;
+        public Vector3 Scale;
         
         private UIFactory _uiFactory;
         private Effect _lastCreatedEffect;
@@ -24,6 +25,10 @@ namespace CodeBase.UI.Effects
         {
            Effect effect = _uiFactory.CreateAndPlay(EffectType, parent, at, Quaternion.Euler(Rotation));
            effect.transform.position += Offset;
+           
+           if (Scale != Vector3.zero)
+               effect.transform.localScale = Scale;
+           
            return effect;
         }
 
@@ -35,6 +40,9 @@ namespace CodeBase.UI.Effects
             
             if(effect.transform.rotation == Quaternion.identity)
                 effect.transform.localRotation = Quaternion.Euler(Rotation);
+
+            if (Scale != Vector3.zero)
+                effect.transform.localScale = Scale;
                 
             return effect;
         }
