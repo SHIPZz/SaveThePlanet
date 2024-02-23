@@ -118,6 +118,8 @@ MonoBehaviour:
   StopOffset: 4
   MovementDuration: 2
   CameraPanOffset: {x: 0, y: 4, z: 0}
+  StartPosition: {x: 0, y: 1.6, z: 0}
+  StartRotation: {x: 0.1, y: 0, z: 0}
 --- !u!1 &1705535420028392674
 GameObject:
   m_ObjectHideFlags: 0

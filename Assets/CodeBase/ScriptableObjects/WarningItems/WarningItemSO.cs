@@ -1,4 +1,5 @@
 ﻿using CodeBase.Enums;
+using TMPro;
 using UnityEngine;
 
 namespace CodeBase.ScriptableObjects.WarningItems
@@ -7,7 +8,7 @@ namespace CodeBase.ScriptableObjects.WarningItems
     public class WarningItemSO : ScriptableObject
     {
         public WarningItemType WarningItemType;
-        public string Description;
+        public TMP_Text DescriptionText;
         public Sprite Icon;
     }
 }

@@ -9,18 +9,15 @@ namespace CodeBase.Gameplay.Camera
         public float StopOffset;
         public float MovementDuration;
         public Vector3 CameraPanOffset;
+        public Vector3 StartPosition;
+        public Vector3 StartRotation;
 
         private Transform _target;
-        private Vector3 _lastPos;
-        private Vector3 _lastRotation;
 
         public void MoveTo(Transform target, float movementBackDelay, Action onComplete = null, Action onTargetReached = null)
         {
             _target = target;
             Vector3 targetPosition = target.position - target.forward * StopOffset;
-            _lastPos = transform.position;
-
-            _lastRotation = transform.eulerAngles;
             transform.DODynamicLookAt(_target.position, MovementDuration);
             
             transform
@@ -37,11 +34,8 @@ namespace CodeBase.Gameplay.Camera
         public void MoveTo(Transform target, Action onComplete = null)
         {
             _target = target;
-            _lastPos = transform.position;
             Vector3 targetPosition = target.position - target.forward * StopOffset;
 
-            _lastRotation = transform.eulerAngles;
-            
             transform.DODynamicLookAt(_target.position, MovementDuration);
             
             transform
@@ -51,9 +45,9 @@ namespace CodeBase.Gameplay.Camera
 
         private void MoveAndRotateBack(Action onComplete)
         {
-            transform.DORotate(_lastRotation, MovementDuration);
+            transform.DOLocalRotate(StartRotation, MovementDuration);
             transform
-                .DOMove(_lastPos, MovementDuration)
+                .DOLocalMove(StartPosition, MovementDuration)
                 .OnComplete(() => onComplete?.Invoke());
         }
 

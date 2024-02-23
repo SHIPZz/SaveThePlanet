@@ -14,13 +14,13 @@ namespace CodeBase.Services.Camera
         public event Action MovingStarted;
         public event Action MovingFinished;
 
+        public bool IsMoving { get; private set; }
+
         public CameraService(CameraProvider cameraProvider, UIService uiService)
         {
             _uiService = uiService;
             _cameraProvider = cameraProvider;
         }
-
-        public bool IsMoving { get; private set; }
 
         public void MoveToTarget(CameraPan target, float backDuration, Action onComplete = null,
             Action onTargetReached = null)
@@ -29,24 +29,15 @@ namespace CodeBase.Services.Camera
             MovingStarted?.Invoke();
             IsMoving = true;
 
-            _cameraProvider.CameraFollower.MoveTo(target.transform, backDuration, () =>
-            {
-                _uiService.OpenHud();
-                MovingFinished?.Invoke();
-                IsMoving = false;
-                onComplete?.Invoke();
-            }, onTargetReached);
+            _cameraProvider.CameraFollower.MoveTo(target.transform, backDuration, () => OnCameraMovementCompleted(onComplete), onTargetReached);
         }
 
-        public void MoveToLastTarget()
+        private void OnCameraMovementCompleted(Action onComplete)
         {
-            // if (_shownObjects.Contains(_target.GameItemType))
-            //     return;
-            //
-            // _uiService.SetActiveUI<HudWindow>(false);
-            // _cameraProvider.CameraFollower.Block(true);
-            // _cameraProvider.CameraFollower.MoveTo(_target.transform, () => _uiService.SetActiveUI(true));
-            // _shownObjects.Add(_target.GameItemType);
+            _uiService.OpenHud();
+            IsMoving = false;
+            onComplete?.Invoke();
+            MovingFinished?.Invoke();
         }
     }
 }

@@ -28,7 +28,7 @@ namespace CodeBase.UI.Windows
 
         public virtual void Close()
         {
-            Destroy(gameObject);
+            CanvasAnimator.FadeInCanvas(() => Destroy(gameObject));
         }
 
         public virtual void Show()

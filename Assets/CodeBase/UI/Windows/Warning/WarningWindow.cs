@@ -47,7 +47,7 @@ namespace CodeBase.UI.Windows.Warning
         {
             WarningItemSO data = _uiStaticDataService.Get(warningItemType);
             WarningItemIcon.sprite = data.Icon;
-            DescriptionText.text = data.Description;
+            DescriptionText = data.DescriptionText;
         }
     }
 }

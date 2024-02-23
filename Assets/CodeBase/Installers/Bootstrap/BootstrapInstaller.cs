@@ -29,8 +29,14 @@ namespace CodeBase.Installers.Bootstrap
             BindInputService();
             BindAssetProvider();
             BindSaveOnApplicationFocusChanged();
+            BindResetDataOnButton();
             Container.BindInterfacesTo<BootstrapInstaller>()
                 .FromInstance(this);
+        }
+
+        private void BindResetDataOnButton()
+        {
+            Container.BindInterfacesAndSelfTo<ResetDataOnButton>().AsSingle();
         }
 
         private void BindSaveOnApplicationFocusChanged()
