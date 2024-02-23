@@ -90503,7 +90503,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32ca599e1af84d058dd0b517ccd3e99b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TargetPosition: {fileID: 0}
   Offset: {x: 0, y: 0, z: 0}
+  OwnTransform: 1
 --- !u!1001 &1838974990
 PrefabInstance:
   m_ObjectHideFlags: 0

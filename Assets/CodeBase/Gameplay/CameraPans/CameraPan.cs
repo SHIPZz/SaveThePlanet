@@ -6,7 +6,10 @@ namespace CodeBase.Gameplay.CameraPans
 {
     public class CameraPan : MonoBehaviour
     {
+        public Transform TargetPosition;
         public Vector3 Offset;
+        public bool OwnTransform; 
+        
         private CameraService _cameraService;
 
         [Inject]
@@ -17,7 +20,10 @@ namespace CodeBase.Gameplay.CameraPans
 
         public void Move()
         {
-            _cameraService.MoveToTarget(this,1.5f);
+            if (OwnTransform)
+                TargetPosition = transform;
+            
+            _cameraService.MoveToTarget(this,1.5f).Forget();
         }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 
@@ -12,48 +13,38 @@ namespace CodeBase.Gameplay.Camera
         public Vector3 StartPosition;
         public Vector3 StartRotation;
 
-        private Transform _target;
+        public bool IsMovingToTarget { get; private set; }
 
-        public void MoveTo(Transform target, float movementBackDelay, Action onComplete = null, Action onTargetReached = null)
+        private Transform _target;
+        private Tween _tween;
+
+        public void MoveTo(Transform target, float movementBackDelay, Action onComplete = null,
+            Action onTargetReached = null)
         {
             _target = target;
+            _tween?.Kill();
             Vector3 targetPosition = target.position - target.forward * StopOffset;
-            transform.DODynamicLookAt(_target.position, MovementDuration);
-            
-            transform
+            _tween = transform.DODynamicLookAt(_target.position, MovementDuration);
+            IsMovingToTarget = true;
+
+            _tween = transform
                 .DOMove(targetPosition + CameraPanOffset, MovementDuration)
                 .OnComplete(() =>
                 {
                     onTargetReached?.Invoke();
-                    DOTween.Sequence()
+                    _tween = DOTween.Sequence()
                         .AppendInterval(movementBackDelay)
                         .OnComplete(() => MoveAndRotateBack(onComplete));
                 });
         }
 
-        public void MoveTo(Transform target, Action onComplete = null)
-        {
-            _target = target;
-            Vector3 targetPosition = target.position - target.forward * StopOffset;
-
-            transform.DODynamicLookAt(_target.position, MovementDuration);
-            
-            transform
-                .DOMove(targetPosition + CameraPanOffset, MovementDuration)
-                .OnComplete(() => MoveAndRotateBack(onComplete));
-        }
-
         private void MoveAndRotateBack(Action onComplete)
         {
-            transform.DOLocalRotate(StartRotation, MovementDuration);
-            transform
+            IsMovingToTarget = false;
+            _tween = transform.DOLocalRotate(StartRotation, MovementDuration);
+            _tween = transform
                 .DOLocalMove(StartPosition, MovementDuration)
                 .OnComplete(() => onComplete?.Invoke());
-        }
-
-        public void SetTarget(Transform target)
-        {
-            _target = target;
         }
     }
 }
