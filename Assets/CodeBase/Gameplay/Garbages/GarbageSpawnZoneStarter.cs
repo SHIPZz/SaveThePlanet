@@ -1,4 +1,5 @@
 ﻿using CodeBase.Gameplay.TimerSystem;
+using DG.Tweening;
 using UnityEngine;
 
 namespace CodeBase.Gameplay.Garbages
@@ -6,6 +7,7 @@ namespace CodeBase.Gameplay.Garbages
     public class GarbageSpawnZoneStarter : MonoBehaviour
     {
         public bool SpawnOnStart;
+        public float DelaySpawn = 3f;
 
         private GarbageSpawnZone _garbageSpawnZone;
         private Coroutine _spawnCoroutine;
@@ -16,15 +18,15 @@ namespace CodeBase.Gameplay.Garbages
             _garbageSpawnZone = GetComponent<GarbageSpawnZone>();
             _timer = GetComponent<Timer>();
         }
-        
+
         private void Start()
         {
             if (SpawnOnStart)
             {
-                _garbageSpawnZone.Spawn();
+                DOTween.Sequence().AppendInterval(DelaySpawn).OnComplete(_garbageSpawnZone.Spawn);
                 return;
             }
-            
+
             _timer.StartTimer();
         }
 

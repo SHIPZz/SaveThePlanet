@@ -20,6 +20,7 @@ namespace CodeBase.Gameplay.Garbages
         private GameFactory _gameFactory;
         private List<Garbage> _spawnedGarbages = new();
 
+        public event Action Spawned;
         public event Action GarbagesDestroyed;
 
         [Inject]
@@ -49,6 +50,8 @@ namespace CodeBase.Gameplay.Garbages
                 garbage.Destroyed += OnGarbageDestroyed;
                 _spawnedGarbages.Add(garbage);
             }
+            
+            Spawned?.Invoke();
 
             HasGarbages = true;
         }

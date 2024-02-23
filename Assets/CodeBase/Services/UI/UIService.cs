@@ -19,6 +19,16 @@ namespace CodeBase.Services.UI
             _windowService = windowService;
         }
 
+        public void CloseAllWindows()
+        {
+            _windowService.CloseAll();
+        }
+
+        public void OpenHud()
+        {
+            _windowService.Open<HudWindow>();
+        }
+
         public void Initialize()
         {
             _windowService.Open<HudWindow>();

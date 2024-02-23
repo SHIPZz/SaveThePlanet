@@ -1,6 +1,8 @@
 using CodeBase.Animations;
+using CodeBase.Services.UI;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace CodeBase.UI.Windows
 {
@@ -9,6 +11,12 @@ namespace CodeBase.UI.Windows
     {
         [SerializeField] protected Button CloseButton;
         [SerializeField] protected CanvasAnimator CanvasAnimator;
+        
+        protected WindowService WindowService;
+
+        [Inject]
+        private void Construct(WindowService windowService) => 
+            WindowService = windowService;
 
         private void Awake()
         {

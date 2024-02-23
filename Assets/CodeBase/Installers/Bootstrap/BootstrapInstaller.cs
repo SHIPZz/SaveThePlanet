@@ -2,6 +2,7 @@
 using CodeBase.InfraStructure;
 using CodeBase.Services.Input;
 using CodeBase.Services.Providers.Asset;
+using CodeBase.Services.Save;
 using CodeBase.Services.SaveSystem;
 using CodeBase.Services.WorldData;
 using Cysharp.Threading.Tasks;
@@ -27,8 +28,14 @@ namespace CodeBase.Installers.Bootstrap
             BindWorldDataService();
             BindInputService();
             BindAssetProvider();
+            BindSaveOnApplicationFocusChanged();
             Container.BindInterfacesTo<BootstrapInstaller>()
                 .FromInstance(this);
+        }
+
+        private void BindSaveOnApplicationFocusChanged()
+        {
+            Container.BindInterfacesAndSelfTo<SaveOnApplicationFocusChanged>().AsSingle();
         }
 
         private void BindAssetProvider()

@@ -30,19 +30,7 @@ namespace CodeBase.EntryPointSystem
             Player player = CreatePlayer();
             _playerProvider.Player = player;
             _cameraProvider.Camera = player.GetComponentInChildren<Camera>();
-            
-            // Camera camera = CreateCamera();
-            // InitCamera(camera, player);
-        }
-
-        private void InitCamera(Camera camera, Player player) => 
-            camera.GetComponent<CameraFollower>().SetTarget(player.transform);
-
-        private Camera CreateCamera()
-        {
-            return _gameFactory.Create<Camera>(_locationProvider.PlayerSpawnPoint,
-                _locationProvider.PlayerSpawnPoint.position,
-                Quaternion.identity, AssetPath.Camera);
+            _cameraProvider.CameraFollower = _cameraProvider.Camera.GetComponent<CameraFollower>();
         }
 
         private Player CreatePlayer()

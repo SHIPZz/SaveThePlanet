@@ -1,4 +1,5 @@
 ﻿using CodeBase.Services.UI;
+using CodeBase.UI.Windows.Hud;
 using UnityEngine;
 using Zenject;
 
@@ -15,8 +16,11 @@ namespace CodeBase.UI.Windows.Pause
 
         public void Tick()
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Escape) && _windowService.CurrentWindow.GetType() == typeof(HudWindow))
+            {
+                _windowService.Close<HudWindow>();
                 _windowService.Open<PauseWindow>();
+            }
         }
     }
 }

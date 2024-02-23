@@ -8,5 +8,6 @@ namespace CodeBase.Data
     {
         public Dictionary<string, GarbageDeathableData> GarbageDeathableDatas = new();
         public SettingsData SettingsData = new();
+        public TutorialData TutorialData = new();
     }
 }

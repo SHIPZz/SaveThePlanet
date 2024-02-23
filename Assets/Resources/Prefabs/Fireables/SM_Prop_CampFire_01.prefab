@@ -28,6 +28,8 @@ GameObject:
   - component: {fileID: 185176267716747761}
   - component: {fileID: 8392245246576178922}
   - component: {fileID: 8915130219817113692}
+  - component: {fileID: 6757952197353822560}
+  - component: {fileID: 6007163665614008355}
   m_Layer: 20
   m_Name: SM_Prop_CampFire_01
   m_TagString: Untagged
@@ -474,6 +476,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TransformScaleAnim: {fileID: 1158697677631508151}
+--- !u!114 &6757952197353822560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525127349638093191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be81ae89040246f5ba030e99ddd0ac00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WarningItemType: 0
+--- !u!114 &6007163665614008355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 525127349638093191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5d4f330194b46bda4c1f5f62ed758f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TriggerObserver: {fileID: 4236426179918900275}
 --- !u!1 &554700870971674804
 GameObject:
   m_ObjectHideFlags: 0
@@ -34339,7 +34367,7 @@ GameObject:
   - component: {fileID: 286720532775767084}
   - component: {fileID: 1595188947618692280}
   - component: {fileID: 4236426179918900275}
-  m_Layer: 20
+  m_Layer: 7
   m_Name: PlayerObserver
   m_TagString: Untagged
   m_Icon: {fileID: 0}

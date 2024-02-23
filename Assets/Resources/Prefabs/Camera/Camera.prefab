@@ -105,7 +105,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbbc2cdf481eb0547b6c15e3a691bea4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 7
-  _rotationSpeed: 3.5
-  _offset: {x: 0, y: 3, z: -4.19}
-  _rotation: {x: 30, y: 0, z: 0}
+  StopOffset: 5
+  MovementDuration: 2
+  CameraPanOffset: {x: 0, y: 4, z: 0}

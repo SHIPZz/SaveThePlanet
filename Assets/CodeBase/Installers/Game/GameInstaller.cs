@@ -1,7 +1,9 @@
 ﻿using CodeBase.EntryPointSystem;
 using CodeBase.Gameplay.Terrain;
+using CodeBase.Services.Camera;
 using CodeBase.Services.Factories;
 using CodeBase.Services.GarbageDeathableServices;
+using CodeBase.Services.Pause;
 using CodeBase.Services.Providers.CameraProviders;
 using CodeBase.Services.Providers.GameProviders;
 using CodeBase.Services.Providers.LocationProviders;
@@ -9,6 +11,7 @@ using CodeBase.Services.Providers.PlayerProviders;
 using CodeBase.Services.Settings;
 using CodeBase.Services.StaticData;
 using CodeBase.Services.UI;
+using CodeBase.Services.Warning;
 using CodeBase.UI.Windows.Pause;
 using UnityEngine;
 using Zenject;
@@ -32,6 +35,25 @@ namespace CodeBase.Installers.Game
             BindUIService();
             BindWindowControllers();
             BindSettingService();
+            BindWarningDataService();
+            BindPauseServices();
+            BindCameraService();
+        }
+
+        private void BindCameraService()
+        {
+            Container.Bind<CameraService>().AsSingle();
+        }
+
+        private void BindPauseServices()
+        {
+            Container.BindInterfacesAndSelfTo<PauseOnWindowOpened>().AsSingle();
+            Container.Bind<IPauseService>().To<PauseService>().AsSingle();
+        }
+
+        private void BindWarningDataService()
+        {
+            Container.Bind<WarningDataService>().AsSingle();
         }
 
         private void BindSettingService()

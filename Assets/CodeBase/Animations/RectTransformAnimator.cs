@@ -24,7 +24,7 @@ namespace CodeBase.Animations
             _movePositionTween?.Kill(true);
 
             _movePositionTween = _targetRectTransform.DOAnchorPosY(_initialAnchoredPosition.y + positionY, duration)
-                .OnComplete(() => onCompleted?.Invoke());
+                .OnComplete(() => onCompleted?.Invoke()).SetUpdate(true);
 
             return _movePositionTween;
         }
@@ -33,14 +33,14 @@ namespace CodeBase.Animations
         {
             _movePositionTween?.Kill(true);
 
-            _movePositionTween = _targetRectTransform.DOAnchorPos(targetPosition, duration);
+            _movePositionTween = _targetRectTransform.DOAnchorPos(targetPosition, duration).SetUpdate(true);
         }
 
         public Tween FadeText(TMP_Text text, float targetAlpha, float duration, [CanBeNull] Action onCompleted = null)
         {
             _fadeTween?.Kill(true);
             _fadeTween = text.DOFade(targetAlpha, duration)
-                .OnComplete(() => onCompleted?.Invoke());
+                .OnComplete(() => onCompleted?.Invoke()).SetUpdate(true);
 
             return _fadeTween;
         }

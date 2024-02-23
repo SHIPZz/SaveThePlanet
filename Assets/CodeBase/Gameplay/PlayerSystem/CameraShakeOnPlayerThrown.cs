@@ -14,20 +14,19 @@ namespace CodeBase.Gameplay.PlayerSystem
 
         private CameraProvider _cameraProvider;
         private PlayerThrower _playerThrower;
-
+        
         [Inject]
-        private void Construct(CameraProvider cameraProvider) => 
+        private void Construct(CameraProvider cameraProvider) =>
             _cameraProvider = cameraProvider;
 
-        private void Awake()
-        {
+        private void Awake() => 
             _playerThrower = GetComponent<PlayerThrower>();
-        }
 
-        private void OnEnable()
-        {
+        private void OnEnable() => 
             _playerThrower.Thrown += Shake;
-        }
+
+        private void OnDisable() => 
+            _playerThrower.Thrown -= Shake;
 
         private void Shake()
         {

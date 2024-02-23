@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 590481442738599683}
   - component: {fileID: 5071958570494541847}
   - component: {fileID: 835736781658947763}
+  - component: {fileID: 176692140335717451}
   m_Layer: 6
   m_Name: Camera
   m_TagString: Untagged
@@ -102,6 +103,21 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 730501348534545583}
   m_Enabled: 1
+--- !u!114 &176692140335717451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730501348534545583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbbc2cdf481eb0547b6c15e3a691bea4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StopOffset: 4
+  MovementDuration: 2
+  CameraPanOffset: {x: 0, y: 4, z: 0}
 --- !u!1 &1705535420028392674
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,6 +142,7 @@ GameObject:
   - component: {fileID: 5192963200337232998}
   - component: {fileID: -4005577660710064798}
   - component: {fileID: -8881652671662290429}
+  - component: {fileID: 3507930262555987445}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -426,6 +443,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b56cd4d3e4943d5bd5eb1106ae4968b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3507930262555987445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1705535420028392674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e01ba2c24364b58a00f849d1896ad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3902531691277112794

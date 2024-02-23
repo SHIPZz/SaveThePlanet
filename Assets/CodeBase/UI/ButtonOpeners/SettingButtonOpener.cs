@@ -1,4 +1,5 @@
-﻿using CodeBase.UI.Windows.Settings;
+﻿using CodeBase.UI.Windows.Hud;
+using CodeBase.UI.Windows.Settings;
 
 namespace CodeBase.UI.ButtonOpeners
 {

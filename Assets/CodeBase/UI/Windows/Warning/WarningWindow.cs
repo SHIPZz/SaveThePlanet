@@ -3,9 +3,9 @@ using CodeBase.Enums;
 using CodeBase.Gameplay.WarningItems;
 using CodeBase.ScriptableObjects.WarningItems;
 using CodeBase.Services.StaticData;
+using CodeBase.UI.Windows.Hud;
 using DG.Tweening;
 using TMPro;
-using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
@@ -28,16 +28,24 @@ namespace CodeBase.UI.Windows.Warning
 
         public override void Open()
         {
+            WindowService.Close<HudWindow>();
+
             CanvasAnimator.FadeInCanvas(() =>
-                DOTween
-                    .Sequence()
+                DOTween.Sequence()
                     .AppendInterval(ButtonScaleAnimDelay)
-                    .OnComplete(() => ButtonScaleAnim.ToScale()));
+                    .OnComplete(() => ButtonScaleAnim.ToScale())
+                    .SetUpdate(true));
         }
 
-        public void Init(WarningItem warningItem)
+        public override void Close()
         {
-            WarningItemSO data = _uiStaticDataService.Get(warningItem.WarningItemType);
+            WindowService.Open<HudWindow>();
+            base.Close();
+        }
+
+        public void Init(WarningItemType warningItemType)
+        {
+            WarningItemSO data = _uiStaticDataService.Get(warningItemType);
             WarningItemIcon.sprite = data.Icon;
             DescriptionText.text = data.Description;
         }

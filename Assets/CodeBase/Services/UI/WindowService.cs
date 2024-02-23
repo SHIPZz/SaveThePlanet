@@ -34,6 +34,12 @@ namespace CodeBase.Services.UI
             Opened?.Invoke(targetWindow);
         }
 
+        public void OpenCurrentWindow()
+        {
+            CurrentWindow.Open();
+            Opened?.Invoke(CurrentWindow);
+        }
+
         public T OpenAndGet<T>() where T : WindowBase
         {
             Open<T>();
