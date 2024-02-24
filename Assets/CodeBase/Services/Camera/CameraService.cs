@@ -21,7 +21,8 @@ namespace CodeBase.Services.Camera
             _cameraProvider = cameraProvider;
         }
 
-        public async UniTaskVoid MoveToTarget(CameraPan target, float backDuration, Action onComplete = null, Action onTargetReached = null)
+        public async UniTaskVoid MoveToTarget(CameraPan target, float backDuration, Action onComplete = null,
+            Action onTargetReached = null)
         {
             _uiService.CloseAllWindows();
 
@@ -32,8 +33,11 @@ namespace CodeBase.Services.Camera
 
             MovingStarted?.Invoke();
 
-            _cameraProvider.CameraFollower.MoveTo(target.TargetPosition, backDuration, () => OnCameraMovementCompleted(onComplete), onTargetReached);
+            _cameraProvider.CameraFollower.MoveTo(target.TargetPosition, backDuration,
+                () => OnCameraMovementCompleted(onComplete), onTargetReached);
         }
+
+        public bool IsMoving() => _cameraProvider.CameraFollower.IsMoving;
 
         private void OnCameraMovementCompleted(Action onComplete)
         {

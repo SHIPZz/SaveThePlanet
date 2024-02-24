@@ -1,6 +1,7 @@
 ﻿using CodeBase.Services.Camera;
 using ECM.Components;
 using ECM.Controllers;
+using ECM.Examples;
 using UnityEngine;
 using Zenject;
 
@@ -8,9 +9,9 @@ namespace CodeBase.Gameplay.PlayerSystem
 {
     public class BlockMovementOnCameraPan : MonoBehaviour
     {
-        private BaseCharacterController _baseCharacterController;
         private CameraService _cameraService;
         private CharacterMovement _characterMovement;
+        private FPS_CustomController _fpsCustomController;
 
         [Inject]
         private void Construct(CameraService cameraService) => 
@@ -19,7 +20,7 @@ namespace CodeBase.Gameplay.PlayerSystem
         private void Awake()
         {
             _characterMovement = GetComponent<CharacterMovement>();
-            _baseCharacterController = GetComponent<BaseCharacterController>();
+            _fpsCustomController = GetComponent<FPS_CustomController>();
         }
 
         private void OnEnable()
@@ -40,10 +41,10 @@ namespace CodeBase.Gameplay.PlayerSystem
         private void Block() => 
             IsEnabled(true);
 
-        private void IsEnabled(bool isEnabled)
+        private void IsEnabled(bool isBlocked)
         {
-            _baseCharacterController.IsBlocked = isEnabled;
-            _characterMovement.Pause(isEnabled, false);
+            _fpsCustomController.pause = isBlocked;
+            _characterMovement.Pause(isBlocked, false);
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using CodeBase.Animations;
 using CodeBase.Services.UI;
 using UnityEngine;
@@ -28,7 +29,7 @@ namespace CodeBase.UI.Windows
 
         public virtual void Close()
         {
-            CanvasAnimator.FadeInCanvas(() => Destroy(gameObject));
+            CanvasAnimator.FadeOutCanvas(() => Destroy(gameObject));
         }
 
         public virtual void Show()
