@@ -10,7 +10,7 @@ namespace CodeBase.Gameplay.Destroyers
         
         public void Destroy(DestroyableObject destroyableObject)
         {
-            destroyableObject.Destroy();
+            destroyableObject.DoDestroy();
         }
     }
 }

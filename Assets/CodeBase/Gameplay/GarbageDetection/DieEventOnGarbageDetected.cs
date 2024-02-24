@@ -18,7 +18,7 @@ namespace CodeBase.Gameplay.GarbageDetection
         private void OnDisable() => 
             _garbageDetector.Detected -= Die;
 
-        private void Die(GarbageDetector garbageDetector)
+        private void Die()
         {
             _garbageDetector.enabled = false;
             Dead?.Invoke();

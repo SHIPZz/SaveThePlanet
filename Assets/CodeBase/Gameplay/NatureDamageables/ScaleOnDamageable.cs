@@ -5,23 +5,23 @@ using UnityEngine;
 namespace CodeBase.Gameplay.NatureDamageables
 {
     [RequireComponent(typeof(TransformScaleAnim))]
-    [RequireComponent(typeof(NatureDamageable))]
+    [RequireComponent(typeof(Damageable))]
     public class ScaleOnDamageable : MonoBehaviour, IRecoverableEvent
     {
-        private NatureDamageable _natureDamageable;
+        private Damageable _damageable;
         private TransformScaleAnim _transformScaleAnim;
 
         private void Awake()
         {
-            _natureDamageable = GetComponent<NatureDamageable>();
+            _damageable = GetComponent<Damageable>();
             _transformScaleAnim = GetComponent<TransformScaleAnim>();
         }
 
         private void OnEnable() => 
-            _natureDamageable.Damaged += UnScale;
+            _damageable.Damaged += UnScale;
 
         private void OnDisable() => 
-            _natureDamageable.Damaged -= UnScale;
+            _damageable.Damaged -= UnScale;
 
         public void OnRecovered() => 
             ToScale();

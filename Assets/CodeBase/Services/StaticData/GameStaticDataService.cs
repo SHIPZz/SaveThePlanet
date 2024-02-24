@@ -26,6 +26,7 @@ namespace CodeBase.Services.StaticData
         private readonly Dictionary<DestroyerType, Destroyer> _destroyers;
         private readonly Dictionary<ExtinguishableType, Extinguishable> _extinguishables;
         private readonly Dictionary<FireableType, Fireable> _fireables;
+        private readonly Dictionary<DestroyableTypeId, DestroyableObject> _destroyableObjects;
 
         public GameStaticDataService()
         {
@@ -33,6 +34,9 @@ namespace CodeBase.Services.StaticData
                 .ToDictionary(x => x.DestroyableTypeId, x => x);
 
             _garbages = Resources.LoadAll<Garbage>(AssetPath.Garbages);
+
+            _destroyableObjects = Resources.LoadAll<DestroyableObject>(AssetPath.DestroyableObjects)
+                .ToDictionary(x => x.DestroyableTypeId, x => x);
 
             _garbageDeathables = Resources.LoadAll<GarbageDeathable>(AssetPath.GarbageDeathables)
                 .ToDictionary(x => x.Id, x => x);
@@ -55,6 +59,8 @@ namespace CodeBase.Services.StaticData
                 .ToDictionary(x => x.ExtinguishableType, x => x);
         }
 
+        public DestroyableObject GetDestroyableObject(DestroyableTypeId id) =>
+            _destroyableObjects[id];
 
         public Fireable Get(FireableType id)
             => _fireables[id];

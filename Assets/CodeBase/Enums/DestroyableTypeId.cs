@@ -3,6 +3,9 @@
     public enum DestroyableTypeId
     {
         Silo,
-        IndustryFactory
+        IndustryFactory,
+        TreeGenericGiant,
+        TreePine02,
+        TreeWillowLarge01
     }
 }

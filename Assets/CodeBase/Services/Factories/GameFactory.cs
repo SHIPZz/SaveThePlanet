@@ -38,6 +38,13 @@ namespace CodeBase.Services.Factories
             return _instantiator.InstantiatePrefabForComponent<DestroyableObjectPart>(prefab, at, rotation, parent);
         }
 
+        public DestroyableObject CreateDestroyableObject(DestroyableTypeId destroyableTypeId, Transform parent, Vector3 at, Quaternion rotation)
+        {
+            DestroyableObject prefab = _gameStaticDataService.GetDestroyableObject(destroyableTypeId);
+
+            return _instantiator.InstantiatePrefabForComponent<DestroyableObject>(prefab, at, rotation, parent);
+        }
+
         public DamagedNature Create(DamagedNatureType damagedNatureType, Transform parent, Vector3 at,
             Quaternion rotation)
         {

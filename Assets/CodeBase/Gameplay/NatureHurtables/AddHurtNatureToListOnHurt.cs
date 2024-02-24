@@ -7,10 +7,10 @@ namespace CodeBase.Gameplay.NatureHurtables
 {
     public class AddHurtNatureToListOnHurt : MonoBehaviour
     {
-        private List<NatureDamageable> _natureDamageables = new();
+        private List<Damageable> _natureDamageables = new();
         private NatureHurtable _natureHurtable;
 
-        public IReadOnlyList<NatureDamageable> NatureDamageables => _natureDamageables;
+        public IReadOnlyList<Damageable> NatureDamageables => _natureDamageables;
 
         private void Awake() => 
             _natureHurtable = GetComponent<NatureHurtable>();
@@ -21,7 +21,7 @@ namespace CodeBase.Gameplay.NatureHurtables
         private void OnDisable() => 
             _natureHurtable.OnHurt -= Add;
 
-        public void Add(NatureDamageable natureDamageable) =>
-            _natureDamageables.Add(natureDamageable);
+        public void Add(Damageable damageable) =>
+            _natureDamageables.Add(damageable);
     }
 }

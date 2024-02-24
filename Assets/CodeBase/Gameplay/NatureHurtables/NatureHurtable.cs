@@ -10,14 +10,14 @@ namespace CodeBase.Gameplay.NatureHurtables
     {
         public NatureHurtableType Id;
         
-        public event Action<NatureDamageable> OnHurt;
+        public event Action<Damageable> OnHurt;
 
         public event Action Destroyed;
 
-        public void Hurt(NatureDamageable natureDamageable)
+        public void Hurt(Damageable damageable)
         {
-            natureDamageable.TakeDamage();
-            OnHurt?.Invoke(natureDamageable);
+            damageable.TakeDamage();
+            OnHurt?.Invoke(damageable);
         }
 
         public void CleanUp()

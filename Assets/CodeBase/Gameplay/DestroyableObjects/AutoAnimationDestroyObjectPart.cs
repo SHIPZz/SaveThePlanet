@@ -5,9 +5,10 @@ using UnityEngine;
 
 namespace CodeBase.Gameplay.DestroyableObjects
 {
+    [RequireComponent(typeof(TransformScaleAnim))]
     public class AutoAnimationDestroyObjectPart : MonoBehaviour
     {
-        public float Delay;
+        public float Delay = 3f;
 
         private TransformScaleAnim _transformScaleAnim;
 

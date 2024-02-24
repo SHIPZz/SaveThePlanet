@@ -21,7 +21,7 @@ namespace CodeBase.Gameplay.NatureHurtables
 
         private void Recover()
         {
-            foreach (NatureDamageable natureDamageable in _addHurtNatureToListOnHurt.NatureDamageables)
+            foreach (Damageable natureDamageable in _addHurtNatureToListOnHurt.NatureDamageables)
             {
                 natureDamageable.GetComponent<Recoverable>().Recover();
             }

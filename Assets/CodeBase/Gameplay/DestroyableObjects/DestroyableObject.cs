@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace CodeBase.Gameplay.DestroyableObjects
 {
+    [RequireComponent(typeof(DoDestroy))]
     public class DestroyableObject : MonoBehaviour
     {
         public DestroyableTypeId DestroyableTypeId;
@@ -15,7 +16,7 @@ namespace CodeBase.Gameplay.DestroyableObjects
             _doDestroy = GetComponent<DoDestroy>();
         }
 
-        public void Destroy()
+        public void DoDestroy()
         {
             _doDestroy.Do();
         }

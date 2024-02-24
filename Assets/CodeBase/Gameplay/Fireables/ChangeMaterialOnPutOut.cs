@@ -22,7 +22,7 @@ namespace CodeBase.Gameplay.Fireables
 
         private void ChangeMaterial()
         {
-            _materialChanger.Change();
+            _materialChanger.SetInitialMaterials();
         }
     }
 }

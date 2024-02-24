@@ -22,7 +22,7 @@ namespace CodeBase.Gameplay.NatureHurtables
 
         private void OnTriggerEntered(Collider other)
         {
-            if (!other.gameObject.TryGetComponent(out NatureDamageable natureDamageable))
+            if (!other.gameObject.TryGetComponent(out Damageable natureDamageable))
                 return;
 
             _natureHurtable.Hurt(natureDamageable);

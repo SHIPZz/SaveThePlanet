@@ -1,6 +1,7 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using JetBrains.Annotations;
 using UnityEngine;
 
 namespace CodeBase.Animations
@@ -23,14 +24,18 @@ namespace CodeBase.Animations
 
         private void Awake()
         {
-            if (_unscaleOnStart)
-                UnScale();
 
             if (_getTransformOnAwake)
                 _transform = GetComponent<Transform>();
         }
 
-        public void ToScale(Action onComplete = null)
+        private void Start()
+        {
+            if (_unscaleOnStart)
+                UnScale();
+        }
+
+        public void ToScale([CanBeNull] Action onComplete = null)
         {
             _transform.gameObject.SetActive(true);
             SetTween(Vector3.one * _targetScale, _scaleDuration, onComplete);

@@ -16,7 +16,7 @@ namespace CodeBase.Gameplay.DoDestroySystem
             {
                 targetCleanUp.CleanUp();
             }
-            
+
             Destroy(gameObject);
         }
     }

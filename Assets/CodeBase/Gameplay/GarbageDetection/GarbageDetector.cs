@@ -9,7 +9,7 @@ namespace CodeBase.Gameplay.GarbageDetection
     {
         public TriggerObserver TriggerObserver;
 
-        public event Action<GarbageDetector> Detected;
+        public event Action Detected;
 
         private void OnEnable() => 
             TriggerObserver.TriggerEntered += OnDetected;
@@ -22,7 +22,7 @@ namespace CodeBase.Gameplay.GarbageDetection
             if (!collider.gameObject.TryGetComponent(out Garbage garbage))
                 return;
 
-            Detected?.Invoke(this);
+            Detected?.Invoke();
         }
     }
 }

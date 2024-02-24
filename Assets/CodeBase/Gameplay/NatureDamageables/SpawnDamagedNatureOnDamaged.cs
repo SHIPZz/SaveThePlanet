@@ -11,7 +11,7 @@ namespace CodeBase.Gameplay.NatureDamageables
     {
         public DamagedNatureType DamagedNatureType;
 
-        private NatureDamageable _natureDamageable;
+        private Damageable _damageable;
         private GameFactory _gameFactory;
         private DamagedNature _damagedNature;
 
@@ -23,17 +23,17 @@ namespace CodeBase.Gameplay.NatureDamageables
 
         private void Awake()
         {
-            _natureDamageable = GetComponent<NatureDamageable>();
+            _damageable = GetComponent<Damageable>();
         }
 
         private void OnEnable()
         {
-            _natureDamageable.Damaged += Spawn;
+            _damageable.Damaged += Spawn;
         }
 
         private void OnDisable()
         {
-            _natureDamageable.Damaged -= Spawn;
+            _damageable.Damaged -= Spawn;
         }
 
         public void OnRecovered()

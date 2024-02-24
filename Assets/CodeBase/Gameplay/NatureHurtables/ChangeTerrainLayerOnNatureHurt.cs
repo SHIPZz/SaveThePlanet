@@ -54,7 +54,7 @@ namespace CodeBase.Gameplay.NatureHurtables
         }
 
         [Button]
-        private void ChangeToMud(NatureDamageable natureDamageable)
+        private void ChangeToMud(Damageable damageable)
         {
             if(_isMud)
                 return;
