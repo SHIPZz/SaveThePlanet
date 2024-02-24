@@ -1,6 +1,4 @@
-﻿using System;
-using CodeBase.Gameplay.GarbageDetection;
-using CodeBase.Gameplay.Garbages;
+﻿using CodeBase.Gameplay.Garbages;
 using UnityEngine;
 
 namespace CodeBase.Gameplay.Watter
@@ -11,10 +9,8 @@ namespace CodeBase.Gameplay.Watter
         
         private WaterPollution _waterPollution;
         
-        private void Awake()
-        {
+        private void Awake() => 
             _waterPollution = GetComponent<WaterPollution>();
-        }
 
         private void OnEnable()
         {

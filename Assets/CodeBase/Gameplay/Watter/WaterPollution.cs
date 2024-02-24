@@ -13,23 +13,25 @@ namespace CodeBase.Gameplay.Watter
         public float Duration = 1.5f;
         public Color TargetColor;
         public Color ClearColor;
+        
+        private static readonly int _waterDeepColor = Shader.PropertyToID(Property);
 
         private void OnDisable()
         {
-            Renderer.sharedMaterial.DOColor(ClearColor, Property, 0f);
+            Renderer.sharedMaterial.SetColor(_waterDeepColor, ClearColor);
         }
 
         [Button]
         public void Pollute()
         {
             Renderer.sharedMaterial
-                .DOColor(TargetColor, Property, Duration);
+                .DOColor(TargetColor, _waterDeepColor, Duration);
         }
 
         [Button]
         public void Clear()
         {
-            Renderer.sharedMaterial.DOColor(ClearColor, Property, Duration);
+            Renderer.sharedMaterial.DOColor(ClearColor, _waterDeepColor, Duration);
         }
     }
 }

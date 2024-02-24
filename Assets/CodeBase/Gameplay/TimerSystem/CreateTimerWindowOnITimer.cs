@@ -1,5 +1,4 @@
-﻿using System;
-using CodeBase.Services.Factories;
+﻿using CodeBase.Services.Factories;
 using CodeBase.UI.Windows.Timer;
 using UnityEngine;
 using Zenject;
@@ -16,20 +15,14 @@ namespace CodeBase.Gameplay.TimerSystem
         private TimerWindow _timerWindow;
 
         [Inject]
-        private void Construct(UIFactory uiFactory)
-        {
+        private void Construct(UIFactory uiFactory) => 
             _uiFactory = uiFactory;
-        }
 
-        private void Awake()
-        {
+        private void Awake() => 
             _timer = GetComponent<Timer>();
-        }
 
-        private void OnEnable()
-        {
+        private void OnEnable() => 
             _timer.Started += CreateAndOpen;
-        }
 
         private void OnDisable()
         {

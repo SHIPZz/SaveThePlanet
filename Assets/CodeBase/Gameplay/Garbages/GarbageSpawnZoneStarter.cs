@@ -19,7 +19,7 @@ namespace CodeBase.Gameplay.Garbages
             _timer = GetComponent<Timer>();
         }
 
-        private void Start()
+        public void Init()
         {
             if (SpawnOnStart)
             {

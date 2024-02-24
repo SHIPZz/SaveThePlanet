@@ -1520,6 +1520,7 @@ GameObject:
   - component: {fileID: 3672240376258797926}
   - component: {fileID: 6618403823758902201}
   - component: {fileID: 4472655314904702330}
+  - component: {fileID: 8765716221850050394}
   m_Layer: 5
   m_Name: Button_Close
   m_TagString: Untagged
@@ -1638,7 +1639,7 @@ AudioSource:
   m_GameObject: {fileID: 4555707278594192725}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -5271895388671865006, guid: 258f8ea29c3a15d468f0a9cfad44b3f8,
+  OutputAudioMixerGroup: {fileID: 1398959627353221509, guid: f58bcf0d6caac804ba3b5800388b0955,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 4c996ff2add02614a8606ae68181edf9, type: 3}
   m_PlayOnAwake: 0
@@ -1726,6 +1727,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8765716221850050394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4555707278594192725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89e18d8945df4b06be6e4c1adbabcd48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4870964771917308817
 GameObject:
   m_ObjectHideFlags: 0

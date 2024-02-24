@@ -1,5 +1,6 @@
 ﻿using CodeBase.EntryPointSystem;
 using CodeBase.Gameplay.Terrain;
+using CodeBase.Gameplay.Tutorial;
 using CodeBase.Services.Camera;
 using CodeBase.Services.Factories;
 using CodeBase.Services.GarbageDeathableServices;
@@ -38,6 +39,12 @@ namespace CodeBase.Installers.Game
             BindWarningDataService();
             BindPauseServices();
             BindCameraService();
+            BindTutorialRunner();
+        }
+
+        private void BindTutorialRunner()
+        {
+            Container.BindInterfacesAndSelfTo<TutorialRunner>().AsSingle();
         }
 
         private void BindCameraService()
@@ -68,7 +75,7 @@ namespace CodeBase.Installers.Game
 
         private void BindUIService()
         {
-            Container.BindInterfacesAndSelfTo<UIService>().AsSingle();
+            Container.Bind<UIService>().AsSingle();
         }
 
         private void BindWindowService()

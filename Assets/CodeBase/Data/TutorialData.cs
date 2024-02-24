@@ -7,7 +7,7 @@ namespace CodeBase.Data
     [Serializable]
     public class TutorialData
     {
-        public Dictionary<string, bool> CompletedTutorials = new();
+        public Dictionary<TutorialType, bool> CompletedTutorials = new();
         public Dictionary<WarningItemType, bool> ShownWarnings = new();
     }
 }

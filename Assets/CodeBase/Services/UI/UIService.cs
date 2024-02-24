@@ -10,7 +10,7 @@ using IInitializable = Zenject.IInitializable;
 
 namespace CodeBase.Services.UI
 {
-    public class UIService : IInitializable
+    public class UIService
     {
         private readonly WindowService _windowService;
 
@@ -31,7 +31,7 @@ namespace CodeBase.Services.UI
 
         public void Initialize()
         {
-            _windowService.Open<HudWindow>();
+            // _windowService.Open<HudWindow>();
 // #if UNITY_WEBGL
 //             if (YandexGame.EnvironmentData.deviceType == "mobile")
 //             {

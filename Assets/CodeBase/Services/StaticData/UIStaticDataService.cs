@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using CodeBase.Constant;
 using CodeBase.Enums;
+using CodeBase.ScriptableObjects.Tutorial;
 using CodeBase.ScriptableObjects.WarningItems;
 using CodeBase.UI.Effects;
 using CodeBase.UI.Windows;
@@ -15,6 +16,7 @@ namespace CodeBase.Services.StaticData
         private readonly Dictionary<EffectType, Effect> _effects;
         private readonly Dictionary<Type, WindowBase> _windows;
         private readonly Dictionary<WarningItemType, WarningItemSO> _warningItemDatas;
+        private readonly Dictionary<TutorialType, TutorialSO> _tutorialDatas;
 
         public UIStaticDataService()
         {
@@ -26,6 +28,14 @@ namespace CodeBase.Services.StaticData
             
             _warningItemDatas = Resources.LoadAll<WarningItemSO>(AssetPath.WarningItemDatas)
                 .ToDictionary(x=>x.WarningItemType, x => x);
+
+            _tutorialDatas = Resources.LoadAll<TutorialSO>(AssetPath.TutorialDatas)
+                .ToDictionary(x => x.TutorialType, x => x);
+        }
+
+        public TutorialSO Get(TutorialType tutorialType)
+        {
+            return _tutorialDatas[tutorialType];
         }
 
         public WarningItemSO Get(WarningItemType warningItemType)
