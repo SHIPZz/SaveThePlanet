@@ -55,7 +55,7 @@ namespace CodeBase.Animations
 
         private void SetTween(Vector3 scale, float duration, Action onComplete = null)
         {
-            _tween?.Kill(true);
+            _tween?.SetUpdate(true).Kill(true);
 
             switch (true)
             {

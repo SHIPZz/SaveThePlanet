@@ -1,6 +1,7 @@
 ﻿using System;
 using CodeBase.Animations;
 using CodeBase.UI.FrameMessage;
+using CodeBase.UI.Windows.Hud;
 using DG.Tweening;
 using TMPro;
 using UnityEngine.UI;
@@ -26,6 +27,12 @@ namespace CodeBase.UI.Windows.Tutorial
             SkipButton.onClick.AddListener(OnSkipButtonClicked);
         }
 
+        public override void Close()
+        {
+            WindowService.Open<HudWindow>();
+            base.Close();
+        }
+
         public void SetTextToFrameMessage(TMP_Text text)
         {
             FrameMessageView.MessageText = text;
@@ -38,7 +45,7 @@ namespace CodeBase.UI.Windows.Tutorial
 
         public void ScaleSkipButton(float delay)
         {
-            DOTween.Sequence().AppendInterval(delay).OnComplete(() => SkipButtonScaleAnim.ToScale());
+            DOTween.Sequence().AppendInterval(delay).OnComplete(() => SkipButtonScaleAnim.ToScale()).SetUpdate(true);
         }
     }
 }
