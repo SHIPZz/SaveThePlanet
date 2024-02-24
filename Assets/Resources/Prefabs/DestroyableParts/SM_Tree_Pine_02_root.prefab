@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4497575280934079329}
@@ -57,6 +57,7 @@ MonoBehaviour:
   - {fileID: 4194811089350116923}
   - {fileID: 3315430494969990603}
   - {fileID: 3397916054110469604}
+  Force: 8
   DestroyableTypeId: 3
 --- !u!114 &2238370446697290665
 MonoBehaviour:
@@ -73,7 +74,7 @@ MonoBehaviour:
   _targetScale: 1
   _unScale: 0
   _scaleDuration: 0.2
-  _unScaleDuration: 0.1
+  _unScaleDuration: 0.5
   _transform: {fileID: 0}
   _scaleX: 0
   _scaleY: 0

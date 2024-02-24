@@ -76,7 +76,11 @@ namespace CodeBase.Services.UI
         public void CloseAll()
         {
             ClearDestroyedWindows();
-            _createdWindows.Values.ToList().ForEach(x => x.Close());
+
+            foreach (WindowBase window in _createdWindows.Values)
+            {
+                window.Close();
+            }
         }
 
         public void Close<T>() where T : WindowBase

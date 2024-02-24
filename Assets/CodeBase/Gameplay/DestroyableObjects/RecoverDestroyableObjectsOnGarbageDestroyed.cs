@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CodeBase.Enums;
 using CodeBase.Gameplay.Garbages;
 using CodeBase.Services.Factories;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;
 
@@ -16,6 +17,8 @@ namespace CodeBase.Gameplay.DestroyableObjects
         private GameFactory _gameFactory;
         private Dictionary<DestroyableTypeId, Vector3> _cachedPositions = new();
         private Dictionary<DestroyableTypeId, Quaternion> _cachedRotations = new();
+
+        public event Action<DestroyableObject> Recovered;
 
         [Inject]
         private void Construct(GameFactory gameFactory)
@@ -32,22 +35,19 @@ namespace CodeBase.Gameplay.DestroyableObjects
             }
         }
 
-        private void OnEnable()
-        {
+        private void OnEnable() =>
             GarbageSpawnZone.GarbagesDestroyed += Recover;
-        }
 
-        private void OnDisable()
-        {
+        private void OnDisable() =>
             GarbageSpawnZone.GarbagesDestroyed -= Recover;
-        }
 
+        [Button]
         private void Recover()
         {
             foreach (KeyValuePair<DestroyableTypeId, Vector3> keyValuePair in _cachedPositions)
             {
-                _gameFactory.CreateDestroyableObject(keyValuePair.Key, null, keyValuePair.Value,
-                    _cachedRotations[keyValuePair.Key]);
+                DestroyableObject destroyableObject = _gameFactory.CreateDestroyableObject(keyValuePair.Key, null, keyValuePair.Value, _cachedRotations[keyValuePair.Key]);
+                Recovered?.Invoke(destroyableObject);
             }
         }
     }

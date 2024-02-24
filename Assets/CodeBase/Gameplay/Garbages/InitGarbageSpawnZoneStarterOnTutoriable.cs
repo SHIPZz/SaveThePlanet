@@ -15,14 +15,10 @@ namespace CodeBase.Gameplay.Garbages
             _garbageSpawnZoneStarter = GetComponent<GarbageSpawnZoneStarter>();
         }
 
-        private void OnEnable()
-        {
+        private void OnEnable() => 
             _tutoriable.UnLocked += _garbageSpawnZoneStarter.Init;
-        }
 
-        private void OnDisable()
-        {
+        private void OnDisable() => 
             _tutoriable.UnLocked -= _garbageSpawnZoneStarter.Init;
-        }
     }
 }

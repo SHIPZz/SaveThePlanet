@@ -1,8 +1,7 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace CodeBase.UI.Effects
+namespace CodeBase.UI.Sound
 {
     [RequireComponent(typeof(Button))]
     [RequireComponent(typeof(AudioSource))]

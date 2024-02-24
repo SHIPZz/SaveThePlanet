@@ -40,10 +40,16 @@ namespace CodeBase.EntryPointSystem
         {
             Player player = CreatePlayer();
             _playerProvider.Player = player;
-            _cameraProvider.Camera = player.GetComponentInChildren<Camera>();
-            _cameraProvider.CameraFollower = _cameraProvider.Camera.GetComponent<CameraFollower>();
+            InitializeCamera(player);
             _tutorialRunner.SetStep<InitialTutorialStep>();
             _uiService.Initialize();
+        }
+
+        private void InitializeCamera(Player player)
+        {
+            _cameraProvider.Camera = player.GetComponentInChildren<Camera>();
+            _cameraProvider.CameraFollower = _cameraProvider.Camera.GetComponent<CameraFollower>();
+            _cameraProvider.CameraPivot = _cameraProvider.Camera.GetComponentsInParent<Transform>();
         }
 
         private Player CreatePlayer()

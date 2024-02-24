@@ -38,14 +38,14 @@ namespace CodeBase.UI.Windows.Tutorial
             FrameMessageView.MessageText = text;
         }
 
-        private void OnSkipButtonClicked()
-        {
-            SkipButtonClicked?.Invoke();
-        }
-
         public void ScaleSkipButton(float delay)
         {
             DOTween.Sequence().AppendInterval(delay).OnComplete(() => SkipButtonScaleAnim.ToScale()).SetUpdate(true);
+        }
+
+        private void OnSkipButtonClicked()
+        {
+            SkipButtonClicked?.Invoke();
         }
     }
 }
