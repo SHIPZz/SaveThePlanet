@@ -2,7 +2,6 @@
 using CodeBase.Enums;
 using CodeBase.Gameplay.Garbages;
 using CodeBase.Gameplay.Pickeables;
-using CodeBase.Services.TriggerObserves;
 using CodeBase.UI.Effects;
 using UnityEngine;
 
