@@ -549,7 +549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f4fabbcb71a4ca09bb33a1373a420cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CloseButton: {fileID: 0}
+  CloseButton: {fileID: 6934615191342560703}
   CanvasAnimator: {fileID: 2431852458447929526}
   FrameMessageView: {fileID: 2266862572694753677}
   SkipButtonScaleAnim: {fileID: 411745876403145754}

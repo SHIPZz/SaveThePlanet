@@ -14,25 +14,17 @@ namespace CodeBase.Gameplay.Tutorial
         private TutorialRunner _tutorialRunner;
 
         [Inject]
-        private void Construct(TutorialRunner tutorialRunner)
-        {
+        private void Construct(TutorialRunner tutorialRunner) => 
             _tutorialRunner = tutorialRunner;
-        }
 
-        private void Awake()
-        {
+        private void Awake() => 
             _tutoriable = GetComponent<Tutoriable>();
-        }
 
-        private void OnEnable()
-        {
+        private void OnEnable() => 
             _tutorialRunner.StepSwitched += OnStepSwitched;
-        }
 
-        private void OnDisable()
-        {
+        private void OnDisable() => 
             _tutorialRunner.StepSwitched -= OnStepSwitched;
-        }
 
         private void OnStepSwitched(TutorialType tutorialType)
         {
