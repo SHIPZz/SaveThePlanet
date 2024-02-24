@@ -4,6 +4,7 @@
     {
         CampFire,
         Garbage,
-        Manufacture
+        Manufacture,
+        Water
     }
 }

@@ -93571,6 +93571,72 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1904753388}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1905081706
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1905081707}
+  - component: {fileID: 1905081708}
+  - component: {fileID: 1905081709}
+  m_Layer: 7
+  m_Name: OnlyPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1905081707
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1905081706}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4353677009361827}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1905081708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1905081706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02dbd7ac27968da408d2317adcac23f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &1905081709
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1905081706}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.4513173, y: 0.9999999, z: 4.707316}
+  m_Center: {x: -1.2256607, y: -0.000000056402914, z: 0.11877159}
 --- !u!1 &1906240910 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1535380315112082, guid: 3fce99634b729594d89ee5e872b73dff,
@@ -103228,6 +103294,8 @@ GameObject:
   - component: {fileID: 33527083695534285}
   - component: {fileID: 33527083695534286}
   - component: {fileID: 33527083695534290}
+  - component: {fileID: 33527083695534291}
+  - component: {fileID: 33527083695534292}
   m_Layer: 4
   m_Name: River_Plane_01 (5)
   m_TagString: Untagged
@@ -103621,6 +103689,7 @@ Transform:
   - {fileID: 1986462157}
   - {fileID: 1746755158}
   - {fileID: 1859826238}
+  - {fileID: 1905081707}
   m_Father: {fileID: 4558669714081595}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4353677257254195
@@ -104678,6 +104747,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GarbageSpawnZone: {fileID: 1145415226}
+--- !u!114 &33527083695534291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1806251881511591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be81ae89040246f5ba030e99ddd0ac00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WarningItemType: 3
+--- !u!114 &33527083695534292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1806251881511591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5d4f330194b46bda4c1f5f62ed758f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TriggerObserver: {fileID: 1905081708}
 --- !u!64 &64890026251754149
 MeshCollider:
   m_ObjectHideFlags: 0
