@@ -1,24 +1,30 @@
-﻿using CodeBase.Enums;
+﻿using System;
+using CodeBase.Enums;
+using CodeBase.Gameplay.DoDestroySystem;
 using CodeBase.Services.Factories;
 using CodeBase.Services.StaticData;
 using CodeBase.Services.UI;
 using CodeBase.Services.WorldData;
+using UnityEngine;
+using Zenject;
 
 namespace CodeBase.Gameplay.Tutorial
 {
-    public abstract class TutorialStep 
+    public abstract class TutorialStep : MonoBehaviour
     {
+        [field: SerializeField] public TutorialType TutorialType { get; protected set; }
+        
         protected UIFactory UIFactory;
         protected WindowService WindowService;
         protected IWorldDataService WorldDataService;
         protected TutorialRunner TutorialRunner;
         protected UIStaticDataService UiStaticDataService;
-
-        public abstract TutorialType TutorialType { get; }
+        protected DoDestroy DoDestroy;
 
         public bool IsFinished { get; protected set; }
 
-        protected TutorialStep(UIFactory uiFactory, WindowService windowService, IWorldDataService worldDataService, UIStaticDataService uiStaticDataService)
+        [Inject]
+        private void Construct(UIFactory uiFactory, WindowService windowService, IWorldDataService worldDataService, UIStaticDataService uiStaticDataService)
         {
             UiStaticDataService = uiStaticDataService;
             UIFactory = uiFactory;
@@ -26,7 +32,9 @@ namespace CodeBase.Gameplay.Tutorial
             WorldDataService = worldDataService;
         }
 
-        public void SetTutorialRunner(TutorialRunner tutorialRunner) => 
+        protected virtual void Awake() => DoDestroy = GetComponent<DoDestroy>();
+
+        public virtual void Init(TutorialRunner tutorialRunner) => 
             TutorialRunner = tutorialRunner;
 
         public void AddToData()

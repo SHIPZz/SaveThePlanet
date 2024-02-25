@@ -41,7 +41,6 @@ namespace CodeBase.EntryPointSystem
             Player player = CreatePlayer();
             _playerProvider.Player = player;
             InitializeCamera(player);
-            _tutorialRunner.SetStep<InitialTutorialStep>();
             _uiService.Initialize();
         }
 

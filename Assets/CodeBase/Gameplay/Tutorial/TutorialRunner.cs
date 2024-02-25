@@ -1,22 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using CodeBase.Enums;
-using Zenject;
+using CodeBase.Services.Factories;
+using CodeBase.UI.Windows.Tutorial;
+using UnityEngine;
 
 namespace CodeBase.Gameplay.Tutorial
 {
     public class TutorialRunner : IDisposable
     {
-        private readonly IInstantiator _instantiator;
-
         private Dictionary<TutorialType, TutorialStep> _tutorialSteps = new();
         private TutorialStep _lastStep;
+        private UIFactory _uiFactory;
+
+        public TutorialContainer TutorialContainer { get; private set; }
 
         public event Action<TutorialType> StepSwitched;
 
-        public TutorialRunner(IInstantiator instantiator) =>
-            _instantiator = instantiator;
+        public TutorialRunner(UIFactory uiFactory)
+        {
+            _uiFactory = uiFactory;
+        }
 
         public void Dispose()
         {
@@ -27,12 +31,30 @@ namespace CodeBase.Gameplay.Tutorial
             }
         }
 
+        public void Init(TutorialContainer tutorialContainer)
+        {
+            TutorialContainer = tutorialContainer;
+        }
+
         public void SetStep<T>() where T : TutorialStep
         {
             _lastStep?.OnFinished();
             _lastStep = CreateStep<T>();
             _lastStep.OnStart();
-            StepSwitched?.Invoke(_lastStep.TutorialType);
+        }
+
+        public void TrySwitchToNextStep(TutorialType tutorialType)
+        {
+            _lastStep = null;
+            
+            if (!_tutorialSteps.TryGetValue(tutorialType, out TutorialStep step))
+            {
+                TutorialContainer.TutorialWindow.Close();
+                return;
+            }
+            
+            _lastStep = step;
+            step.OnStart();
         }
 
         public void Reset()
@@ -46,12 +68,12 @@ namespace CodeBase.Gameplay.Tutorial
             return _tutorialSteps[tutorialType].IsFinished;
         }
 
-        private TutorialStep CreateStep<T>() where T : TutorialStep
+        private T CreateStep<T>() where T : TutorialStep
         {
-            var step = _instantiator.Instantiate<T>();
-            step.SetTutorialRunner(this);
-            step.AddToData();
+            var step = _uiFactory.CreateTutorialStep<T>(TutorialContainer.transform, Vector3.zero, Quaternion.identity);
             _tutorialSteps[step.TutorialType] = step;
+            step.Init(this);
+            step.AddToData();
             return step;
         }
     }

@@ -2,6 +2,7 @@
 using CodeBase.UI.Windows.Hud;
 using CodeBase.UI.Windows.Joystick;
 using CodeBase.UI.Windows.Pause;
+using CodeBase.UI.Windows.Tutorial;
 using Unity.VisualScripting;
 using UnityEngine;
 using YG;
@@ -31,6 +32,7 @@ namespace CodeBase.Services.UI
 
         public void Initialize()
         {
+            _windowService.Open<TutorialWindow>();
             // _windowService.Open<HudWindow>();
 // #if UNITY_WEBGL
 //             if (YandexGame.EnvironmentData.deviceType == "mobile")

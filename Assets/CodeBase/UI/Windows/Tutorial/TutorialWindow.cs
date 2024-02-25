@@ -1,21 +1,34 @@
 ﻿using System;
 using CodeBase.Animations;
+using CodeBase.Gameplay.Tutorial;
 using CodeBase.UI.FrameMessage;
 using CodeBase.UI.Windows.Hud;
 using DG.Tweening;
 using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace CodeBase.UI.Windows.Tutorial
 {
-    public class TutorialWindow : WindowBase
+    public class TutorialWindow : WindowBase, ITutorial
     {
-        public FrameMessageView FrameMessageView;
         public TransformScaleAnim SkipButtonScaleAnim;
+        public TutorialContainer TutorialContainer;
+        
         public Button SkipButton;
+        private TutorialRunner _tutorialRunner;
 
+        public Transform Anchor => transform;
+        
         public event Action SkipButtonClicked;
 
+        [Inject]
+        private void Construct(TutorialRunner tutorialRunner)
+        {
+            _tutorialRunner = tutorialRunner;
+        }
+        
         private void OnDisable()
         {
             SkipButton.onClick.RemoveListener(OnSkipButtonClicked);
@@ -25,27 +38,25 @@ namespace CodeBase.UI.Windows.Tutorial
         {
             CanvasAnimator.FadeInCanvas();
             SkipButton.onClick.AddListener(OnSkipButtonClicked);
+            _tutorialRunner.Init(TutorialContainer);
+            _tutorialRunner.SetStep<InitialTutorialStep>();
         }
 
         public override void Close()
         {
+            print("close");
             WindowService.Open<HudWindow>();
             base.Close();
-        }
-
-        public void SetTextToFrameMessage(TMP_Text text)
-        {
-            FrameMessageView.MessageText = text;
-        }
-
-        public void ScaleSkipButton(float delay)
-        {
-            DOTween.Sequence().AppendInterval(delay).OnComplete(() => SkipButtonScaleAnim.ToScale()).SetUpdate(true);
         }
 
         private void OnSkipButtonClicked()
         {
             SkipButtonClicked?.Invoke();
         }
+    }
+
+    public interface ITutorial
+    {
+        Transform Anchor { get; }
     }
 }

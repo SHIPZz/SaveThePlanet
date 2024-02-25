@@ -24771,6 +24771,68 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a984007d7a64eb78b8043a948d78517, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 1838927890}
+    - {fileID: 1145415222}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: CameraPans
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[CodeBase.Enums.CameraPanType,
+        Assembly-CSharp],[CodeBase.Gameplay.CameraPans.CameraPan, Assembly-CSharp]],
+        mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[CodeBase.Enums.CameraPanType,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 0
+    - Name: $v
+      Entry: 10
+      Data: 0
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
   Terrain: {fileID: 1440087272}
 --- !u!1001 &739156523
 PrefabInstance:
@@ -94472,9 +94534,6 @@ GameObject:
   - component: {fileID: 1838927888}
   - component: {fileID: 1838927890}
   - component: {fileID: 1838927889}
-  - component: {fileID: 1838927892}
-  - component: {fileID: 1838927891}
-  - component: {fileID: 1838927893}
   m_Layer: 18
   m_Name: GarbageSpawnZone (1)
   m_TagString: Untagged
@@ -94641,43 +94700,6 @@ MonoBehaviour:
   TargetPosition: {fileID: 0}
   Offset: {x: 0, y: 0, z: 0}
   OwnTransform: 1
---- !u!114 &1838927891
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1838927881}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd406f0eb4da4d47b92938d77e4faf1c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LockTutorialStepTypes: 01000000
---- !u!114 &1838927892
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1838927881}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b22b679b56f44bdba01df09467626f8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1838927893
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1838927881}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5336e24f0624b41ae1cda9bb4e5e42f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1838974990
 PrefabInstance:
   m_ObjectHideFlags: 0
