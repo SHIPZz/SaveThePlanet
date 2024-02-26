@@ -1,6 +1,5 @@
 ﻿using System;
 using CodeBase.Animations;
-using CodeBase.Enums;
 using TMPro;
 using UnityEngine;
 
@@ -10,7 +9,6 @@ namespace CodeBase.UI.FrameMessage
     public class FrameMessageView : MonoBehaviour
     {
         public TMP_Text MessageText;
-        public MessageType MessageType;
 
         private TransformScaleAnim _transformScaleAnim;
 

@@ -10,6 +10,8 @@ using Zenject;
 
 namespace CodeBase.Gameplay.Tutorial
 {
+    [RequireComponent(typeof(DoDestroy))]
+    [RequireComponent(typeof(TutorialMessageController))]
     public abstract class TutorialStep : MonoBehaviour
     {
         [field: SerializeField] public TutorialType TutorialType { get; protected set; }
@@ -20,6 +22,8 @@ namespace CodeBase.Gameplay.Tutorial
         protected TutorialRunner TutorialRunner;
         protected UIStaticDataService UiStaticDataService;
         protected DoDestroy DoDestroy;
+        protected TutorialContainer TutorialContainer;
+        protected TutorialMessageController TutorialMessageController;
 
         public bool IsFinished { get; protected set; }
 
@@ -32,10 +36,17 @@ namespace CodeBase.Gameplay.Tutorial
             WorldDataService = worldDataService;
         }
 
-        protected virtual void Awake() => DoDestroy = GetComponent<DoDestroy>();
+        protected virtual void Awake()
+        {
+            DoDestroy = GetComponent<DoDestroy>();
+            TutorialMessageController = GetComponent<TutorialMessageController>();
+        }
 
-        public virtual void Init(TutorialRunner tutorialRunner) => 
+        public virtual void Init(TutorialRunner tutorialRunner)
+        {
             TutorialRunner = tutorialRunner;
+            TutorialContainer = TutorialRunner.TutorialContainer;
+        }
 
         public void AddToData()
         {

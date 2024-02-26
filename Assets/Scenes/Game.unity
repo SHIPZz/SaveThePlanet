@@ -24777,6 +24777,10 @@ MonoBehaviour:
     ReferencedUnityObjects:
     - {fileID: 1838927890}
     - {fileID: 1145415222}
+    - {fileID: 1838927883}
+    - {fileID: 1930033899}
+    - {fileID: 1609429521}
+    - {fileID: 1145415225}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -24824,6 +24828,88 @@ MonoBehaviour:
     - Name: $v
       Entry: 10
       Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: Tutoriables
+      Entry: 7
+      Data: 2|System.Collections.Generic.List`1[[CodeBase.Gameplay.Tutorial.ITutoriable,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 10
+      Data: 2
+    - Name: 
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: GarbageTutoriables
+      Entry: 7
+      Data: 3|System.Collections.Generic.Dictionary`2[[CodeBase.Enums.GarbageSpawnZoneType,
+        Assembly-CSharp],[CodeBase.Gameplay.Tutorial.ITutoriable, Assembly-CSharp]],
+        mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 4|System.Collections.Generic.EnumEqualityComparer`1[[CodeBase.Enums.GarbageSpawnZoneType,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 0
+    - Name: $v
+      Entry: 10
+      Data: 4
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 10
+      Data: 5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 2
+    - Name: $v
+      Entry: 10
+      Data: 2
     - Name: 
       Entry: 8
       Data: 
@@ -65593,6 +65679,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9165668a6e044b369c3cf4483a5f9349, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GarbageSpawnZoneType: 1
   SpawnOnStart: 0
   DelaySpawn: 3
 --- !u!114 &1145415226
@@ -68264,6 +68351,37 @@ MeshFilter:
     type: 3}
   m_PrefabInstance: {fileID: 773982931}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1194703462
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1194703463}
+  m_Layer: 18
+  m_Name: CameraPanPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1194703463
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1194703462}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.41, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1609429517}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1196064717
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -84593,6 +84711,7 @@ GameObject:
   - component: {fileID: 1609429521}
   - component: {fileID: 1609429522}
   - component: {fileID: 1609429523}
+  - component: {fileID: 1609429524}
   m_Layer: 18
   m_Name: GarbageSpawnZone
   m_TagString: Untagged
@@ -84620,6 +84739,7 @@ Transform:
   - {fileID: 352947640}
   - {fileID: 739499310}
   - {fileID: 1894152970}
+  - {fileID: 1194703463}
   m_Father: {fileID: 586776759}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1609429518
@@ -84704,6 +84824,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9165668a6e044b369c3cf4483a5f9349, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GarbageSpawnZoneType: 0
   SpawnOnStart: 1
   DelaySpawn: 3
 --- !u!114 &1609429522
@@ -84732,6 +84853,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Value>k__BackingField: 300
+--- !u!114 &1609429524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1609429516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32ca599e1af84d058dd0b517ccd3e99b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetPosition: {fileID: 1194703463}
+  Offset: {x: 0, y: 0, z: 0}
+  OwnTransform: 0
 --- !u!205 &1610124687 stripped
 LODGroup:
   m_CorrespondingSourceObject: {fileID: 205317105530763478, guid: 2df6c259e4a67614fac8c85e23ecb3d5,
@@ -94534,6 +94670,7 @@ GameObject:
   - component: {fileID: 1838927888}
   - component: {fileID: 1838927890}
   - component: {fileID: 1838927889}
+  - component: {fileID: 1838927891}
   m_Layer: 18
   m_Name: GarbageSpawnZone (1)
   m_TagString: Untagged
@@ -94575,6 +94712,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9165668a6e044b369c3cf4483a5f9349, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GarbageSpawnZoneType: 2
   SpawnOnStart: 1
   DelaySpawn: 3
 --- !u!54 &1838927884
@@ -94700,6 +94838,19 @@ MonoBehaviour:
   TargetPosition: {fileID: 0}
   Offset: {x: 0, y: 0, z: 0}
   OwnTransform: 1
+--- !u!114 &1838927891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838927881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23007efc1d5d4d45a049b030036f71db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TutorialType: 2
 --- !u!1001 &1838974990
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -99029,6 +99180,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1930033898}
   - component: {fileID: 1930033899}
+  - component: {fileID: 1930033900}
   m_Layer: 23
   m_Name: NatureHurtableSpawner
   m_TagString: Untagged
@@ -99070,6 +99222,19 @@ MonoBehaviour:
   HurtableType: 0
   SpawnDelay: 300
   SpawnStartDelay: 3
+--- !u!114 &1930033900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1930033896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23007efc1d5d4d45a049b030036f71db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TutorialType: 3
 --- !u!1 &1930164021 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1756402572416146, guid: 1000cad1907db004b8d52ddf62c1ae94,

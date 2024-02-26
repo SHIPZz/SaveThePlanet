@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using CodeBase.Enums;
+using CodeBase.Gameplay.Tutorial;
 using CodeBase.Services.Factories;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -8,7 +9,7 @@ using Zenject;
 
 namespace CodeBase.Gameplay.NatureHurtables
 {
-    public class NatureHurtableSpawner : MonoBehaviour
+    public class NatureHurtableSpawner : MonoBehaviour, ITutoriable
     {
         public NatureHurtableType HurtableType;
         public float SpawnDelay;
@@ -20,20 +21,22 @@ namespace CodeBase.Gameplay.NatureHurtables
 
         public event Action Spawned;
 
+        public event Action Completed;
+
         [Inject]
         private void Construct(GameFactory gameFactory) => 
             _gameFactory = gameFactory;
 
-        private IEnumerator Start()
+
+        public void Init()
         {
-            yield return new WaitForSeconds(SpawnStartDelay);
             Spawn();
         }
 
         private void OnDisable()
         {
             if (_hurtableNature != null)
-                _hurtableNature.Destroyed -= StartNewCoroutine;
+                _hurtableNature.Destroyed -= OnHurtableNatureDestroyed;
         }
 
         private IEnumerator StartSpawnCoroutine()
@@ -43,8 +46,10 @@ namespace CodeBase.Gameplay.NatureHurtables
         }
 
         [Button]
-        private void StartNewCoroutine()
+        private void OnHurtableNatureDestroyed()
         {
+            Completed?.Invoke();
+            
             if (_coroutine != null)
                 StopCoroutine(_coroutine);
 
@@ -56,7 +61,7 @@ namespace CodeBase.Gameplay.NatureHurtables
             _hurtableNature = _gameFactory.Create(HurtableType, transform, Vector3.zero, Quaternion.identity);
             _hurtableNature.transform.localPosition = Vector3.zero;
             _hurtableNature.transform.localRotation = Quaternion.identity;
-            _hurtableNature.Destroyed += StartNewCoroutine;
+            _hurtableNature.Destroyed += OnHurtableNatureDestroyed;
             Spawned?.Invoke();
         }
     }

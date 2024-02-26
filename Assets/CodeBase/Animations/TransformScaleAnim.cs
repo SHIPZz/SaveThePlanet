@@ -24,7 +24,6 @@ namespace CodeBase.Animations
 
         private void Awake()
         {
-
             if (_getTransformOnAwake)
                 _transform = GetComponent<Transform>();
         }
@@ -33,6 +32,11 @@ namespace CodeBase.Animations
         {
             if (_unscaleOnStart)
                 UnScale();
+        }
+
+        public void ToScale(float delay, Action onComplete = null)
+        {
+            DOTween.Sequence().AppendInterval(delay).OnComplete(() => ToScale(onComplete)).SetUpdate(true);
         }
 
         public void ToScale([CanBeNull] Action onComplete = null)
@@ -53,6 +57,11 @@ namespace CodeBase.Animations
             SetTween(Vector3.one * _targetScale, _scaleDuration, onComplete);
         }
 
+        public void UnScaleAndScale(Action onComplete = null)
+        {
+            UnScale(() => ToScale());
+        }
+
         public void UnScale(Action onComplete = null)
         {
             SetTween(Vector3.one * _unScale, _unScaleDuration, onComplete);
@@ -65,13 +74,16 @@ namespace CodeBase.Animations
             switch (true)
             {
                 case bool _ when _scaleX:
-                    _tween = _transform.DOScaleX(scale.x, duration).OnComplete(() => onComplete?.Invoke()).SetUpdate(true);
+                    _tween = _transform.DOScaleX(scale.x, duration).OnComplete(() => onComplete?.Invoke())
+                        .SetUpdate(true);
                     break;
                 case bool _ when _scaleY:
-                    _tween = _transform.DOScaleY(scale.y, duration).OnComplete(() => onComplete?.Invoke()).SetUpdate(true);
+                    _tween = _transform.DOScaleY(scale.y, duration).OnComplete(() => onComplete?.Invoke())
+                        .SetUpdate(true);
                     break;
                 case bool _ when _scaleZ:
-                    _tween = _transform.DOScaleZ(scale.z, duration).OnComplete(() => onComplete?.Invoke()).SetUpdate(true);
+                    _tween = _transform.DOScaleZ(scale.z, duration).OnComplete(() => onComplete?.Invoke())
+                        .SetUpdate(true);
                     break;
                 default:
                     _tween = _transform.DOScale(scale, duration).OnComplete(() => onComplete?.Invoke()).SetUpdate(true);

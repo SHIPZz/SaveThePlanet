@@ -23,11 +23,11 @@ namespace CodeBase.Services.Factories
             _instantiator = instantiator;
         }
 
-        public T CreateTutorialStep<T>(Transform parent, Vector3 at, Quaternion rotation) where T : TutorialStep
+        public TutorialStep CreateTutorialStep(TutorialType tutorialType, Transform parent, Vector3 at, Quaternion rotation)
         {
-            var prefab = _uiStaticDataService.GetTutorialStep<T>();
-            
-            var createdStep = _instantiator.InstantiatePrefabForComponent<T>(prefab, at, rotation, parent);
+            TutorialStep prefab = _uiStaticDataService.GetTutorialStep(tutorialType);
+
+            var createdStep = _instantiator.InstantiatePrefabForComponent<TutorialStep>(prefab, at, rotation, parent);
             createdStep.transform.localPosition = at;
             createdStep.transform.localScale = Vector3.one;
             return createdStep;

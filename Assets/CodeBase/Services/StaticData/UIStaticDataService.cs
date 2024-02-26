@@ -17,7 +17,7 @@ namespace CodeBase.Services.StaticData
         private readonly Dictionary<EffectType, Effect> _effects;
         private readonly Dictionary<Type, WindowBase> _windows;
         private readonly Dictionary<WarningItemType, WarningItemSO> _warningItemDatas;
-        private readonly Dictionary<Type, TutorialStep> _tutorials;
+        private readonly Dictionary<TutorialType, TutorialStep> _tutorials;
 
         public UIStaticDataService()
         {
@@ -31,12 +31,12 @@ namespace CodeBase.Services.StaticData
                 .ToDictionary(x=>x.WarningItemType, x => x);
 
             _tutorials = Resources.LoadAll<TutorialStep>(AssetPath.Tutorials)
-                .ToDictionary(x => x.GetType(), x => x);
+                .ToDictionary(x => x.TutorialType, x => x);
         }
 
-        public T GetTutorialStep<T>() where T : TutorialStep
+        public TutorialStep GetTutorialStep(TutorialType tutorialType)
         {
-            return (T)_tutorials[typeof(T)];
+            return _tutorials[tutorialType];
         }
 
         public WarningItemSO Get(WarningItemType warningItemType)

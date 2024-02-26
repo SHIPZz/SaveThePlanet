@@ -1,4 +1,6 @@
 ﻿using Agava.YandexGames;
+using CodeBase.Enums;
+using CodeBase.Gameplay.Tutorial;
 using CodeBase.UI.Windows.Hud;
 using CodeBase.UI.Windows.Joystick;
 using CodeBase.UI.Windows.Pause;
@@ -15,7 +17,7 @@ namespace CodeBase.Services.UI
     {
         private readonly WindowService _windowService;
 
-        public UIService(WindowService windowService)
+        public UIService(WindowService windowService, TutorialRunner tutorialRunner)
         {
             _windowService = windowService;
         }
@@ -32,7 +34,10 @@ namespace CodeBase.Services.UI
 
         public void Initialize()
         {
-            _windowService.Open<TutorialWindow>();
+           var tutorialWindow = _windowService.Get<TutorialWindow>();
+           tutorialWindow.Init(TutorialType.InitialTutorial);
+           tutorialWindow.Open();
+            
             // _windowService.Open<HudWindow>();
 // #if UNITY_WEBGL
 //             if (YandexGame.EnvironmentData.deviceType == "mobile")

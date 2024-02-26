@@ -4,5 +4,7 @@
     {
         None,
         InitialTutorial,
+        GarbageDestroyedStep,
+        NatureHurtableDestroyedStep,
     }
 }

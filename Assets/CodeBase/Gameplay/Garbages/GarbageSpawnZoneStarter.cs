@@ -1,17 +1,23 @@
-﻿using CodeBase.Gameplay.TimerSystem;
+﻿using System;
+using CodeBase.Enums;
+using CodeBase.Gameplay.TimerSystem;
+using CodeBase.Gameplay.Tutorial;
 using DG.Tweening;
 using UnityEngine;
 
 namespace CodeBase.Gameplay.Garbages
 {
-    public class GarbageSpawnZoneStarter : MonoBehaviour
+    public class GarbageSpawnZoneStarter : MonoBehaviour, ITutoriable
     {
+        public GarbageSpawnZoneType GarbageSpawnZoneType;
         public bool SpawnOnStart;
         public float DelaySpawn = 3f;
 
         private GarbageSpawnZone _garbageSpawnZone;
         private Coroutine _spawnCoroutine;
         private Timer _timer;
+
+        public event Action Completed;
 
         private void Awake()
         {
@@ -33,13 +39,19 @@ namespace CodeBase.Gameplay.Garbages
         private void OnEnable()
         {
             _timer.Stopped += _garbageSpawnZone.Spawn;
-            _garbageSpawnZone.GarbagesDestroyed += _timer.StartTimer;
+            _garbageSpawnZone.GarbagesDestroyed += OnGarbagesDestroyed;
         }
 
         private void OnDisable()
         {
             _timer.Stopped -= _garbageSpawnZone.Spawn;
-            _garbageSpawnZone.GarbagesDestroyed -= _timer.StartTimer;
+            _garbageSpawnZone.GarbagesDestroyed -= OnGarbagesDestroyed;
+        }
+
+        private void OnGarbagesDestroyed()
+        {
+            _timer.StartTimer();
+            Completed?.Invoke();
         }
     }
 }

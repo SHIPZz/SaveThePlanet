@@ -1,5 +1,6 @@
 ﻿using System;
 using CodeBase.Animations;
+using CodeBase.Enums;
 using CodeBase.Gameplay.Tutorial;
 using CodeBase.UI.FrameMessage;
 using CodeBase.UI.Windows.Hud;
@@ -11,16 +12,17 @@ using Zenject;
 
 namespace CodeBase.UI.Windows.Tutorial
 {
-    public class TutorialWindow : WindowBase, ITutorial
+    public class TutorialWindow : WindowBase
     {
         public TransformScaleAnim SkipButtonScaleAnim;
         public TutorialContainer TutorialContainer;
-        
+
         public Button SkipButton;
         private TutorialRunner _tutorialRunner;
+        private TutorialType _tutorialType;
 
         public Transform Anchor => transform;
-        
+
         public event Action SkipButtonClicked;
 
         [Inject]
@@ -28,7 +30,7 @@ namespace CodeBase.UI.Windows.Tutorial
         {
             _tutorialRunner = tutorialRunner;
         }
-        
+
         private void OnDisable()
         {
             SkipButton.onClick.RemoveListener(OnSkipButtonClicked);
@@ -37,14 +39,19 @@ namespace CodeBase.UI.Windows.Tutorial
         public override void Open()
         {
             CanvasAnimator.FadeInCanvas();
+            WindowService.Close<HudWindow>();
             SkipButton.onClick.AddListener(OnSkipButtonClicked);
+            _tutorialRunner.SetStep(_tutorialType);
+        }
+
+        public void Init(TutorialType tutorialType)
+        {
+            _tutorialType = tutorialType;
             _tutorialRunner.Init(TutorialContainer);
-            _tutorialRunner.SetStep<InitialTutorialStep>();
         }
 
         public override void Close()
         {
-            print("close");
             WindowService.Open<HudWindow>();
             base.Close();
         }
@@ -53,10 +60,5 @@ namespace CodeBase.UI.Windows.Tutorial
         {
             SkipButtonClicked?.Invoke();
         }
-    }
-
-    public interface ITutorial
-    {
-        Transform Anchor { get; }
     }
 }

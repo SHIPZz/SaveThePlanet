@@ -4,6 +4,7 @@ using CodeBase.Services.UI;
 using CodeBase.UI.Windows;
 using CodeBase.UI.Windows.Hud;
 using Cysharp.Threading.Tasks;
+using UnityEngine;
 using Zenject;
 
 namespace CodeBase.Services.Pause
