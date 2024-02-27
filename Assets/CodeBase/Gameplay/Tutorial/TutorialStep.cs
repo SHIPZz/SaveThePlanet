@@ -1,9 +1,5 @@
-﻿using System;
-using CodeBase.Enums;
+﻿using CodeBase.Enums;
 using CodeBase.Gameplay.DoDestroySystem;
-using CodeBase.Services.Factories;
-using CodeBase.Services.StaticData;
-using CodeBase.Services.UI;
 using CodeBase.Services.WorldData;
 using UnityEngine;
 using Zenject;
@@ -11,35 +7,27 @@ using Zenject;
 namespace CodeBase.Gameplay.Tutorial
 {
     [RequireComponent(typeof(DoDestroy))]
-    [RequireComponent(typeof(TutorialMessageController))]
+    [RequireComponent(typeof(TutorialMessageDisplay))]
     public abstract class TutorialStep : MonoBehaviour
     {
         [field: SerializeField] public TutorialType TutorialType { get; protected set; }
         
-        protected UIFactory UIFactory;
-        protected WindowService WindowService;
         protected IWorldDataService WorldDataService;
         protected TutorialRunner TutorialRunner;
-        protected UIStaticDataService UiStaticDataService;
         protected DoDestroy DoDestroy;
         protected TutorialContainer TutorialContainer;
-        protected TutorialMessageController TutorialMessageController;
-
-        public bool IsFinished { get; protected set; }
+        protected TutorialMessageDisplay _tutorialMessageDisplay;
 
         [Inject]
-        private void Construct(UIFactory uiFactory, WindowService windowService, IWorldDataService worldDataService, UIStaticDataService uiStaticDataService)
+        private void Construct(IWorldDataService worldDataService)
         {
-            UiStaticDataService = uiStaticDataService;
-            UIFactory = uiFactory;
-            WindowService = windowService;
             WorldDataService = worldDataService;
         }
 
         protected virtual void Awake()
         {
             DoDestroy = GetComponent<DoDestroy>();
-            TutorialMessageController = GetComponent<TutorialMessageController>();
+            _tutorialMessageDisplay = GetComponent<TutorialMessageDisplay>();
         }
 
         public virtual void Init(TutorialRunner tutorialRunner)

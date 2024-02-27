@@ -23,7 +23,7 @@ namespace CodeBase.Gameplay.Tutorial
 
         public override void OnStart()
         {
-            TutorialMessageController.ShowFirstMessage();
+            _tutorialMessageDisplay.TryShowNextMessage();
 
             DOTween.Sequence().AppendInterval(ShowButtonDelay)
                 .OnComplete(() => TutorialContainer.SkipButtonScaleAnim.ToScale()).SetUpdate(true);
@@ -41,8 +41,7 @@ namespace CodeBase.Gameplay.Tutorial
 
         private void ShowMessage()
         {
-            TutorialMessageController.TryShowNextMessage(OnFinished, null,
-                () => TutorialContainer.SkipButtonScaleAnim.UnScaleAndScale());
+            _tutorialMessageDisplay.TryShowNextMessage(OnFinished, () => TutorialContainer.SkipButtonScaleAnim.UnScaleAndScale());
         }
     }
 }

@@ -54,10 +54,10 @@ namespace CodeBase.Gameplay.Tutorial
 
         private void ShowMessageView() =>
             DOTween.Sequence().AppendInterval(ShowMessageDelay)
-                .OnComplete(() => TutorialMessageController.ShowFirstMessage())
+                .OnComplete(() => _tutorialMessageDisplay.TryShowNextMessage())
                 .SetUpdate(true);
 
         private void ShowNextMessage() =>
-            TutorialMessageController.TryShowNextMessage(OnFinished);
+            _tutorialMessageDisplay.TryShowNextMessage(OnFinished);
     }
 }

@@ -14,8 +14,6 @@ namespace CodeBase.Gameplay.Tutorial
 
         public TutorialContainer TutorialContainer { get; private set; }
 
-        public event Action<TutorialType> StepSwitched;
-
         public TutorialRunner(UIFactory uiFactory)
         {
             _uiFactory = uiFactory;
@@ -47,24 +45,11 @@ namespace CodeBase.Gameplay.Tutorial
             step.OnStart();
         }
 
-        public void Reset()
-        {
-            _lastStep = null;
-            StepSwitched?.Invoke(TutorialType.None);
-        }
-
-        public bool IsTutorialFinished(TutorialType tutorialType)
-        {
-            return _tutorialSteps[tutorialType].IsFinished;
-        }
-
         private TutorialStep CreateStep(TutorialType tutorialType)
         {
-            TutorialStep step = _uiFactory.CreateTutorialStep(tutorialType, TutorialContainer.transform, Vector3.zero, Quaternion.identity);
+            TutorialStep step = _uiFactory.CreateTutorialStepView(tutorialType, TutorialContainer.transform, Vector3.zero, Quaternion.identity, this);
             _tutorialSteps[step.TutorialType] = step;
-            step.Init(this);
-            step.AddToData();
-            
+
             return step;
         }
     }
