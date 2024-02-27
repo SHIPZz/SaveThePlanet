@@ -1,18 +1,12 @@
-﻿using System;
-using CodeBase.Enums;
-using CodeBase.Gameplay.Garbages;
+﻿using CodeBase.Enums;
 using CodeBase.Gameplay.NatureHurtables;
 using CodeBase.Services.Providers.GameProviders;
-using CodeBase.UI.FrameMessage;
-using DG.Tweening;
 using Zenject;
 
 namespace CodeBase.Gameplay.Tutorial
 {
-    public class GarbageDestroyedStep : TutorialStep
+    public class GarbageDestroyedStep : AbstractTutorialStep
     {
-        public float ShowButtonDelay = 2f;
-
         private GameProvider _gameProvider;
 
         [Inject]
@@ -23,11 +17,8 @@ namespace CodeBase.Gameplay.Tutorial
 
         public override void OnStart()
         {
-            _tutorialMessageDisplay.TryShowNextMessage();
-
-            DOTween.Sequence().AppendInterval(ShowButtonDelay)
-                .OnComplete(() => TutorialContainer.SkipButtonScaleAnim.ToScale()).SetUpdate(true);
-
+            TutorialMessageDisplay.TryShowNextMessage();
+            ShowSkipButton();
             TutorialContainer.SkipButtonClicked += ShowMessage;
         }
 
@@ -37,11 +28,6 @@ namespace CodeBase.Gameplay.Tutorial
             ITutoriable tutoriable = _gameProvider.GetTutoriable<NatureHurtableSpawner>();
             tutoriable.Init();
             TutorialRunner.TrySwitchToNextStep(TutorialType.None);
-        }
-
-        private void ShowMessage()
-        {
-            _tutorialMessageDisplay.TryShowNextMessage(OnFinished, () => TutorialContainer.SkipButtonScaleAnim.UnScaleAndScale());
         }
     }
 }

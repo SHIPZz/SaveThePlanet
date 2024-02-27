@@ -7,9 +7,8 @@ using Zenject;
 
 namespace CodeBase.Gameplay.Tutorial
 {
-    public class InitialTutorialStep : TutorialStep
+    public class InitialTutorialStep : AbstractTutorialStep
     {
-        public float ScaleSkipButtonDelay = 3.5f;
         public float ShowMessageDelay = 2f;
 
         private ILoadingCurtain _loadingCurtain;
@@ -23,41 +22,22 @@ namespace CodeBase.Gameplay.Tutorial
         }
 
         private void Start() =>
-            _loadingCurtain.Closed += ShowMessageView;
+            _loadingCurtain.Closed += ShowMessage;
 
-        private void OnDisable()
-        {
-            _loadingCurtain.Closed -= ShowMessageView;
-            TutorialContainer.SkipButtonClicked -= ShowNextMessage;
-        }
-
-        public override void Init(TutorialRunner tutorialRunner)
-        {
-            base.Init(tutorialRunner);
-
-            TutorialContainer.SkipButtonClicked += ShowNextMessage;
-        }
+        private void OnDisable() => 
+            _loadingCurtain.Closed -= ShowMessage;
 
         public override void OnStart() =>
-            DOTween.Sequence().AppendInterval(ScaleSkipButtonDelay).OnComplete(() =>
-                TutorialContainer.SkipButtonScaleAnim.ToScale()).SetUpdate(true);
+            ShowSkipButton();
 
         public override void OnFinished()
         {
             TutorialContainer.SkipButtonScaleAnim.UnScale();
             TutorialRunner.TrySwitchToNextStep(TutorialType.None);
             SetCompleteToData(true);
-            ITutoriable tutoriable = _gameProvider.GetTutoriable<GarbageSpawnZoneStarter>();
+            ITutoriable tutoriable = _gameProvider.GetGarbageSpawnZoneTutoriable(GarbageSpawnZoneType.TreeSpawnZone);
             tutoriable.Init();
             DoDestroy.Do();
         }
-
-        private void ShowMessageView() =>
-            DOTween.Sequence().AppendInterval(ShowMessageDelay)
-                .OnComplete(() => _tutorialMessageDisplay.TryShowNextMessage())
-                .SetUpdate(true);
-
-        private void ShowNextMessage() =>
-            _tutorialMessageDisplay.TryShowNextMessage(OnFinished);
     }
 }

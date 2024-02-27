@@ -2,13 +2,14 @@
 using System.Collections;
 using CodeBase.Enums;
 using CodeBase.Gameplay.TimerSystem;
+using CodeBase.Gameplay.Tutorial;
 using CodeBase.Services.Factories;
 using UnityEngine;
 using Zenject;
 
 namespace CodeBase.Gameplay.Fireables
 {
-    public class FireableSpawner : MonoBehaviour
+    public class FireableSpawner : MonoBehaviour, ITutoriable
     {
         public FireableType FireableType;
         public float StartSpawnDelay = 3f;
@@ -19,6 +20,7 @@ namespace CodeBase.Gameplay.Fireables
         private Timer _timer;
 
         public event Action Spawned;
+        public event Action Completed;
 
         [Inject]
         private void Construct(GameFactory gameFactory)
@@ -31,32 +33,25 @@ namespace CodeBase.Gameplay.Fireables
             _timer = GetComponent<Timer>();
         }
 
-        private IEnumerator Start()
-        {
-            if (!NeedSpawnOnStart)
-            {
-                _timer.StartTimer();
-                yield break;
-            }
-
-            yield return new WaitForSeconds(StartSpawnDelay);
-            Spawn();
-        }
-
         private void OnEnable()
         {
             _timer.Stopped += Spawn;
         }
-        
+
         private void OnDisable()
         {
             if (_fireable != null)
-                _fireable.OnPutOut -= OnPutOut;
+                _fireable.OnPutOut -= RestartSpawnTime;
 
             _timer.Stopped -= Spawn;
         }
 
-        private void OnPutOut()
+        public void Init()
+        {
+            Spawn();
+        }
+
+        private void RestartSpawnTime()
         {
             _timer.Stop();
             _timer.StartTimer();
@@ -66,7 +61,7 @@ namespace CodeBase.Gameplay.Fireables
         private void Spawn()
         {
             _fireable = _gameFactory.Create(FireableType, null, transform.position, transform.rotation);
-            _fireable.OnPutOut += OnPutOut;
+            _fireable.OnPutOut += RestartSpawnTime;
             Spawned?.Invoke();
         }
     }

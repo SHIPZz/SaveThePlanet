@@ -6,5 +6,9 @@
         InitialTutorial,
         GarbageDestroyedStep,
         NatureHurtableDestroyedStep,
+        AnimalSavedStep,
+        WaterCleanedStep,
+        CampFirePutOutStep,
+        FinishedStep
     }
 }

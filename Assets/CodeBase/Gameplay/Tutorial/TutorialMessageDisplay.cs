@@ -18,6 +18,7 @@ namespace CodeBase.Gameplay.Tutorial
             if (!AreMoreMessagesAvailable())
             {
                 onAllShown?.Invoke();
+                print("onAllShown");
                 return;
             }
             

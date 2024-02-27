@@ -1,6 +1,8 @@
-﻿using CodeBase.Enums;
+﻿using System;
+using CodeBase.Enums;
 using CodeBase.Gameplay.DoDestroySystem;
 using CodeBase.Services.WorldData;
+using DG.Tweening;
 using UnityEngine;
 using Zenject;
 
@@ -8,15 +10,17 @@ namespace CodeBase.Gameplay.Tutorial
 {
     [RequireComponent(typeof(DoDestroy))]
     [RequireComponent(typeof(TutorialMessageDisplay))]
-    public abstract class TutorialStep : MonoBehaviour
+    public abstract class AbstractTutorialStep : MonoBehaviour
     {
         [field: SerializeField] public TutorialType TutorialType { get; protected set; }
-        
+        [field: SerializeField] public TutorialType NextTutorialType { get; protected set; } = TutorialType.None;
+        [SerializeField] protected float ShowButtonDelay = 1.5f;
+
         protected IWorldDataService WorldDataService;
         protected TutorialRunner TutorialRunner;
         protected DoDestroy DoDestroy;
         protected TutorialContainer TutorialContainer;
-        protected TutorialMessageDisplay _tutorialMessageDisplay;
+        protected TutorialMessageDisplay TutorialMessageDisplay;
 
         [Inject]
         private void Construct(IWorldDataService worldDataService)
@@ -27,13 +31,19 @@ namespace CodeBase.Gameplay.Tutorial
         protected virtual void Awake()
         {
             DoDestroy = GetComponent<DoDestroy>();
-            _tutorialMessageDisplay = GetComponent<TutorialMessageDisplay>();
+            TutorialMessageDisplay = GetComponent<TutorialMessageDisplay>();
         }
 
         public virtual void Init(TutorialRunner tutorialRunner)
         {
             TutorialRunner = tutorialRunner;
             TutorialContainer = TutorialRunner.TutorialContainer;
+            TutorialContainer.SkipButtonClicked += ShowMessage;
+        }
+
+        private void OnDisable()
+        {
+            TutorialContainer.SkipButtonClicked -= ShowMessage;
         }
 
         public void AddToData()
@@ -45,7 +55,9 @@ namespace CodeBase.Gameplay.Tutorial
 
         public virtual void OnFinished()
         {
-            
+            SetCompleteToData(true);
+            TutorialRunner.TrySwitchToNextStep(NextTutorialType);
+            DoDestroy.Do();
         }
 
         protected void SetCompleteToData(bool isCompleted)
@@ -53,9 +65,15 @@ namespace CodeBase.Gameplay.Tutorial
             WorldDataService.WorldData.TutorialData.CompletedTutorials[TutorialType] = isCompleted;
         }
 
-        protected virtual bool IsCompleted()
+        protected void ShowSkipButton()
         {
-            return WorldDataService.WorldData.TutorialData.CompletedTutorials[TutorialType];
+            DOTween.Sequence().AppendInterval(ShowButtonDelay).OnComplete(() =>
+                TutorialContainer.SkipButtonScaleAnim.ToScale()).SetUpdate(true);
+        }
+
+        protected virtual void ShowMessage()
+        {
+            TutorialMessageDisplay.TryShowNextMessage(OnFinished);
         }
     }
 }

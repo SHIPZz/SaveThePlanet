@@ -8,8 +8,8 @@ namespace CodeBase.Gameplay.Tutorial
 {
     public class TutorialRunner
     {
-        private Dictionary<TutorialType, TutorialStep> _tutorialSteps = new();
-        private TutorialStep _lastStep;
+        private Dictionary<TutorialType, AbstractTutorialStep> _tutorialSteps = new();
+        private AbstractTutorialStep _lastStep;
         private UIFactory _uiFactory;
 
         public TutorialContainer TutorialContainer { get; private set; }
@@ -35,19 +35,19 @@ namespace CodeBase.Gameplay.Tutorial
         {
             _lastStep = null;
             
-            if (!_tutorialSteps.TryGetValue(tutorialType, out TutorialStep step))
+            if (tutorialType == TutorialType.None)
             {
                 TutorialContainer.TutorialWindow.Close();
                 return;
             }
             
-            _lastStep = step;
-            step.OnStart();
+            _lastStep = CreateStep(tutorialType);
+            _lastStep.OnStart();
         }
 
-        private TutorialStep CreateStep(TutorialType tutorialType)
+        private AbstractTutorialStep CreateStep(TutorialType tutorialType)
         {
-            TutorialStep step = _uiFactory.CreateTutorialStepView(tutorialType, TutorialContainer.transform, Vector3.zero, Quaternion.identity, this);
+            AbstractTutorialStep step = _uiFactory.CreateTutorialStepView(tutorialType, TutorialContainer.transform, Vector3.zero, Quaternion.identity, this);
             _tutorialSteps[step.TutorialType] = step;
 
             return step;

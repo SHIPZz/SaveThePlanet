@@ -24779,6 +24779,7 @@ MonoBehaviour:
     - {fileID: 1145415222}
     - {fileID: 1838927883}
     - {fileID: 1930033899}
+    - {fileID: 4585558721182516}
     - {fileID: 1609429521}
     - {fileID: 1145415225}
     SerializedBytesString: 
@@ -24843,13 +24844,16 @@ MonoBehaviour:
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 3
     - Name: 
       Entry: 10
       Data: 2
     - Name: 
       Entry: 10
       Data: 3
+    - Name: 
+      Entry: 10
+      Data: 4
     - Name: 
       Entry: 13
       Data: 
@@ -24885,7 +24889,7 @@ MonoBehaviour:
       Data: 0
     - Name: $v
       Entry: 10
-      Data: 4
+      Data: 5
     - Name: 
       Entry: 8
       Data: 
@@ -24897,7 +24901,7 @@ MonoBehaviour:
       Data: 1
     - Name: $v
       Entry: 10
-      Data: 5
+      Data: 6
     - Name: 
       Entry: 8
       Data: 
@@ -65585,6 +65589,7 @@ GameObject:
   - component: {fileID: 1145415223}
   - component: {fileID: 1145415222}
   - component: {fileID: 1145415221}
+  - component: {fileID: 1145415227}
   m_Layer: 18
   m_Name: GarbageSpawnZone (2)
   m_TagString: Untagged
@@ -65681,7 +65686,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GarbageSpawnZoneType: 1
   SpawnOnStart: 0
-  DelaySpawn: 3
+  DelaySpawn: 1
 --- !u!114 &1145415226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65704,6 +65709,19 @@ MonoBehaviour:
   - {fileID: 101973394}
   - {fileID: 1431239448}
   _targetSpawnCount: 1
+--- !u!114 &1145415227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1145415219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23007efc1d5d4d45a049b030036f71db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TutorialType: 5
 --- !u!1001 &1146380213
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -84712,6 +84730,8 @@ GameObject:
   - component: {fileID: 1609429522}
   - component: {fileID: 1609429523}
   - component: {fileID: 1609429524}
+  - component: {fileID: 1609429525}
+  - component: {fileID: 1609429526}
   m_Layer: 18
   m_Name: GarbageSpawnZone
   m_TagString: Untagged
@@ -84826,7 +84846,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GarbageSpawnZoneType: 0
   SpawnOnStart: 1
-  DelaySpawn: 3
+  DelaySpawn: 1
 --- !u!114 &1609429522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84868,6 +84888,31 @@ MonoBehaviour:
   TargetPosition: {fileID: 1194703463}
   Offset: {x: 0, y: 0, z: 0}
   OwnTransform: 0
+--- !u!114 &1609429525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1609429516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c8f0ac14499404b96df739c26e382b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1609429526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1609429516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23007efc1d5d4d45a049b030036f71db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TutorialType: 4
 --- !u!205 &1610124687 stripped
 LODGroup:
   m_CorrespondingSourceObject: {fileID: 205317105530763478, guid: 2df6c259e4a67614fac8c85e23ecb3d5,
@@ -94714,7 +94759,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GarbageSpawnZoneType: 2
   SpawnOnStart: 1
-  DelaySpawn: 3
+  DelaySpawn: 1
 --- !u!54 &1838927884
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -108492,7 +108537,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FireableType: 0
-  StartSpawnDelay: 3
+  StartSpawnDelay: 1
   NeedSpawnOnStart: 0
 --- !u!4 &4635909568553329 stripped
 Transform:
@@ -111234,6 +111279,8 @@ GameObject:
   - component: {fileID: 4585558721182516}
   - component: {fileID: 3589043455537671552}
   - component: {fileID: 3589043455537671553}
+  - component: {fileID: 3589043455537671555}
+  - component: {fileID: 3589043455537671554}
   m_Layer: 20
   m_Name: FireableSpawner
   m_TagString: Untagged
@@ -112062,6 +112109,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Value>k__BackingField: 300
+--- !u!114 &3589043455537671554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1965159874513580956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23007efc1d5d4d45a049b030036f71db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TutorialType: 6
+--- !u!114 &3589043455537671555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1965159874513580956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32ca599e1af84d058dd0b517ccd3e99b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TargetPosition: {fileID: 0}
+  Offset: {x: 0, y: 0, z: 0}
+  OwnTransform: 1
 --- !u!1001 &3927805204053911700
 PrefabInstance:
   m_ObjectHideFlags: 0
