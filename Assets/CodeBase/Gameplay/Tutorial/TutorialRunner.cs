@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using CodeBase.Enums;
+﻿using CodeBase.Enums;
 using CodeBase.Services.Factories;
 using UnityEngine;
 
@@ -8,7 +6,6 @@ namespace CodeBase.Gameplay.Tutorial
 {
     public class TutorialRunner
     {
-        private Dictionary<TutorialType, AbstractTutorialStep> _tutorialSteps = new();
         private AbstractTutorialStep _lastStep;
         private UIFactory _uiFactory;
 
@@ -48,8 +45,6 @@ namespace CodeBase.Gameplay.Tutorial
         private AbstractTutorialStep CreateStep(TutorialType tutorialType)
         {
             AbstractTutorialStep step = _uiFactory.CreateTutorialStepView(tutorialType, TutorialContainer.transform, Vector3.zero, Quaternion.identity, this);
-            _tutorialSteps[step.TutorialType] = step;
-
             return step;
         }
     }
