@@ -8,7 +8,7 @@ namespace CodeBase.Gameplay.Terrain
 {
     public class TerrainLayerChanger
     {
-        public async void Change(UnityEngine.Terrain terrain, TerrainLayerType terrainLayerType, List<Transform> targetPositions, float brushSize)
+        public void Change(UnityEngine.Terrain terrain, TerrainLayerType terrainLayerType, List<Transform> targetPositions, float brushSize)
         {
             foreach (Transform targetPosition in targetPositions)
             {

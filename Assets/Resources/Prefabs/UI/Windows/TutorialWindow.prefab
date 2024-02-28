@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5086254295415703924}
   - component: {fileID: 6569359997880972536}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: TutorialContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -65,7 +65,9 @@ GameObject:
   - component: {fileID: 6934615191342560703}
   - component: {fileID: 411745876403145754}
   - component: {fileID: 2041557684211692539}
-  m_Layer: 0
+  - component: {fileID: 4133336213430189436}
+  - component: {fileID: 7883037012763565913}
+  m_Layer: 5
   m_Name: Button_SkipText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -211,6 +213,115 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _targetAnchoredScale: {x: 220, y: 90}
   _animationDuration: 0.2
+--- !u!82 &4133336213430189436
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1576133288985381917}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 1398959627353221509, guid: f58bcf0d6caac804ba3b5800388b0955,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: 53f69076a3fd7a14d8a20ae0798f62a7, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &7883037012763565913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1576133288985381917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89e18d8945df4b06be6e4c1adbabcd48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3378544499464139918
 GameObject:
   m_ObjectHideFlags: 0
@@ -226,7 +337,8 @@ GameObject:
   - component: {fileID: 1965296910300347735}
   - component: {fileID: 8782334310684545723}
   - component: {fileID: 4831026086209069890}
-  m_Layer: 0
+  - component: {fileID: 8050120604537830322}
+  m_Layer: 5
   m_Name: TutorialWindow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -266,7 +378,7 @@ Canvas:
   m_GameObject: {fileID: 3378544499464139918}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -364,6 +476,21 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &8050120604537830322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3378544499464139918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5798db0a73b545beaf2af77069e0950f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ParticleCamera: 1
+  DefaultCamera: 0
+  Canvas: {fileID: 4560254120412186901}
 --- !u!1 &4100221093663779316
 GameObject:
   m_ObjectHideFlags: 0
@@ -375,7 +502,7 @@ GameObject:
   - component: {fileID: 4017995375893681656}
   - component: {fileID: 2228616082325738404}
   - component: {fileID: 5084775169949498604}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ScreenDim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -451,7 +578,7 @@ GameObject:
   - component: {fileID: 3397533890113863042}
   - component: {fileID: 7583245260143883955}
   - component: {fileID: 8865357543996201785}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Button_SkipIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -570,7 +697,7 @@ GameObject:
   - component: {fileID: 3717882973588332612}
   - component: {fileID: 7682633254496928850}
   - component: {fileID: 7934748571164432590}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: SampleCharacter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -645,7 +772,7 @@ GameObject:
   - component: {fileID: 6279018700963181739}
   - component: {fileID: 7273224685976120081}
   - component: {fileID: 6389584419184688702}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

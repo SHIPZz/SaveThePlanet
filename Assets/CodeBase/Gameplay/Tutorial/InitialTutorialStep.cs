@@ -34,7 +34,6 @@ namespace CodeBase.Gameplay.Tutorial
         {
             TutorialContainer.SkipButtonScaleAnim.UnScale();
             TutorialRunner.TrySwitchToNextStep(TutorialType.None);
-            SetCompleteToData(true);
             ITutoriable tutoriable = _gameProvider.GetGarbageSpawnZoneTutoriable(GarbageSpawnZoneType.TreeSpawnZone);
             tutoriable.Init();
             DoDestroy.Do();

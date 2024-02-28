@@ -14,11 +14,22 @@ namespace CodeBase.Services.Save
             _worldDataService = worldDataService;
         }
 
-        public void Initialize() => 
+        public void Initialize()
+        {
             Application.focusChanged += SaveData;
+            Application.quitting += SaveData;
+        }
 
-        public void Dispose() => 
+        public void Dispose()
+        {
             Application.focusChanged -= SaveData;
+            Application.quitting -= SaveData;
+        }
+
+        private void SaveData()
+        {
+            _worldDataService.Save();
+        }
 
         private void SaveData(bool hasFocus)
         {

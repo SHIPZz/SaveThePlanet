@@ -39,12 +39,13 @@ namespace CodeBase.Installers.Game
             BindWarningDataService();
             BindPauseServices();
             BindCameraService();
-            BindTutorialRunner();
+            BindTutorialServices();
         }
 
-        private void BindTutorialRunner()
+        private void BindTutorialServices()
         {
             Container.Bind<TutorialRunner>().AsSingle();
+            Container.Bind<TutorialService>().AsSingle();
         }
 
         private void BindCameraService()

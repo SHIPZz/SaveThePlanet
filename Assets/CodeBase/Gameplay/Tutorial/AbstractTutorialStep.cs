@@ -63,6 +63,13 @@ namespace CodeBase.Gameplay.Tutorial
         protected void SetCompleteToData(bool isCompleted)
         {
             WorldDataService.WorldData.TutorialData.CompletedTutorials[TutorialType] = isCompleted;
+            WorldDataService.Save();
+        }
+        
+        protected void SetCompleteToData(TutorialType tutorialType, bool isCompleted)
+        {
+            WorldDataService.WorldData.TutorialData.CompletedTutorials[tutorialType] = isCompleted;
+            WorldDataService.Save();
         }
 
         protected void ShowSkipButton()

@@ -1,12 +1,11 @@
 ﻿using CodeBase.Constant;
-using CodeBase.Gameplay.Camera;
 using CodeBase.Gameplay.PlayerSystem;
-using CodeBase.Gameplay.Tutorial;
 using CodeBase.Services.Factories;
 using CodeBase.Services.Providers.CameraProviders;
 using CodeBase.Services.Providers.LocationProviders;
 using CodeBase.Services.Providers.PlayerProviders;
 using CodeBase.Services.UI;
+using CodeBase.UI.Camera;
 using UnityEngine;
 using Zenject;
 
@@ -18,18 +17,15 @@ namespace CodeBase.EntryPointSystem
         private readonly GameFactory _gameFactory;
         private readonly CameraProvider _cameraProvider;
         private readonly PlayerProvider _playerProvider;
-        private readonly TutorialRunner _tutorialRunner;
         private UIService _uiService;
 
         public EntryPoint(LocationProvider locationProvider,
             GameFactory gameFactory,
             CameraProvider cameraProvider,
             PlayerProvider playerProvider, 
-            TutorialRunner tutorialRunner,
             UIService uiService)
         {
             _uiService = uiService;
-            _tutorialRunner = tutorialRunner;
             _playerProvider = playerProvider;
             _cameraProvider = cameraProvider;
             _locationProvider = locationProvider;
@@ -46,9 +42,10 @@ namespace CodeBase.EntryPointSystem
 
         private void InitializeCamera(Player player)
         {
-            _cameraProvider.Camera = player.GetComponentInChildren<Camera>();
-            _cameraProvider.CameraFollower = _cameraProvider.Camera.GetComponent<CameraFollower>();
-            _cameraProvider.CameraPivot = _cameraProvider.Camera.GetComponentsInParent<Transform>();
+            var cameraContainer = player.GetComponent<CameraContainer>();
+            _cameraProvider.CameraFollower = cameraContainer.CameraFollower;
+            _cameraProvider.CameraParticle = cameraContainer.ParticleCamera;
+            _cameraProvider.CameraPivot = cameraContainer.CameraPivot;
         }
 
         private Player CreatePlayer()

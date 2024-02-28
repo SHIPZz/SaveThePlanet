@@ -7,6 +7,7 @@ namespace CodeBase.Services.Providers.CameraProviders
     {
         public UnityEngine.Camera Camera;
         public CameraFollower CameraFollower;
-        public Transform[] CameraPivot;
+        public Transform CameraPivot;
+        public UnityEngine.Camera CameraParticle;
     }
 }

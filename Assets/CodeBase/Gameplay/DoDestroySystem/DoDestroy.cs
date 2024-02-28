@@ -5,6 +5,8 @@ namespace CodeBase.Gameplay.DoDestroySystem
 {
     public class DoDestroy : MonoBehaviour
     {
+        public float DestroyDelay;
+        
         private ICleanUp[] _cleanUps;
 
         private void Awake() => 
@@ -17,7 +19,7 @@ namespace CodeBase.Gameplay.DoDestroySystem
                 targetCleanUp.CleanUp();
             }
 
-            Destroy(gameObject);
+            Destroy(gameObject,DestroyDelay);
         }
     }
 }

@@ -18,18 +18,10 @@ namespace CodeBase.UI.Windows.Tutorial
         public TutorialContainer TutorialContainer;
 
         public Button SkipButton;
-        private TutorialRunner _tutorialRunner;
-        private TutorialType _tutorialType;
 
         public Transform Anchor => transform;
 
         public event Action SkipButtonClicked;
-
-        [Inject]
-        private void Construct(TutorialRunner tutorialRunner)
-        {
-            _tutorialRunner = tutorialRunner;
-        }
 
         private void OnDisable()
         {
@@ -41,15 +33,8 @@ namespace CodeBase.UI.Windows.Tutorial
             CanvasAnimator.FadeInCanvas();
             WindowService.Close<HudWindow>();
             SkipButton.onClick.AddListener(OnSkipButtonClicked);
-            _tutorialRunner.SetStep(_tutorialType);
         }
-
-        public void Init(TutorialType tutorialType)
-        {
-            _tutorialType = tutorialType;
-            _tutorialRunner.Init(TutorialContainer);
-        }
-
+        
         public override void Close()
         {
             WindowService.Open<HudWindow>();

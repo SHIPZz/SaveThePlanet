@@ -25,6 +25,7 @@ namespace CodeBase.Gameplay.Tutorial
         public override void OnFinished()
         {
             SetCompleteToData(true);
+            SetCompleteToData(TutorialType.InitialTutorial, true);
             ITutoriable tutoriable = _gameProvider.GetTutoriable<NatureHurtableSpawner>();
             tutoriable.Init();
             TutorialRunner.TrySwitchToNextStep(TutorialType.None);

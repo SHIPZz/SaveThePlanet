@@ -14,7 +14,7 @@ namespace CodeBase.Services.Pause
         private readonly WindowService _windowService;
         private readonly IPauseService _pauseService;
 
-        private CancellationTokenSource _cancellationTokenSource;
+        private CancellationTokenSource _cancellationTokenSource = new();
 
         public PauseOnWindowOpened(WindowService windowService, IPauseService pauseService)
         {

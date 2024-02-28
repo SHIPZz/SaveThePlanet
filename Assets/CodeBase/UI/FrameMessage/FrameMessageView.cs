@@ -12,6 +12,8 @@ namespace CodeBase.UI.FrameMessage
 
         private TransformScaleAnim _transformScaleAnim;
 
+        public event Action Shown;
+
         private void Awake()
         {
             _transformScaleAnim = GetComponent<TransformScaleAnim>();
@@ -20,6 +22,7 @@ namespace CodeBase.UI.FrameMessage
         public void Show(Action onComplete = null)
         {
             _transformScaleAnim.ToScale(onComplete);
+            Shown?.Invoke();
         }
 
         public void Hide(Action onComplete = null)

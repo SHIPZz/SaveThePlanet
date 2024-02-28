@@ -16,9 +16,11 @@ namespace CodeBase.Services.UI
     public class UIService
     {
         private readonly WindowService _windowService;
+        private TutorialService _tutorialService;
 
-        public UIService(WindowService windowService, TutorialRunner tutorialRunner)
+        public UIService(WindowService windowService, TutorialService tutorialService)
         {
+            _tutorialService = tutorialService;
             _windowService = windowService;
         }
 
@@ -34,10 +36,11 @@ namespace CodeBase.Services.UI
 
         public void Initialize()
         {
-           var tutorialWindow = _windowService.Get<TutorialWindow>();
-           tutorialWindow.Init(TutorialType.InitialTutorial);
-           tutorialWindow.Open();
-            
+            if (!_tutorialService.TryExecute(TutorialType.InitialTutorial))
+            {
+                OpenHud();
+            }
+
             // _windowService.Open<HudWindow>();
 // #if UNITY_WEBGL
 //             if (YandexGame.EnvironmentData.deviceType == "mobile")
@@ -45,7 +48,6 @@ namespace CodeBase.Services.UI
 //                 _windowService.Open<JoystickWindow>();
 //             }
 // #endif
-            
         }
     }
 }

@@ -9,12 +9,12 @@ namespace CodeBase.UI.Effects
 
         public void PlayEffects()
         {
-            Effects.ForEach(x => x.Play());
+            Effects.ForEach(x => x.Play(true));
         }
 
         public void StopEffects()
         {
-            Effects.ForEach(x => x.Stop());
+            Effects.ForEach(x => x.Stop(true));
         }
     }
 }

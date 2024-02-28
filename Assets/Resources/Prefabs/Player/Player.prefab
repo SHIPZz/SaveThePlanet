@@ -75,7 +75,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 16379895
+    m_Bits: 16379863
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -146,6 +146,7 @@ GameObject:
   - component: {fileID: -8881652671662290429}
   - component: {fileID: 3507930262555987445}
   - component: {fileID: 9086491668057757261}
+  - component: {fileID: 2850050800846640820}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -472,6 +473,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07b6706ead3e4182a0e378376210aadf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2850050800846640820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1705535420028392674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88e1499b991c4f43a7d80e3de7de1c75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Camera>k__BackingField: {fileID: 590481442738599683}
+  <ParticleCamera>k__BackingField: {fileID: 6185391893347974145}
+  <CameraFollower>k__BackingField: {fileID: 176692140335717451}
+  <CameraPivot>k__BackingField: {fileID: 6365324888382526596}
 --- !u!1 &3902531691277112794
 GameObject:
   m_ObjectHideFlags: 0
@@ -945,7 +962,7 @@ Camera:
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4096
+    m_Bits: 4128
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0

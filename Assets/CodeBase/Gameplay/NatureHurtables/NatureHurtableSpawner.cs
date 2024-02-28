@@ -26,8 +26,8 @@ namespace CodeBase.Gameplay.NatureHurtables
         [Inject]
         private void Construct(GameFactory gameFactory) => 
             _gameFactory = gameFactory;
-
-
+        
+        [Button]
         public void Init()
         {
             Spawn();

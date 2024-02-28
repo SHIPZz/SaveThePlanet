@@ -1,7 +1,5 @@
-﻿using System;
-using CodeBase.Enums;
-using CodeBase.Services.UI;
-using CodeBase.UI.Windows.Tutorial;
+﻿using CodeBase.Enums;
+using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;
@@ -11,19 +9,26 @@ namespace CodeBase.Gameplay.Tutorial
     public class InvokeTargetTutorialOnCompleted : MonoBehaviour
     {
         public TutorialType TutorialType;
+        public float InvokeDelay;
 
         private ITutoriable _tutoriable;
-        private WindowService _windowService;
+        private TutorialService _tutorialService;
 
         [Inject]
-        private void Construct(WindowService windowService)
+        private void Construct(TutorialService tutorialService)
         {
-            _windowService = windowService;
+            _tutorialService = tutorialService;
         }
 
         private void Awake()
         {
             _tutoriable = GetComponent<ITutoriable>();
+        }
+
+        private void Start()
+        {
+            if (_tutorialService.Completed(TutorialType))
+                _tutoriable.Init();
         }
 
         private void OnEnable()
@@ -39,9 +44,10 @@ namespace CodeBase.Gameplay.Tutorial
         [Button]
         private void OnCompleted()
         {
-           var tutorialWindow = _windowService.Get<TutorialWindow>();
-           tutorialWindow.Init(TutorialType);
-           _windowService.OpenCurrentWindow();
+            DOTween
+                .Sequence()
+                .AppendInterval(InvokeDelay)
+                .OnComplete(() => _tutorialService.TryExecute(TutorialType)).SetUpdate(true);
         }
     }
 }
