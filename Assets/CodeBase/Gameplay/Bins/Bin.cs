@@ -7,6 +7,7 @@ using UnityEngine;
 
 namespace CodeBase.Gameplay.Bins
 {
+    [RequireComponent(typeof(EffectCreator))]
     public class Bin : MonoBehaviour
     {
         public GarbageType GarbageType;
@@ -26,7 +27,7 @@ namespace CodeBase.Gameplay.Bins
             if (!other.gameObject.TryGetComponent(out Garbage garbage))
                 return;
 
-            if (garbage.GarbageType != GarbageType)
+            if (GarbageType != GarbageType.Generic && garbage.GarbageType != GarbageType)
             {
                 WrongGarbage?.Invoke(garbage);
                 return;

@@ -55,7 +55,6 @@ namespace CodeBase.Gameplay.Fireables
 
         private void RestartSpawnTime()
         {
-            _timer.Stop();
             _timer.StartTimer();
             _fireable = null;
         }

@@ -18,11 +18,13 @@ namespace CodeBase.Gameplay.TimerSystem
         {
             _initialTimer = Value;
         }
-        
+
         public void StartTimer()
         {
             Started?.Invoke();
-            
+
+            ResetValue();
+
             if (_coroutine != null)
                 StopCoroutine(UpdateTimeCoroutine());
 
@@ -31,7 +33,7 @@ namespace CodeBase.Gameplay.TimerSystem
 
         public void Stop()
         {
-            Value = _initialTimer;
+            ResetValue();
             Stopped?.Invoke();
 
             if (_coroutine != null)
@@ -46,8 +48,13 @@ namespace CodeBase.Gameplay.TimerSystem
                 yield return null;
             }
 
-            Value = _initialTimer;
+            ResetValue();
             Stopped?.Invoke();
+        }
+
+        private void ResetValue()
+        {
+            Value = _initialTimer;
         }
     }
 }

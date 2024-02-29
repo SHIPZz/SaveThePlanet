@@ -5,6 +5,7 @@
         Plastic,
         Metal,
         Paper,
-        Industrial
+        Industrial,
+        Generic
     }
 }

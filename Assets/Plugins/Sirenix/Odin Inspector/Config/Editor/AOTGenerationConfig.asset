@@ -16,7 +16,7 @@ MonoBehaviour:
   deleteDllAfterBuilds: 1
   AutomateForAllAOTPlatforms: 1
   automateForPlatforms: 0900000014000000
-  lastScan: 638448261244049070
+  lastScan: 638448329635789082
   supportSerializedTypes:
   - TypeName: CodeBase.Gameplay.CameraPans.CameraPan, Assembly-CSharp
     IsCustom: 0

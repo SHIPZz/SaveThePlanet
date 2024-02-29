@@ -15,8 +15,11 @@ namespace CodeBase.Gameplay.DestroyableObjects
         public GarbageSpawnZone GarbageSpawnZone;
 
         private GameFactory _gameFactory;
-        private Dictionary<DestroyableTypeId, Vector3> _cachedPositions = new();
-        private Dictionary<DestroyableTypeId, Quaternion> _cachedRotations = new();
+
+        private Dictionary<int, DestroyableTypeId> _instanceIdToDestroyableTypeId = new();
+
+        private Dictionary<int, Vector3> _cachedPositions = new();
+        private Dictionary<int, Quaternion> _cachedRotations = new();
 
         public event Action<DestroyableObject> Recovered;
 
@@ -30,8 +33,10 @@ namespace CodeBase.Gameplay.DestroyableObjects
         {
             foreach (DestroyableObject destroyableObject in DestroyableObjects)
             {
-                _cachedPositions[destroyableObject.DestroyableTypeId] = destroyableObject.transform.position;
-                _cachedRotations[destroyableObject.DestroyableTypeId] = destroyableObject.transform.rotation;
+                int instanceId = destroyableObject.gameObject.GetInstanceID();
+                _instanceIdToDestroyableTypeId[instanceId] = destroyableObject.DestroyableTypeId;
+                _cachedPositions[instanceId] = destroyableObject.transform.position;
+                _cachedRotations[instanceId] = destroyableObject.transform.rotation;
             }
         }
 
@@ -44,9 +49,11 @@ namespace CodeBase.Gameplay.DestroyableObjects
         [Button]
         private void Recover()
         {
-            foreach (KeyValuePair<DestroyableTypeId, Vector3> keyValuePair in _cachedPositions)
+            foreach (KeyValuePair<int, DestroyableTypeId> pair in _instanceIdToDestroyableTypeId)
             {
-                DestroyableObject destroyableObject = _gameFactory.CreateDestroyableObject(keyValuePair.Key, null, keyValuePair.Value, _cachedRotations[keyValuePair.Key]);
+                Vector3 position = _cachedPositions[pair.Key];
+                Quaternion rotation = _cachedRotations[pair.Key];
+                DestroyableObject destroyableObject = _gameFactory.CreateDestroyableObject(pair.Value, null, position, rotation);
                 Recovered?.Invoke(destroyableObject);
             }
         }

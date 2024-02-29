@@ -18,7 +18,7 @@ namespace CodeBase.Services.UI
         public WindowService(UIFactory uiFactory) =>
             _uiFactory = uiFactory;
 
-        public void Open<T>() where T : WindowBase
+        public void Open<T>(bool closeCurrentWindow = false) where T : WindowBase
         {
             ClearDestroyedWindows();
 
@@ -28,8 +28,11 @@ namespace CodeBase.Services.UI
             if (_createdWindows.ContainsKey(typeof(T)))
                 return;
 
+            if (closeCurrentWindow)
+                CloseCurrentWindow();
+
             var targetWindow = Get<T>();
-            targetWindow.Open();
+            OpenCurrentWindow();
 
             Opened?.Invoke(targetWindow);
         }
@@ -93,6 +96,9 @@ namespace CodeBase.Services.UI
             windowBase.Close();
             ClearDestroyedWindows();
         }
+
+        public void CloseCurrentWindow() =>
+            CurrentWindow.Close();
 
         private void ClearDestroyedWindows()
         {

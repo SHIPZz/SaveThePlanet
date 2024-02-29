@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace CodeBase.Gameplay.Garbages
 {
+    [RequireComponent(typeof(TransformScaleAnim))]
     public class ScaleOnGarbageSpawned : MonoBehaviour
     {
         public GarbageSpawnZone GarbageSpawnZone;
