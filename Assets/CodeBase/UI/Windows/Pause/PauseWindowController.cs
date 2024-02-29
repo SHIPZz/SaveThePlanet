@@ -7,7 +7,7 @@ using Zenject;
 
 namespace CodeBase.UI.Windows.Pause
 {
-    public class PauseWindowController : IInitializable, IDisposable, ITickable
+    public class PauseWindowController : IInitializable, IDisposable, ITickable, IWindowController
     {
         private readonly WindowService _windowService;
         private readonly CameraService _cameraService;
@@ -28,7 +28,7 @@ namespace CodeBase.UI.Windows.Pause
             if (_cameraService.IsMoving())
                 return;
 
-            if (!Input.GetKeyDown(KeyCode.Escape) || _windowService.CurrentWindow.GetType() != typeof(HudWindow))
+            if (!Input.GetKeyDown(KeyCode.Escape) || !_windowService.CompareCurrentWindow<HudWindow>())
                 return;
 
             _windowService.Close<HudWindow>();

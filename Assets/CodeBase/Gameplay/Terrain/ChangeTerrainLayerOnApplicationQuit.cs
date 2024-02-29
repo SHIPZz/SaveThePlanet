@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using CodeBase.Enums;
 using CodeBase.Services.Providers.GameProviders;
 using UnityEngine;
@@ -23,7 +22,7 @@ namespace CodeBase.Gameplay.Terrain
             _gameProvider = gameProvider;
         }
 
-        private void OnDisable()
+        private void Awake()
         {
             _terrainLayerChanger.Change(_gameProvider.Terrain, TargetLayerType, Positions, BrushSize);
         }

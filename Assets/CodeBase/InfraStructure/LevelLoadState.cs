@@ -15,7 +15,7 @@ namespace CodeBase.InfraStructure
 
         public async void Enter()
         {
-            _loadingCurtain.Show(1f);
+            _loadingCurtain.Show(2.5f);
 
             AsyncOperation asyncOperation =  SceneManager.LoadSceneAsync(sceneBuildIndex: 1);
 

@@ -37,6 +37,14 @@ namespace CodeBase.Services.UI
             Opened?.Invoke(targetWindow);
         }
 
+        public bool CompareCurrentWindow<T>() where T : WindowBase
+        {
+            if (CurrentWindow == null)
+                return false;
+            
+            return typeof(T) == CurrentWindow.GetType();
+        }
+
         public void OpenCurrentWindow()
         {
             CurrentWindow.Open();

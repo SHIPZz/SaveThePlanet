@@ -34,7 +34,6 @@ namespace CodeBase.Installers.Game
             BindTerrainLayerChanger();
             BindWindowService();
             BindUIService();
-            BindWindowControllers();
             BindSettingService();
             BindWarningDataService();
             BindPauseServices();
@@ -69,14 +68,9 @@ namespace CodeBase.Installers.Game
             Container.BindInterfacesAndSelfTo<SettingService>().AsSingle();
         }
 
-        private void BindWindowControllers()
-        {
-            Container.BindInterfacesAndSelfTo<PauseWindowController>().AsSingle();
-        }
-
         private void BindUIService()
         {
-            Container.Bind<UIService>().AsSingle();
+            Container.BindInterfacesAndSelfTo<UIService>().AsSingle();
         }
 
         private void BindWindowService()
@@ -108,7 +102,7 @@ namespace CodeBase.Installers.Game
         private void BindGameFactory()
         {
             Container.Bind<GameFactory>().AsSingle();
-            Container.Bind<UIFactory>().AsSingle();
+            Container.BindInterfacesAndSelfTo<UIFactory>().AsSingle();
         }
 
         private void BindProviders()

@@ -1,4 +1,6 @@
-﻿using CodeBase.Enums;
+﻿using System;
+using System.Collections.Generic;
+using CodeBase.Enums;
 using CodeBase.Gameplay.Tutorial;
 using CodeBase.Services.Providers.LocationProviders;
 using CodeBase.Services.StaticData;
@@ -9,11 +11,15 @@ using Zenject;
 
 namespace CodeBase.Services.Factories
 {
-    public class UIFactory
+    public class UIFactory : ITickable, IDisposable, IInitializable
     {
         private readonly UIStaticDataService _uiStaticDataService;
         private readonly IInstantiator _instantiator;
         private readonly LocationProvider _locationProvider;
+        
+        private List<ITickable> _tickables = new();
+        private List<IDisposable> _disposables = new();
+        private List<IInitializable> _initializables = new();
 
         public UIFactory(UIStaticDataService uiStaticDataService, IInstantiator instantiator,
             LocationProvider locationProvider)
@@ -21,6 +27,42 @@ namespace CodeBase.Services.Factories
             _locationProvider = locationProvider;
             _uiStaticDataService = uiStaticDataService;
             _instantiator = instantiator;
+        }
+        
+        public void Tick()
+        {
+            foreach (ITickable tickable in _tickables)
+            {
+                tickable.Tick();
+            }
+        }
+
+        public void Dispose()
+        {
+            foreach (IDisposable disposable in _disposables)
+            {
+                disposable.Dispose();
+            }
+        }
+
+        public void Initialize()
+        {
+        }
+
+        public T CreateWindowController<T>() where T : IWindowController
+        {
+            var windowController = _instantiator.Instantiate<T>();
+            
+            if(windowController is IInitializable initializable)
+                initializable.Initialize();
+            
+            if(windowController is ITickable tickable)
+                AddToTickables(tickable);
+            
+            if(windowController is IDisposable disposable)
+                AddToDisposables(disposable);
+
+            return windowController;
         }
 
         public AbstractTutorialStep CreateTutorialStepView(TutorialType tutorialType, Transform parent, Vector3 at,
@@ -67,5 +109,14 @@ namespace CodeBase.Services.Factories
 
             return _instantiator.InstantiatePrefabForComponent<T>(prefab, _locationProvider.UIParent);
         }
+        
+        private void AddToTickables(ITickable tickable) =>
+            _tickables.Add(tickable);
+
+        private void AddToDisposables(IDisposable disposable) =>
+            _disposables.Add(disposable);
+
+        private void AddToInitializables(IInitializable initializable) =>
+            _initializables.Add(initializable);
     }
 }

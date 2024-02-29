@@ -1,25 +1,20 @@
-﻿using Agava.YandexGames;
-using CodeBase.Enums;
-using CodeBase.Gameplay.Tutorial;
+﻿using CodeBase.Gameplay.Tutorial;
+using CodeBase.Services.Factories;
 using CodeBase.UI.Windows.Hud;
-using CodeBase.UI.Windows.Joystick;
 using CodeBase.UI.Windows.Pause;
-using CodeBase.UI.Windows.Tutorial;
-using Unity.VisualScripting;
-using UnityEngine;
-using YG;
-using Zenject;
 using IInitializable = Zenject.IInitializable;
 
 namespace CodeBase.Services.UI
 {
-    public class UIService
+    public class UIService : IInitializable
     {
         private readonly WindowService _windowService;
         private TutorialService _tutorialService;
+        private UIFactory _uiFactory;
 
-        public UIService(WindowService windowService, TutorialService tutorialService)
+        public UIService(WindowService windowService, TutorialService tutorialService, UIFactory uiFactory)
         {
+            _uiFactory = uiFactory;
             _tutorialService = tutorialService;
             _windowService = windowService;
         }
@@ -37,17 +32,14 @@ namespace CodeBase.Services.UI
         public void Initialize()
         {
             if (!_tutorialService.TryExecuteLastTutorial())
-            {
-                OpenHud();
-            }
+                _windowService.Open<HudWindow>();
+            
+            InitPauseWindowController();
+        }
 
-            // _windowService.Open<HudWindow>();
-// #if UNITY_WEBGL
-//             if (YandexGame.EnvironmentData.deviceType == "mobile")
-//             {
-//                 _windowService.Open<JoystickWindow>();
-//             }
-// #endif
+        private void InitPauseWindowController()
+        {
+            var pauseWindowController = _uiFactory.CreateWindowController<PauseWindowController>();
         }
     }
 }
