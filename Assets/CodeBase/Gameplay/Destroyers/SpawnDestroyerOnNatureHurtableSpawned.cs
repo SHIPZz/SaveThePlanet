@@ -1,5 +1,4 @@
-﻿using System;
-using CodeBase.Enums;
+﻿using CodeBase.Enums;
 using CodeBase.Gameplay.NatureHurtables;
 using CodeBase.Services.Factories;
 using UnityEngine;

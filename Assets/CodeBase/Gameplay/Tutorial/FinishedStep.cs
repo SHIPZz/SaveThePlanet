@@ -7,5 +7,11 @@
             ShowSkipButton();
             ShowMessage();
         }
+
+        public override void OnFinished()
+        {
+            SetCompleteToData(true);
+            base.OnFinished();
+        }
     }
 }

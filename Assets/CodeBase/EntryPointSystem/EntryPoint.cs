@@ -43,6 +43,7 @@ namespace CodeBase.EntryPointSystem
         private void InitializeCamera(Player player)
         {
             var cameraContainer = player.GetComponent<CameraContainer>();
+            _cameraProvider.Camera = cameraContainer.Camera;
             _cameraProvider.CameraFollower = cameraContainer.CameraFollower;
             _cameraProvider.CameraParticle = cameraContainer.ParticleCamera;
             _cameraProvider.CameraPivot = cameraContainer.CameraPivot;

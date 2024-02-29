@@ -19,5 +19,6 @@
         public const string AudioMixer = "Prefabs/UI/AudioMixer";
         public const string Tutorials = "Prefabs/UI/Tutorials";
         public const string DestroyableObjects = "Prefabs/DestroyableObjects";
+        public const string TutorialSO = "Data/Tutorials/TutorialSO";
     }
 }

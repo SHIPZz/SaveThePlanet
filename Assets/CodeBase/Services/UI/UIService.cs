@@ -36,7 +36,7 @@ namespace CodeBase.Services.UI
 
         public void Initialize()
         {
-            if (!_tutorialService.TryExecute(TutorialType.InitialTutorial))
+            if (!_tutorialService.TryExecuteLastTutorial())
             {
                 OpenHud();
             }

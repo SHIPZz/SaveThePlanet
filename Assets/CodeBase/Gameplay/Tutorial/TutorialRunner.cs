@@ -1,4 +1,5 @@
-﻿using CodeBase.Enums;
+﻿using System;
+using CodeBase.Enums;
 using CodeBase.Services.Factories;
 using UnityEngine;
 
@@ -10,6 +11,8 @@ namespace CodeBase.Gameplay.Tutorial
         private UIFactory _uiFactory;
 
         public TutorialContainer TutorialContainer { get; private set; }
+
+        public event Action<TutorialType> TutorialSwitched; 
 
         public TutorialRunner(UIFactory uiFactory)
         {
@@ -30,6 +33,7 @@ namespace CodeBase.Gameplay.Tutorial
 
         public void TrySwitchToNextStep(TutorialType tutorialType)
         {
+            TutorialSwitched?.Invoke(_lastStep.TutorialType);
             _lastStep = null;
             
             if (tutorialType == TutorialType.None)

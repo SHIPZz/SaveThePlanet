@@ -22,9 +22,8 @@ namespace CodeBase.Gameplay.Terrain
             _terrainLayerChanger = terrainLayerChanger;
             _gameProvider = gameProvider;
         }
-        
 
-        private void OnApplicationQuit()
+        private void OnDisable()
         {
             _terrainLayerChanger.Change(_gameProvider.Terrain, TargetLayerType, Positions, BrushSize);
         }

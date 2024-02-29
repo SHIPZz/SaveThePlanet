@@ -1,5 +1,4 @@
-﻿using CodeBase.Enums;
-using CodeBase.Gameplay.NatureHurtables;
+﻿using CodeBase.Gameplay.NatureHurtables;
 using CodeBase.Services.Providers.GameProviders;
 using Zenject;
 
@@ -17,18 +16,15 @@ namespace CodeBase.Gameplay.Tutorial
 
         public override void OnStart()
         {
-            TutorialMessageDisplay.TryShowNextMessage();
+            ShowMessage();
             ShowSkipButton();
-            TutorialContainer.SkipButtonClicked += ShowMessage;
         }
 
         public override void OnFinished()
         {
-            SetCompleteToData(true);
-            SetCompleteToData(TutorialType.InitialTutorial, true);
             ITutoriable tutoriable = _gameProvider.GetTutoriable<NatureHurtableSpawner>();
             tutoriable.Init();
-            TutorialRunner.TrySwitchToNextStep(TutorialType.None);
+            base.OnFinished();
         }
     }
 }

@@ -23,11 +23,9 @@ namespace CodeBase.Gameplay.Tutorial
 
         public override void OnFinished()
         {
-            SetCompleteToData(true);
-            
             ITutoriable tutoriable = _gameProvider.GetGarbageSpawnZoneTutoriable(GarbageSpawnZoneType.AnimalSpawnZone);
             tutoriable.Init();
-            TutorialRunner.TrySwitchToNextStep(TutorialType.None);
+            base.OnFinished();
         }
     }
 }

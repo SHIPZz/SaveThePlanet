@@ -231,8 +231,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fc45f0caa054e38bfbf995edfad2139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _frameMessageView: {fileID: 0}
-  _effectPlayer: {fileID: 0}
+  _frameMessageView: {fileID: 1557675622791998873}
+  _effectPlayer: {fileID: 8867358891999674111}
 --- !u!114 &8867358891999674111
 MonoBehaviour:
   m_ObjectHideFlags: 0

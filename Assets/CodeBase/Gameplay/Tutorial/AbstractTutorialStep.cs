@@ -55,20 +55,13 @@ namespace CodeBase.Gameplay.Tutorial
 
         public virtual void OnFinished()
         {
-            SetCompleteToData(true);
             TutorialRunner.TrySwitchToNextStep(NextTutorialType);
             DoDestroy.Do();
         }
 
-        protected void SetCompleteToData(bool isCompleted)
+        public void SetCompleteToData(bool isCompleted)
         {
-            WorldDataService.WorldData.TutorialData.CompletedTutorials[TutorialType] = isCompleted;
-            WorldDataService.Save();
-        }
-        
-        protected void SetCompleteToData(TutorialType tutorialType, bool isCompleted)
-        {
-            WorldDataService.WorldData.TutorialData.CompletedTutorials[tutorialType] = isCompleted;
+            WorldDataService.WorldData.TutorialData.Completed = isCompleted;
             WorldDataService.Save();
         }
 

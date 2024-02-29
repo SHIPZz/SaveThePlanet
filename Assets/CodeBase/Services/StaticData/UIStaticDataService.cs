@@ -18,6 +18,7 @@ namespace CodeBase.Services.StaticData
         private readonly Dictionary<Type, WindowBase> _windows;
         private readonly Dictionary<WarningItemType, WarningItemSO> _warningItemDatas;
         private readonly Dictionary<TutorialType, AbstractTutorialStep> _tutorials;
+        private readonly TutorialSO _tutorialSO;
 
         public UIStaticDataService()
         {
@@ -32,7 +33,12 @@ namespace CodeBase.Services.StaticData
 
             _tutorials = Resources.LoadAll<AbstractTutorialStep>(AssetPath.Tutorials)
                 .ToDictionary(x => x.TutorialType, x => x);
+
+            _tutorialSO = Resources.Load<TutorialSO>(AssetPath.TutorialSO);
         }
+
+        public TutorialSO Get() => 
+            _tutorialSO;
 
         public AbstractTutorialStep GetTutorialStep(TutorialType tutorialType)
         {

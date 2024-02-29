@@ -1299,6 +1299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c99dd7917048b599e8f80e15e3ee22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DestroyDelay: 0
 --- !u!208 &2508790478247581511
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -1379,6 +1380,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TriggerObserver: {fileID: 7453180093239472807}
+  TutorialTypes: 
 --- !u!114 &5625168158967229072
 MonoBehaviour:
   m_ObjectHideFlags: 0

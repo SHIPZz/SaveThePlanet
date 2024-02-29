@@ -10,7 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5561c96e6a7f4d218512b1a8a5686f72, type: 3}
-  m_Name: InitialTutorial
+  m_Name: TutorialSO
   m_EditorClassIdentifier: 
-  TutorialType: 1
-  Text: {fileID: 4411609602725568287, guid: 9c2ad2d5206df7f4fb0e8388c7877e85, type: 3}
+  TutorialQueue: 01000000020000000300000004000000050000000600000007000000

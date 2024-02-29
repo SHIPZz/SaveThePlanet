@@ -65692,7 +65692,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GarbageSpawnZoneType: 1
-  SpawnOnStart: 0
+  SpawnOnStart: 1
   DelaySpawn: 1
 --- !u!114 &1145415226
 MonoBehaviour:
@@ -65728,7 +65728,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23007efc1d5d4d45a049b030036f71db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TutorialType: 5
+  SetFinishTutorials: 05000000
+  TargetTutorial: 5
   InvokeDelay: 0
 --- !u!1001 &1146380213
 PrefabInstance:
@@ -84928,7 +84929,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23007efc1d5d4d45a049b030036f71db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TutorialType: 4
+  SetFinishTutorials: 04000000
+  TargetTutorial: 4
   InvokeDelay: 0
 --- !u!205 &1610124687 stripped
 LODGroup:
@@ -94839,7 +94841,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d98147f6ef24769aea53e051c663fff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _count: 1
+  _count: 10
   _spawnPoints:
   - {fileID: 1648987174}
   - {fileID: 928405989}
@@ -94914,7 +94916,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23007efc1d5d4d45a049b030036f71db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TutorialType: 2
+  SetFinishTutorials: 0100000002000000
+  TargetTutorial: 2
   InvokeDelay: 0
 --- !u!1001 &1838974990
 PrefabInstance:
@@ -99302,8 +99305,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23007efc1d5d4d45a049b030036f71db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TutorialType: 3
-  InvokeDelay: 3
+  SetFinishTutorials: 03000000
+  TargetTutorial: 3
+  InvokeDelay: 1
 --- !u!114 &1930033901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109514,6 +109518,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TriggerObserver: {fileID: 1905081708}
+  TutorialTypes: 01000000020000000300000004000000
 --- !u!64 &64890026251754149
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -112365,7 +112370,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23007efc1d5d4d45a049b030036f71db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TutorialType: 6
+  SetFinishTutorials: 06000000
+  TargetTutorial: 6
   InvokeDelay: 0
 --- !u!114 &3589043455537671555
 MonoBehaviour:

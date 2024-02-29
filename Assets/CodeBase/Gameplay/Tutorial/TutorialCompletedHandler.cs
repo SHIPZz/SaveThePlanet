@@ -1,4 +1,6 @@
-﻿using CodeBase.Enums;
+﻿using System.Collections.Generic;
+using System.Linq;
+using CodeBase.Enums;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -6,9 +8,10 @@ using Zenject;
 
 namespace CodeBase.Gameplay.Tutorial
 {
-    public class InvokeTargetTutorialOnCompleted : MonoBehaviour
+    public class TutorialCompletedHandler : MonoBehaviour
     {
-        public TutorialType TutorialType;
+        public List<TutorialType> SetFinishTutorials;
+        public TutorialType TargetTutorial;
         public float InvokeDelay;
 
         private ITutoriable _tutoriable;
@@ -27,7 +30,13 @@ namespace CodeBase.Gameplay.Tutorial
 
         private void Start()
         {
-            if (_tutorialService.Completed(TutorialType))
+            if (_tutorialService.TutorialCompleted())
+            {
+                _tutoriable.Init();
+                return;
+            }
+
+            if (SetFinishTutorials.Any(tutorialType => _tutorialService.Completed(tutorialType))) 
                 _tutoriable.Init();
         }
 
@@ -47,7 +56,17 @@ namespace CodeBase.Gameplay.Tutorial
             DOTween
                 .Sequence()
                 .AppendInterval(InvokeDelay)
-                .OnComplete(() => _tutorialService.TryExecute(TutorialType)).SetUpdate(true);
+                .OnComplete(OnTutoriableCompleted).SetUpdate(true);
+        }
+
+        private void OnTutoriableCompleted()
+        {
+            _tutorialService.TryExecute(TargetTutorial);
+
+            foreach (TutorialType tutorialType in SetFinishTutorials)
+            {
+                _tutorialService.SetCompleted(tutorialType, true);
+            }
         }
     }
 }

@@ -4,6 +4,7 @@ using CodeBase.Enums;
 using CodeBase.Gameplay.TimerSystem;
 using CodeBase.Gameplay.Tutorial;
 using CodeBase.Services.Factories;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;
 
@@ -46,6 +47,7 @@ namespace CodeBase.Gameplay.Fireables
             _timer.Stopped -= Spawn;
         }
 
+        [Button]
         public void Init()
         {
             Spawn();
