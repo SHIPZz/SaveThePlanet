@@ -4,7 +4,6 @@ using CodeBase.Services.Factories;
 using CodeBase.Services.Providers.CameraProviders;
 using CodeBase.Services.Providers.LocationProviders;
 using CodeBase.Services.Providers.PlayerProviders;
-using CodeBase.Services.UI;
 using CodeBase.UI.Camera;
 using UnityEngine;
 using Zenject;
@@ -17,15 +16,12 @@ namespace CodeBase.EntryPointSystem
         private readonly GameFactory _gameFactory;
         private readonly CameraProvider _cameraProvider;
         private readonly PlayerProvider _playerProvider;
-        private UIService _uiService;
 
         public EntryPoint(LocationProvider locationProvider,
             GameFactory gameFactory,
             CameraProvider cameraProvider,
-            PlayerProvider playerProvider, 
-            UIService uiService)
+            PlayerProvider playerProvider)
         {
-            _uiService = uiService;
             _playerProvider = playerProvider;
             _cameraProvider = cameraProvider;
             _locationProvider = locationProvider;

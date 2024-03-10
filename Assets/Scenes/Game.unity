@@ -65886,7 +65886,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SetFinishTutorials: 05000000
   TargetTutorial: 5
-  InvokeDelay: 0
+  InvokeDelay: 2
 --- !u!1001 &1146380213
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -85115,7 +85115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SetFinishTutorials: 04000000
   TargetTutorial: 4
-  InvokeDelay: 0
+  InvokeDelay: 1
 --- !u!205 &1610124687 stripped
 LODGroup:
   m_CorrespondingSourceObject: {fileID: 205317105530763478, guid: 2df6c259e4a67614fac8c85e23ecb3d5,
@@ -95102,7 +95102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SetFinishTutorials: 0100000002000000
   TargetTutorial: 2
-  InvokeDelay: 0
+  InvokeDelay: 2
 --- !u!1001 &1838974990
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -99488,7 +99488,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SetFinishTutorials: 03000000
   TargetTutorial: 3
-  InvokeDelay: 1
+  InvokeDelay: 2
 --- !u!114 &1930033901
 MonoBehaviour:
   m_ObjectHideFlags: 0
