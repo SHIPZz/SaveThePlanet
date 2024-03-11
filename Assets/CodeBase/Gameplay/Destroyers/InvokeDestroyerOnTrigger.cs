@@ -1,4 +1,5 @@
-﻿using CodeBase.Gameplay.DestroyableObjects;
+﻿using System;
+using CodeBase.Gameplay.DestroyableObjects;
 using CodeBase.Services.TriggerObserves;
 using UnityEngine;
 
@@ -9,6 +10,8 @@ namespace CodeBase.Gameplay.Destroyers
         public TriggerObserver TriggerObserver;
 
         private Destroyer _destroyer;
+
+        public event Action ShouldDestroy;
 
         private void Awake()
         {
@@ -31,6 +34,7 @@ namespace CodeBase.Gameplay.Destroyers
                 return;
 
             _destroyer.Destroy(destroyableObject);
+            ShouldDestroy?.Invoke();
         }
     }
 }

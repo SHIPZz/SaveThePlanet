@@ -6,25 +6,25 @@ using UnityEngine;
 namespace CodeBase.Gameplay.Destroyers
 {
     [RequireComponent(typeof(DoDestroy))]
+    [RequireComponent(typeof(InvokeDestroyerOnTrigger))]
     public class DestroyOnDestroyableObject : MonoBehaviour
     {
         private DoDestroy _doDestroy;
+        private InvokeDestroyerOnTrigger _invokeDestroyerOnTrigger;
 
-        private void Awake() => 
-            _doDestroy = GetComponent<DoDestroy>();
-
-        private void OnCollisionEnter(Collision other) => 
-            TryDestroy(other.gameObject);
-
-        private void OnTriggerEnter(Collider other) => 
-            TryDestroy(other.gameObject);
-
-        private void TryDestroy(GameObject targetGameObject)
+        private void Awake()
         {
-            if (!targetGameObject.TryGetComponent(out DestroyableObject destroyableObject))
-                return;
-
-            _doDestroy.Do();
+            _doDestroy = GetComponent<DoDestroy>();
+            _invokeDestroyerOnTrigger = GetComponent<InvokeDestroyerOnTrigger>();
         }
+
+        private void OnEnable() => 
+            _invokeDestroyerOnTrigger.ShouldDestroy += TryDestroy;
+
+        private void OnDisable() => 
+            _invokeDestroyerOnTrigger.ShouldDestroy -= TryDestroy;
+
+        private void TryDestroy() => 
+            _doDestroy.Do();
     }
 }
