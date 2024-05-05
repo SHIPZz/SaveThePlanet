@@ -3,7 +3,6 @@ using UnityEngine.UI;
 
 namespace CodeBase.UI.Sound
 {
-    [RequireComponent(typeof(Button))]
     [RequireComponent(typeof(AudioSource))]
     public class PlaySoundOnButtonClick : MonoBehaviour
     {

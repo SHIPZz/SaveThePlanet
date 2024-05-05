@@ -20,5 +20,7 @@
         public const string Tutorials = "Prefabs/UI/Tutorials";
         public const string DestroyableObjects = "Prefabs/DestroyableObjects";
         public const string TutorialSO = "Data/Tutorials/TutorialSO";
+        public const string QuestSO = "Data/Quest";
+        public const string ButtonAnswerView = "Prefabs/UI/ButtonAnswerView";
     }
 }

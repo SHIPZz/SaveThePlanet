@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using CodeBase.Enums;
+using CodeBase.Gameplay.Quest;
 using CodeBase.Gameplay.Tutorial;
 using CodeBase.Services.Providers.LocationProviders;
 using CodeBase.Services.StaticData;
@@ -76,6 +77,16 @@ namespace CodeBase.Services.Factories
             createdStep.Init(tutorialRunner);
             createdStep.AddToData();
             return createdStep;
+        }
+
+        public ButtonAnswerView CreateButtonAnswerView(Transform parent, string targetAnswer)
+        {
+            ButtonAnswerView prefab = _uiStaticDataService.GetAnswerButtonView();
+            
+            var createdPrefab = _instantiator.InstantiatePrefabForComponent<ButtonAnswerView>(prefab, parent);
+
+            createdPrefab.Init(targetAnswer);
+            return createdPrefab;
         }
 
         public Effect Create(EffectType effectType, Transform parent, Vector3 at, Quaternion rotation)

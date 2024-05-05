@@ -1,4 +1,5 @@
 ﻿using CodeBase.EntryPointSystem;
+using CodeBase.Gameplay.Quest;
 using CodeBase.Gameplay.Terrain;
 using CodeBase.Gameplay.Tutorial;
 using CodeBase.Services.Camera;
@@ -39,6 +40,12 @@ namespace CodeBase.Installers.Game
             BindPauseServices();
             BindCameraService();
             BindTutorialServices();
+            BindQuestService();
+        }
+
+        private void BindQuestService()
+        {
+            Container.Bind<QuestService>().AsSingle();
         }
 
         private void BindTutorialServices()
@@ -92,6 +99,7 @@ namespace CodeBase.Installers.Game
         {
             Container.Bind<GameStaticDataService>().AsSingle();
             Container.Bind<UIStaticDataService>().AsSingle();
+            Container.Bind<QuestStaticDataService>().AsSingle();
         }
 
         private void InitEntryPoint()

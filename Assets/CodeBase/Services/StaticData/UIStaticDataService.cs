@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using CodeBase.Constant;
 using CodeBase.Enums;
+using CodeBase.Gameplay.Quest;
 using CodeBase.Gameplay.Tutorial;
 using CodeBase.ScriptableObjects.Tutorial;
 using CodeBase.ScriptableObjects.WarningItems;
@@ -19,6 +20,7 @@ namespace CodeBase.Services.StaticData
         private readonly Dictionary<WarningItemType, WarningItemSO> _warningItemDatas;
         private readonly Dictionary<TutorialType, AbstractTutorialStep> _tutorials;
         private readonly TutorialSO _tutorialSO;
+        private readonly ButtonAnswerView _buttonAnswerView;
 
         public UIStaticDataService()
         {
@@ -35,6 +37,8 @@ namespace CodeBase.Services.StaticData
                 .ToDictionary(x => x.TutorialType, x => x);
 
             _tutorialSO = Resources.Load<TutorialSO>(AssetPath.TutorialSO);
+
+            _buttonAnswerView = Resources.Load<ButtonAnswerView>(AssetPath.ButtonAnswerView);
         }
 
         public TutorialSO Get() => 
@@ -56,6 +60,11 @@ namespace CodeBase.Services.StaticData
         public Effect Get(EffectType effectType)
         {
             return _effects[effectType];
+        }
+
+        public ButtonAnswerView GetAnswerButtonView()
+        {
+            return _buttonAnswerView;
         }
     }
 }
