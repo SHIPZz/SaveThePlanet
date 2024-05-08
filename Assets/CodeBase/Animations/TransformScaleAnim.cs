@@ -50,9 +50,9 @@ namespace CodeBase.Animations
             SetTween(Vector3.one * _unScale, 0.1f, onComplete);
         }
 
-        public async void ToScaleAsync(Action onComplete = null)
+        public async UniTaskVoid ToScaleAsync(Action onComplete = null)
         {
-            await UniTask.WaitForSeconds(_scaleDelay);
+            await UniTask.Delay(TimeSpan.FromSeconds(_scaleDelay),true);
 
             SetTween(Vector3.one * _targetScale, _scaleDuration, onComplete);
         }

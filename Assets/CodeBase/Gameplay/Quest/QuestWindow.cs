@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using CodeBase.Services.Factories;
+using CodeBase.UI.GoldPopup;
 using CodeBase.UI.Windows;
 using TMPro;
 using UnityEngine;
@@ -23,11 +24,17 @@ namespace CodeBase.Gameplay.Quest
             _questService = questService;
         }
 
-        private void OnEnable() =>
+        private void OnEnable()
+        {
             _questService.CorrectAnswerSelected += OnCorrectAnswerSelected;
+            _questService.AllAnswered += Close;
+        }
 
-        private void OnDisable() =>
+        private void OnDisable()
+        {
             _questService.CorrectAnswerSelected -= OnCorrectAnswerSelected;
+            _questService.AllAnswered -= Close;
+        }
 
         public override void Open()
         {
@@ -37,6 +44,12 @@ namespace CodeBase.Gameplay.Quest
             ConfigureUI(question);
         }
 
+        public override void Close()
+        {
+            WindowService.Open<GoldPopupWindow>();
+            base.Close();
+        }
+
         private void OnCorrectAnswerSelected()
         {
             ConfigureUI(_questService.GetQuestion());
@@ -44,6 +57,9 @@ namespace CodeBase.Gameplay.Quest
 
         private void ConfigureUI(Question question)
         {
+            if(question == null)
+                return;
+            
             foreach (ButtonAnswerView buttonAnswerView in _buttonAnswerViews)
             {
                 Destroy(buttonAnswerView.gameObject);

@@ -16,7 +16,9 @@ namespace CodeBase.Gameplay.Quest
         private QuestSO _currentQuest;
         private Question _currentQuestion;
 
-        public event Action AllQuestFinished;
+        private List<Question> _answeredQuestions = new();
+
+        public event Action AllAnswered;
         public event Action CorrectAnswerSelected;
 
         public QuestService(QuestStaticDataService questStaticDataService)
@@ -44,22 +46,23 @@ namespace CodeBase.Gameplay.Quest
 
         public Question GetQuestion()
         {
-            Question question = _currentQuest.Questions.Find(x => x != _currentQuestion);
+            Question question = _currentQuest.Questions.Find(x => x != _currentQuestion && !_answeredQuestions.Contains(x));
 
             if (question == null)
             {
+                _questIndex++;
+                
                 if (_questIndex >= _quests.Count)
                 {
-                    AllQuestFinished?.Invoke();
+                    AllAnswered?.Invoke();
+                    _questIndex = 0;
                     return null;
                 }
-                
-                _questIndex = Mathf.Clamp(_questIndex + 1, 0, _quests.Count);
-                _currentQuest = _quests[_questIndex];
             }
 
+            _currentQuest = _quests[_questIndex];
             _currentQuestion = question;
-
+            _answeredQuestions.Add(_currentQuestion);
 
             return _currentQuestion;
         }
@@ -69,6 +72,7 @@ namespace CodeBase.Gameplay.Quest
             _currentQuestion = quest.Questions[Random.Range(0, quest.Questions.Count)];
             _currentQuest = quest;
             _questIndex = Mathf.Clamp(_questIndex + 1, 0, _quests.Count);
+            _answeredQuestions.Add(_currentQuestion);
             return _currentQuestion;
         }
 

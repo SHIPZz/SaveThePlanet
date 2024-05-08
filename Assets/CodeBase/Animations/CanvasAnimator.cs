@@ -17,6 +17,10 @@ namespace CodeBase.Animations
         private void Awake()
         {
             _canvasGroup.alpha = 0f;
+
+            if (_canvasGroup == null)
+                _canvasGroup = GetComponent<CanvasGroup>();
+            
             _canvas = _canvasGroup.GetComponent<Canvas>();
         }
 
