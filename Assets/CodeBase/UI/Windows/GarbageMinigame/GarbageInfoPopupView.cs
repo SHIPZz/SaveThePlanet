@@ -7,6 +7,7 @@ namespace CodeBase.UI.Windows.GarbageMinigame
 {
     public class GarbageInfoPopupView : MonoBehaviour
     {
+        public Transform Parent;
         public GarbageType GarbageType;
         public Image Icon;
         public TMP_Text NameText;

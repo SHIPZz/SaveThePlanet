@@ -14,6 +14,7 @@ using CodeBase.Services.Settings;
 using CodeBase.Services.StaticData;
 using CodeBase.Services.UI;
 using CodeBase.Services.Warning;
+using CodeBase.UI.Windows.GarbageMinigame;
 using CodeBase.UI.Windows.Pause;
 using UnityEngine;
 using Zenject;
@@ -41,6 +42,12 @@ namespace CodeBase.Installers.Game
             BindCameraService();
             BindTutorialServices();
             BindQuestService();
+            BindGarbageMinigameSelectService();
+        }
+
+        private void BindGarbageMinigameSelectService()
+        {
+            Container.Bind<GarbageMinigameSelectService>().AsSingle();
         }
 
         private void BindQuestService()
