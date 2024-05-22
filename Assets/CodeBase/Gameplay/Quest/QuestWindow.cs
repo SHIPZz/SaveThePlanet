@@ -46,7 +46,9 @@ namespace CodeBase.Gameplay.Quest
 
         public override void Close()
         {
-            WindowService.Open<GoldPopupWindow>();
+            if (_questService.IsAllAnswered)
+                WindowService.Open<GoldPopupWindow>();
+            
             base.Close();
         }
 
@@ -57,14 +59,14 @@ namespace CodeBase.Gameplay.Quest
 
         private void ConfigureUI(Question question)
         {
-            if(question == null)
+            if (question == null)
                 return;
-            
+
             foreach (ButtonAnswerView buttonAnswerView in _buttonAnswerViews)
             {
                 Destroy(buttonAnswerView.gameObject);
             }
-            
+
             _buttonAnswerViews.Clear();
 
             QuestionText.text = question.Value;

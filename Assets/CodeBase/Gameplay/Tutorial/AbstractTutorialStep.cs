@@ -34,16 +34,16 @@ namespace CodeBase.Gameplay.Tutorial
             TutorialMessageDisplay = GetComponent<TutorialMessageDisplay>();
         }
 
+        private void OnDisable()
+        {
+            TutorialContainer.SkipButtonClicked -= ShowMessage;
+        }
+
         public virtual void Init(TutorialRunner tutorialRunner)
         {
             TutorialRunner = tutorialRunner;
             TutorialContainer = TutorialRunner.TutorialContainer;
             TutorialContainer.SkipButtonClicked += ShowMessage;
-        }
-
-        private void OnDisable()
-        {
-            TutorialContainer.SkipButtonClicked -= ShowMessage;
         }
 
         public void AddToData()

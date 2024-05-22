@@ -1,4 +1,7 @@
-﻿using CodeBase.Services.WorldData;
+﻿using System.Collections.Generic;
+using CodeBase.Enums;
+using CodeBase.ScriptableObjects;
+using CodeBase.Services.WorldData;
 using Cysharp.Threading.Tasks;
 using UnityEditor;
 using UnityEngine;
@@ -10,9 +13,11 @@ namespace CodeBase.InfraStructure
     {
         private readonly ILoadingCurtain _loadingCurtain;
         private IWorldDataService _worldDataService;
+        private TutorialCompletedSO _tutorialCompletedSo;
 
-        public LevelLoadState(ILoadingCurtain loadingCurtain, IWorldDataService worldDataService)
+        public LevelLoadState(ILoadingCurtain loadingCurtain, IWorldDataService worldDataService, TutorialCompletedSO tutorialCompletedSo)
         {
+            _tutorialCompletedSo = tutorialCompletedSo;
             _worldDataService = worldDataService;
             _loadingCurtain = loadingCurtain;
         }
@@ -23,6 +28,11 @@ namespace CodeBase.InfraStructure
 
 #if UNITY_EDITOR
             _worldDataService.WorldData.TutorialData.Completed = EditorPrefs.GetBool("TUTORIAL");
+
+            foreach (KeyValuePair<TutorialType, bool> completedTutorial in _tutorialCompletedSo._completedTutorials)
+            {
+                _worldDataService.WorldData.TutorialData.CompletedTutorials[completedTutorial.Key] = completedTutorial.Value;
+            }
 #endif
 
             AsyncOperation asyncOperation =  SceneManager.LoadSceneAsync(sceneBuildIndex: 1);

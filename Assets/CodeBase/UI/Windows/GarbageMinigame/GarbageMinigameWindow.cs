@@ -6,6 +6,6 @@ public class GarbageMinigameWindow : WindowBase
     
     public override void Open()
     {
-        
+        CanvasAnimator.FadeInCanvas();
     }
 }

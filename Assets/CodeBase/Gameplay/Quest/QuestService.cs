@@ -17,6 +17,8 @@ namespace CodeBase.Gameplay.Quest
         private Question _currentQuestion;
 
         private List<Question> _answeredQuestions = new();
+        
+        public bool IsAllAnswered { get; private set; }
 
         public event Action AllAnswered;
         public event Action CorrectAnswerSelected;
@@ -54,6 +56,7 @@ namespace CodeBase.Gameplay.Quest
                 
                 if (_questIndex >= _quests.Count)
                 {
+                    IsAllAnswered = true;
                     AllAnswered?.Invoke();
                     _questIndex = 0;
                     return null;
