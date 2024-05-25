@@ -5,21 +5,21 @@ namespace CodeBase.UI.Windows.GarbageMinigame
 {
     public class GarbageInfoViewCollision : MonoBehaviour
     {
-        private GarbageMinigameSelectService _garbageMinigameSelectService;
+        private GarbageMinigameService _garbageMinigameService;
         private GarbageInfoPopupView _garbageInfoPopupView;
 
         private void Awake() => 
             _garbageInfoPopupView = GetComponent<GarbageInfoPopupView>();
 
         [Inject]
-        private void Construct(GarbageMinigameSelectService garbageMinigameSelectService)
+        private void Construct(GarbageMinigameService garbageMinigameService)
         {
-            _garbageMinigameSelectService = garbageMinigameSelectService;
+            _garbageMinigameService = garbageMinigameService;
         }
         
         private void OnTriggerEnter(Collider other)
         {
-            _garbageMinigameSelectService.NotifyGarbageViewCollision(other,_garbageInfoPopupView);
+            _garbageMinigameService.NotifyGarbageViewCollision(other,_garbageInfoPopupView);
         }
     }
 }

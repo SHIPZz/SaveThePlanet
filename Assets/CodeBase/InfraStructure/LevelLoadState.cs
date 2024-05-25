@@ -13,11 +13,9 @@ namespace CodeBase.InfraStructure
     {
         private readonly ILoadingCurtain _loadingCurtain;
         private IWorldDataService _worldDataService;
-        private TutorialCompletedSO _tutorialCompletedSo;
 
-        public LevelLoadState(ILoadingCurtain loadingCurtain, IWorldDataService worldDataService, TutorialCompletedSO tutorialCompletedSo)
+        public LevelLoadState(ILoadingCurtain loadingCurtain, IWorldDataService worldDataService)
         {
-            _tutorialCompletedSo = tutorialCompletedSo;
             _worldDataService = worldDataService;
             _loadingCurtain = loadingCurtain;
         }
@@ -28,11 +26,6 @@ namespace CodeBase.InfraStructure
 
 #if UNITY_EDITOR
             _worldDataService.WorldData.TutorialData.Completed = EditorPrefs.GetBool("TUTORIAL");
-
-            foreach (KeyValuePair<TutorialType, bool> completedTutorial in _tutorialCompletedSo._completedTutorials)
-            {
-                _worldDataService.WorldData.TutorialData.CompletedTutorials[completedTutorial.Key] = completedTutorial.Value;
-            }
 #endif
 
             AsyncOperation asyncOperation =  SceneManager.LoadSceneAsync(sceneBuildIndex: 1);

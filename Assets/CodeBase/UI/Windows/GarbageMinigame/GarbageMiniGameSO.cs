@@ -7,5 +7,7 @@ namespace CodeBase.UI.Windows.GarbageMinigame
     public class GarbageMiniGameSO : SerializedScriptableObject
     {
         public GarbageMinigameData GarbageMinigameData = new();
+        public GarbageOptionView GarbageOptionViewPrefab;
+        public GarbageAnswerCellView GarbageAnswerCellViewPrefab;
     }
 }

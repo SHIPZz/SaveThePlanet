@@ -47,7 +47,7 @@ namespace CodeBase.Installers.Game
 
         private void BindGarbageMinigameSelectService()
         {
-            Container.Bind<GarbageMinigameSelectService>().AsSingle();
+            Container.Bind<GarbageMinigameService>().AsSingle();
         }
 
         private void BindQuestService()
@@ -117,6 +117,7 @@ namespace CodeBase.Installers.Game
         private void BindGameFactory()
         {
             Container.Bind<GameFactory>().AsSingle();
+            Container.Bind<GarbageMinigameFactory>().AsSingle();
             Container.BindInterfacesAndSelfTo<UIFactory>().AsSingle();
         }
 

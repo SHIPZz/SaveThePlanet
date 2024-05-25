@@ -2,7 +2,7 @@
 
 namespace CodeBase.UI.Windows.GarbageMinigame
 {
-    public class GarbageBannerView : MonoBehaviour
+    public class GarbageOptionView : MonoBehaviour
     {
         public GarbageInfoPopupView GarbageInfoPopupView;
     }
