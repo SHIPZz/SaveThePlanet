@@ -88,7 +88,6 @@ GameObject:
   - component: {fileID: 864133094142659386}
   - component: {fileID: 788224714360763659}
   - component: {fileID: 4066984454861702713}
-  - component: {fileID: 479114478663768800}
   m_Layer: 0
   m_Name: SkillFrame_Empty
   m_TagString: Untagged
@@ -183,24 +182,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GarbageType: 1
   Icon: {fileID: 5710261065590208024}
---- !u!65 &479114478663768800
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6314080650110780971}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 195.50574, y: 128.92218, z: 1}
-  m_Center: {x: 0, y: -70.97, z: 0}

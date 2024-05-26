@@ -11,6 +11,7 @@ namespace CodeBase.UI.Windows.GarbageMinigame
         private Transform _garbageAnswerParent;
 
         private readonly Subject<Unit> _minigameFinished = new();
+        private UnityEngine.Canvas _canvas;
 
         public IObservable<Unit> MinigameFinished => _minigameFinished;
 
@@ -19,18 +20,19 @@ namespace CodeBase.UI.Windows.GarbageMinigame
             _garbageMinigameFactory = garbageMinigameFactory;
         }
 
-        public void Init(Transform garbageOptionParent, Transform garbageAnswerParent)
+        public void Init(Transform garbageOptionParent, Transform garbageAnswerParent, UnityEngine.Canvas canvas)
         {
-            _garbageMinigameFactory.Init();
+            _canvas = canvas;
+            _garbageMinigameFactory.Init(_canvas);
             _garbageAnswerParent = garbageAnswerParent;
             _garbageOptionParent = garbageOptionParent;
             _garbageMinigameFactory.CreateAnswerCellView(garbageAnswerParent, Vector3.zero);
-            _garbageMinigameFactory.CreateGarbageOptionViews(garbageOptionParent, Vector3.zero);
+            _garbageMinigameFactory.CreateGarbageOptionViews(garbageOptionParent, Vector3.zero,_canvas);
         }
 
         public bool TryGoNext()
         {
-            var garbageOptionViews = _garbageMinigameFactory.CreateGarbageOptionViews(_garbageOptionParent, Vector3.zero);
+            var garbageOptionViews = _garbageMinigameFactory.CreateGarbageOptionViews(_garbageOptionParent, Vector3.zero, _canvas);
 
             var garbageAnswer = _garbageMinigameFactory.CreateAnswerCellView(_garbageAnswerParent, Vector3.zero);
 
@@ -48,7 +50,7 @@ namespace CodeBase.UI.Windows.GarbageMinigame
             _garbageMinigameFactory.CleanUp();
         }
 
-        public void NotifyGarbageViewCollision(Collider other, GarbageInfoPopupView garbageInfoPopupView)
+        public void NotifyGarbageViewCollision(Collider2D other, GarbageInfoPopupView garbageInfoPopupView)
         {
             if (!other.gameObject.TryGetComponent(out GarbageAnswerCellView garbageAnswerCellView))
                 return;

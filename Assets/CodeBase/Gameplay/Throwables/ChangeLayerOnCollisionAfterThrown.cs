@@ -12,20 +12,14 @@ namespace CodeBase.Gameplay.Throwables
         private Throwable _throwable;
         private bool _isThrown;
 
-        private void Awake()
-        {
+        private void Awake() => 
             _throwable = GetComponent<Throwable>();
-        }
 
-        private void OnEnable()
-        {
+        private void OnEnable() => 
             _throwable.Thrown += SetIsThrown;
-        }
 
-        private void OnDisable()
-        {
+        private void OnDisable() => 
             _throwable.Thrown -= SetIsThrown;
-        }
 
         private void OnCollisionEnter(Collision other)
         {

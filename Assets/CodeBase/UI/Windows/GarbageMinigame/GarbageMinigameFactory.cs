@@ -21,6 +21,7 @@ namespace CodeBase.UI.Windows.GarbageMinigame
         private GarbageOptionInfo _lastOptionCreated;
 
         private List<GarbageOptionView> _createdViews = new();
+        private UnityEngine.Canvas _canvas;
 
         public GarbageMinigameFactory(IInstantiator instantiator, GarbageMiniGameSO garbageMiniGameSo)
         {
@@ -30,8 +31,9 @@ namespace CodeBase.UI.Windows.GarbageMinigame
             _garbageAnswerDatas = garbageMiniGameSo.GarbageMinigameData.garbageAnswerDatas.ToList();
         }
 
-        public void Init()
+        public void Init(UnityEngine.Canvas canvas)
         {
+            _canvas = canvas;
             _garbageOptionInfos = _garbageMiniGameSo.GarbageMinigameData.GarbageOptionInfos.ToList();
             _garbageAnswerDatas = _garbageMiniGameSo.GarbageMinigameData.garbageAnswerDatas.ToList();
         }
@@ -74,7 +76,8 @@ namespace CodeBase.UI.Windows.GarbageMinigame
             _garbageAnswerDatas.Clear();
         }
 
-        public IEnumerable<GarbageOptionInfo> CreateGarbageOptionViews(Transform parent, Vector3 at)
+        public IEnumerable<GarbageOptionInfo> CreateGarbageOptionViews(Transform parent, Vector3 at,
+            UnityEngine.Canvas canvas)
         {
             if (_garbageOptionInfos.Count == 0)
                 return null;
@@ -104,14 +107,14 @@ namespace CodeBase.UI.Windows.GarbageMinigame
                 if (!filteredGarbageOptions.Any())
                     return null;
 
-                CreateGarbageOptionViewPrefab(parent, at, filteredGarbageOptions, prefab);
+                CreateGarbageOptionViewPrefab(parent, at, filteredGarbageOptions, prefab,canvas);
             }
 
             return filteredGarbageOptions;
         }
 
         private void CreateGarbageOptionViewPrefab(Transform parent, Vector3 at,
-            IEnumerable<GarbageOptionInfo> filteredGarbageOptions, GarbageOptionView prefab)
+            IEnumerable<GarbageOptionInfo> filteredGarbageOptions, GarbageOptionView prefab, UnityEngine.Canvas canvas)
         {
             GarbageOptionView createdPrefab;
             var randomOptionData = filteredGarbageOptions.ElementAt(Random.Range(0, filteredGarbageOptions.Count()));
@@ -122,7 +125,9 @@ namespace CodeBase.UI.Windows.GarbageMinigame
                 .With(x => x.GarbageInfoPopupView.NameText.text = randomOptionData.Name)
                 .With(x => x.GarbageInfoPopupView.Icon.sprite = randomOptionData.Icon)
                 .With(x => x.GarbageInfoPopupView.DescriptionText.text = randomOptionData.Description)
-                .With(x => x.GarbageInfoPopupView.GarbageType = randomOptionData.GarbageType);
+                .With(x => x.GarbageInfoPopupView.GarbageType = randomOptionData.GarbageType)
+                .With(x => x.GarbageInfoPopupView.GetComponent<UIDraggableItem>().Init(canvas))
+                .With(x => x.transform.localScale = Vector3.one);
 
             _createdViews.Add(createdPrefab);
         }

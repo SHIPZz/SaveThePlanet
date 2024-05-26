@@ -1,3 +1,4 @@
+using System;
 using CodeBase.UI.Windows;
 using CodeBase.UI.Windows.GarbageMinigame;
 using CodeBase.UI.Windows.Pause;
@@ -10,6 +11,7 @@ public class GarbageMinigameWindow : WindowBase
     public Transform GarbageAnswerParent;
     
     private GarbageMinigameService _garbageMinigameService;
+    private Canvas _canvas;
 
     [Inject]
     private void Construct(GarbageMinigameService garbageMinigameService)
@@ -21,7 +23,8 @@ public class GarbageMinigameWindow : WindowBase
     {
         CanvasAnimator.FadeInCanvas();
         WindowService.Close<PauseWindow>();
-        _garbageMinigameService.Init(GarbageOptionParent, GarbageAnswerParent);
+        _canvas = GetComponent<Canvas>();
+        _garbageMinigameService.Init(GarbageOptionParent, GarbageAnswerParent,_canvas);
     }
 
     public override void Close()
