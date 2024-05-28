@@ -3,6 +3,7 @@ using CodeBase.Enums;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Zenject;
 
 namespace CodeBase.UI.Windows.GarbageMinigame
 {
@@ -10,6 +11,8 @@ namespace CodeBase.UI.Windows.GarbageMinigame
     {
         public GarbageType GarbageType;
         public Image Icon;
+
+        [Inject] private GarbageMinigameService _garbageMinigameService;
 
         private void Awake() => Icon.enabled = false;
 
@@ -27,6 +30,11 @@ namespace CodeBase.UI.Windows.GarbageMinigame
 
         public void OnDrop(PointerEventData eventData)
         {
+            var droppedItem = eventData.pointerDrag.gameObject.GetComponent<GarbageInfoPopupView>();
+
+            if (!_garbageMinigameService.TryNotifyGarbageAnswered(droppedItem, this))
+                return;
+
             Icon.sprite = eventData.pointerDrag.gameObject.GetComponent<GarbageInfoPopupView>().Icon.sprite;
             Icon.enabled = true;
         }

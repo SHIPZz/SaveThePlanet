@@ -18,10 +18,10 @@ namespace CodeBase.UI.Windows.GarbageMinigame
         private List<GarbageAnswerData> _garbageAnswerDatas;
         private List<GarbageOptionInfo> _garbageOptionInfos;
         private GarbageAnswerCellView _lastAnswerCreated;
-        private GarbageOptionInfo _lastOptionCreated;
 
-        private List<GarbageOptionView> _createdViews = new();
-        private UnityEngine.Canvas _canvas;
+        private List<GarbageOptionInfo> _createdOptionDatas = new();
+        private List<GarbageOptionView> _createdViewsToDestroy = new();
+        private List<string> _correctOptions = new();
 
         public GarbageMinigameFactory(IInstantiator instantiator, GarbageMiniGameSO garbageMiniGameSo)
         {
@@ -31,9 +31,10 @@ namespace CodeBase.UI.Windows.GarbageMinigame
             _garbageAnswerDatas = garbageMiniGameSo.GarbageMinigameData.garbageAnswerDatas.ToList();
         }
 
-        public void Init(UnityEngine.Canvas canvas)
+        public void AddCorrectView(string name) => _correctOptions.Add(name);
+
+        public void Init()
         {
-            _canvas = canvas;
             _garbageOptionInfos = _garbageMiniGameSo.GarbageMinigameData.GarbageOptionInfos.ToList();
             _garbageAnswerDatas = _garbageMiniGameSo.GarbageMinigameData.garbageAnswerDatas.ToList();
         }
@@ -60,20 +61,23 @@ namespace CodeBase.UI.Windows.GarbageMinigame
             return createdPrefab;
         }
 
-        public void CleanUp()
+        public void CleanUpCreatedViews()
         {
-            _createdViews.ForEach(x =>
+            _createdViewsToDestroy.ForEach(x =>
             {
                 if (x != null)
                     Object.Destroy(x.gameObject);
             });
 
+            _createdViewsToDestroy.Clear();
+        }
+
+        public void CleanUp()
+        {
             if (_lastAnswerCreated != null)
                 Object.Destroy(_lastAnswerCreated.gameObject);
-            
-            _createdViews.Clear();
-            _garbageOptionInfos.Clear();
-            _garbageAnswerDatas.Clear();
+
+            _createdOptionDatas.Clear();
         }
 
         public IEnumerable<GarbageOptionInfo> CreateGarbageOptionViews(Transform parent, Vector3 at,
@@ -86,18 +90,15 @@ namespace CodeBase.UI.Windows.GarbageMinigame
 
             GarbageOptionView createdPrefab = null;
             List<GarbageOptionInfo> filteredGarbageOptions = null;
+            GarbageOptionInfo oneCorrectGarbageOption = null;
 
             for (int i = 0; i < OptionCount; i++)
             {
-                if (_lastOptionCreated != null)
+                if (_createdOptionDatas.Count != 0)
                 {
                     filteredGarbageOptions = _garbageOptionInfos
-                        .Where(option =>
-                            !_createdViews
-                                .Any(view => view.GarbageInfoPopupView.NameText.text.Equals(option.Name)))
+                        .Where(option => !_correctOptions.Contains(option.Name))
                         .ToList();
-
-                    ShuffleAndInsertOneCorrectOption(filteredGarbageOptions);
                 }
                 else
                 {
@@ -107,18 +108,26 @@ namespace CodeBase.UI.Windows.GarbageMinigame
                 if (!filteredGarbageOptions.Any())
                     return null;
 
-                CreateGarbageOptionViewPrefab(parent, at, filteredGarbageOptions, prefab,canvas);
+                ShuffleAndInsertOneCorrectOption(ref filteredGarbageOptions, ref oneCorrectGarbageOption);
+                
+               if(CreateGarbageOptionViewPrefab(parent, at, filteredGarbageOptions, prefab, canvas) == null)
+                   return null;
             }
 
             return filteredGarbageOptions;
         }
 
-        private void CreateGarbageOptionViewPrefab(Transform parent, Vector3 at,
-            IEnumerable<GarbageOptionInfo> filteredGarbageOptions, GarbageOptionView prefab, UnityEngine.Canvas canvas)
+        private GarbageOptionView CreateGarbageOptionViewPrefab(Transform parent, 
+            Vector3 at,
+            IEnumerable<GarbageOptionInfo> filteredGarbageOptions, 
+            GarbageOptionView prefab,
+            UnityEngine.Canvas canvas)
         {
             GarbageOptionView createdPrefab;
-            var randomOptionData = filteredGarbageOptions.ElementAt(Random.Range(0, filteredGarbageOptions.Count()));
-            _lastOptionCreated = randomOptionData;
+            GarbageOptionInfo randomOptionData = GetUniqueRandomOption(filteredGarbageOptions);
+
+            if (randomOptionData == null)
+                return null;
 
             createdPrefab = _instantiator
                 .InstantiatePrefabForComponent<GarbageOptionView>(prefab, at, Quaternion.identity, parent)
@@ -129,23 +138,42 @@ namespace CodeBase.UI.Windows.GarbageMinigame
                 .With(x => x.GarbageInfoPopupView.GetComponent<UIDraggableItem>().Init(canvas))
                 .With(x => x.transform.localScale = Vector3.one);
 
-            _createdViews.Add(createdPrefab);
+            _createdOptionDatas.Add(randomOptionData);
+            _createdViewsToDestroy.Add(createdPrefab);
+            return createdPrefab;
         }
 
-        private void ShuffleAndInsertOneCorrectOption(List<GarbageOptionInfo> filteredGarbageOptions)
+        private void ShuffleAndInsertOneCorrectOption(ref List<GarbageOptionInfo> filteredGarbageOptions,
+            ref GarbageOptionInfo oneCorrectGarbage)
         {
-            if(filteredGarbageOptions.Count() != 0 )
+            if (filteredGarbageOptions.Count == 0)
                 return;
-            
-            if (filteredGarbageOptions.All(x => x.GarbageType != _lastAnswerCreated.GarbageType))
-            {
-                var garbageOptionInfo = _garbageOptionInfos.Shuffle()
-                    .FirstOrDefault(x => x.GarbageType == _lastAnswerCreated.GarbageType);
 
-                List<GarbageOptionInfo> garbageOptionInfos = filteredGarbageOptions.ToList();
-                garbageOptionInfos.RemoveAt(Random.Range(0, garbageOptionInfos.Count));
-                garbageOptionInfos.Add(garbageOptionInfo);
+            if (oneCorrectGarbage != null)
+                return;
+
+            oneCorrectGarbage = _garbageOptionInfos.Shuffle().FirstOrDefault(x => x.GarbageType == _lastAnswerCreated.GarbageType);
+            filteredGarbageOptions.RemoveAt(Random.Range(0, filteredGarbageOptions.Count));
+            filteredGarbageOptions.Add(oneCorrectGarbage);
+        }
+
+        private GarbageOptionInfo GetUniqueRandomOption(IEnumerable<GarbageOptionInfo> options)
+        {
+            GarbageOptionInfo randomOptionData = null;
+            int maxAttempts = options.Count();
+
+            while (randomOptionData == null && maxAttempts > 0)
+            {
+                randomOptionData = options.ElementAt(Random.Range(0, options.Count()));
+                
+                if (_createdOptionDatas.Contains(randomOptionData))
+                {
+                    randomOptionData = null;
+                    maxAttempts--;
+                }
             }
+
+            return randomOptionData;
         }
     }
 }

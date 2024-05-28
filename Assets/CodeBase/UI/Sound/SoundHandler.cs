@@ -1,9 +1,7 @@
 ﻿using System;
 using CodeBase.Enums;
 using CodeBase.Services.Settings;
-using CodeBase.Services.StaticData;
 using CodeBase.UI.ToggleSystem;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Audio;
 using Zenject;
@@ -32,6 +30,7 @@ namespace CodeBase.UI.Sound
             var isOn = _settingsService.GetTargetSoundValue(_mixerTypeId);
             _toggle.isOn = isOn;
             _toggleAnimation.Initialize(isOn);
+            ChangeVolume(_toggle.isOn);
         }
 
         private void OnEnable() =>
@@ -51,7 +50,10 @@ namespace CodeBase.UI.Sound
             }
         }
 
-        private void SetValue(float value) =>
+        private void SetValue(float value)
+        {
             _audioMixerGroup.audioMixer.SetFloat(Enum.GetName(typeof(MixerTypeId), _mixerTypeId), value);
+            _settingsService.SetSoundSettings(_toggle.isOn, _mixerTypeId);
+        }
     }
 }

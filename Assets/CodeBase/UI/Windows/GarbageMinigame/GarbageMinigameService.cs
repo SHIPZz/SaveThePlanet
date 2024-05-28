@@ -23,7 +23,7 @@ namespace CodeBase.UI.Windows.GarbageMinigame
         public void Init(Transform garbageOptionParent, Transform garbageAnswerParent, UnityEngine.Canvas canvas)
         {
             _canvas = canvas;
-            _garbageMinigameFactory.Init(_canvas);
+            _garbageMinigameFactory.Init();
             _garbageAnswerParent = garbageAnswerParent;
             _garbageOptionParent = garbageOptionParent;
             _garbageMinigameFactory.CreateAnswerCellView(garbageAnswerParent, Vector3.zero);
@@ -32,9 +32,10 @@ namespace CodeBase.UI.Windows.GarbageMinigame
 
         public bool TryGoNext()
         {
-            var garbageOptionViews = _garbageMinigameFactory.CreateGarbageOptionViews(_garbageOptionParent, Vector3.zero, _canvas);
-
+            _garbageMinigameFactory.CleanUpCreatedViews();
             var garbageAnswer = _garbageMinigameFactory.CreateAnswerCellView(_garbageAnswerParent, Vector3.zero);
+            
+            var garbageOptionViews = _garbageMinigameFactory.CreateGarbageOptionViews(_garbageOptionParent, Vector3.zero, _canvas);
 
             if (garbageAnswer == null || garbageOptionViews == null)
             {
@@ -50,17 +51,18 @@ namespace CodeBase.UI.Windows.GarbageMinigame
             _garbageMinigameFactory.CleanUp();
         }
 
-        public void NotifyGarbageViewCollision(Collider2D other, GarbageInfoPopupView garbageInfoPopupView)
+        public bool TryNotifyGarbageAnswered(GarbageInfoPopupView garbageInfoPopupView, GarbageAnswerCellView garbageAnswerCellView)
         {
-            if (!other.gameObject.TryGetComponent(out GarbageAnswerCellView garbageAnswerCellView))
-                return;
-
-            Debug.Log($"{garbageAnswerCellView.GarbageType} - {garbageInfoPopupView.GarbageType}");
             if (garbageAnswerCellView.GarbageType == garbageInfoPopupView.GarbageType)
             {
                 garbageAnswerCellView.SetIcon(garbageInfoPopupView.Icon.sprite);
                 garbageInfoPopupView.Parent.gameObject.SetActive(false);
+                _garbageMinigameFactory.AddCorrectView(garbageInfoPopupView.NameText.text);
+                TryGoNext();
+                return true;
             }
+
+            return false;
         }
     }
 }

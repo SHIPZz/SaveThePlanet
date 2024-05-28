@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using CodeBase.Constant;
 using CodeBase.Enums;
@@ -24,6 +25,8 @@ namespace CodeBase.Services.Settings
         public void Initialize()
         {
             _audioMixer = _assetProvider.GetObject<AudioMixer>(AssetPath.AudioMixer);
+
+            SetAudioMixerGroupValues();
         }
 
         public void Save() =>
@@ -37,6 +40,7 @@ namespace CodeBase.Services.Settings
         public void SetSoundSettings(bool value, MixerTypeId mixerTypeId)
         {
             _worldDataService.WorldData.SettingsData.Sounds[mixerTypeId] = value;
+            SetAudioMixerGroupValues();
         }
 
         public AudioMixerGroup Get(string name)
@@ -48,6 +52,18 @@ namespace CodeBase.Services.Settings
                     .FirstOrDefault(x => x.name == name);
 
             return null;
+        }
+
+        private void SetAudioMixerGroupValues()
+        {
+            foreach (KeyValuePair<MixerTypeId, bool> keyValuePair in _worldDataService.WorldData.SettingsData.Sounds)
+            {
+                AudioMixerGroup audioMixerGroup = Get(Enum.GetName(typeof(MixerTypeId), keyValuePair.Key));
+
+                float value = keyValuePair.Value ? 0 : -80f;
+
+                audioMixerGroup.audioMixer.SetFloat(Enum.GetName(typeof(MixerTypeId), keyValuePair.Key), value);
+            }
         }
     }
 }
