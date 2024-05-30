@@ -45,6 +45,11 @@ namespace CodeBase.Animations
             SetTween(Vector3.one * _targetScale, _scaleDuration, onComplete);
         }
 
+        public void ToDefaultScale(Action onComplete = null)
+        {
+            SetTween(Vector3.one, _scaleDuration, onComplete);
+        }
+
         public void UnScaleQuickly(Action onComplete = null)
         {
             SetTween(Vector3.one * _unScale, 0.1f, onComplete);

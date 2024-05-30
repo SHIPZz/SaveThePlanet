@@ -1,4 +1,4 @@
-﻿using System;
+﻿using CodeBase.Animations;
 using UnityEngine;
 
 namespace CodeBase.UI.Windows.GarbageMinigame
@@ -6,15 +6,11 @@ namespace CodeBase.UI.Windows.GarbageMinigame
     public class GarbageOptionView : MonoBehaviour
     {
         public GarbageInfoPopupView GarbageInfoPopupView;
-
-        private void OnCollisionEnter2D(Collision2D other)
+        public CanvasAnimator CanvasAnimator;
+        
+        public void Start()
         {
-            print("sdfasdfasdf");
-        }
-
-        private void OnTriggerEnter2D(Collider2D other)
-        {
-            print("asdasdasdasd");
+            CanvasAnimator.FadeInCanvas();
         }
     }
 }

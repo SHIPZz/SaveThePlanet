@@ -1,4 +1,5 @@
 ﻿using System;
+using CodeBase.Enums;
 using UniRx;
 using UnityEngine;
 
@@ -57,6 +58,18 @@ namespace CodeBase.UI.Windows.GarbageMinigame
             {
                 garbageAnswerCellView.SetIcon(garbageInfoPopupView.Icon.sprite);
                 garbageInfoPopupView.Parent.gameObject.SetActive(false);
+                _garbageMinigameFactory.AddCorrectView(garbageInfoPopupView.NameText.text);
+                TryGoNext();
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool TryNotifyGarbageAnswered(GarbageInfoPopupView garbageInfoPopupView)
+        {
+            if (_garbageMinigameFactory.LastAnswerCreated.GarbageType == garbageInfoPopupView.GarbageType)
+            {
                 _garbageMinigameFactory.AddCorrectView(garbageInfoPopupView.NameText.text);
                 TryGoNext();
                 return true;
