@@ -7,9 +7,11 @@ namespace CodeBase.UI.Windows.GarbageMinigame
 {
     public class GarbageMinigameService
     {
+        private const int MaxQuestionCount = 5;
         private GarbageMinigameFactory _garbageMinigameFactory;
         private Transform _garbageOptionParent;
         private Transform _garbageAnswerParent;
+        private int _questionCount;
 
         private readonly Subject<Unit> _minigameFinished = new();
         private UnityEngine.Canvas _canvas;
@@ -33,6 +35,12 @@ namespace CodeBase.UI.Windows.GarbageMinigame
 
         public bool TryGoNext()
         {
+            if (_questionCount >= MaxQuestionCount)
+            {
+                _minigameFinished?.OnNext(Unit.Default);
+                return false;
+            }
+
             _garbageMinigameFactory.CleanUpCreatedViews();
             var garbageAnswer = _garbageMinigameFactory.CreateAnswerCellView(_garbageAnswerParent, Vector3.zero);
             
@@ -44,6 +52,7 @@ namespace CodeBase.UI.Windows.GarbageMinigame
                 return false;
             }
 
+            _questionCount++;
             return true;
         }
 
@@ -52,27 +61,12 @@ namespace CodeBase.UI.Windows.GarbageMinigame
             _garbageMinigameFactory.CleanUp();
         }
 
-        public bool TryNotifyGarbageAnswered(GarbageInfoPopupView garbageInfoPopupView, GarbageAnswerCellView garbageAnswerCellView)
-        {
-            if (garbageAnswerCellView.GarbageType == garbageInfoPopupView.GarbageType)
-            {
-                garbageAnswerCellView.SetIcon(garbageInfoPopupView.Icon.sprite);
-                garbageInfoPopupView.Parent.gameObject.SetActive(false);
-                _garbageMinigameFactory.AddCorrectView(garbageInfoPopupView.NameText.text);
-                TryGoNext();
-                return true;
-            }
-
-            return false;
-        }
-
         public bool TryNotifyGarbageAnswered(GarbageInfoPopupView garbageInfoPopupView)
         {
             if (_garbageMinigameFactory.LastAnswerCreated.GarbageType == garbageInfoPopupView.GarbageType)
             {
                 _garbageMinigameFactory.AddCorrectView(garbageInfoPopupView.NameText.text);
-                TryGoNext();
-                return true;
+                return TryGoNext();
             }
 
             return false;
