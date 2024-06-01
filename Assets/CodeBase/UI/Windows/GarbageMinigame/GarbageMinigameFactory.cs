@@ -72,6 +72,10 @@ namespace CodeBase.UI.Windows.GarbageMinigame
             });
 
             _createdViewsToDestroy.Clear();
+            _createdOptionDatas.Clear();
+
+            if (_lastAnswerCreated != null)
+                Object.Destroy(_lastAnswerCreated.gameObject);
         }
 
         public void CleanUp()
@@ -80,6 +84,7 @@ namespace CodeBase.UI.Windows.GarbageMinigame
                 Object.Destroy(_lastAnswerCreated.gameObject);
 
             _createdOptionDatas.Clear();
+            _createdViewsToDestroy.Clear();
         }
 
         public IEnumerable<GarbageOptionInfo> CreateGarbageOptionViews(Transform parent, Vector3 at, UnityEngine.Canvas canvas)

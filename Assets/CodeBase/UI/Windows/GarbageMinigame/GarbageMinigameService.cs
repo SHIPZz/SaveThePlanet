@@ -7,7 +7,7 @@ namespace CodeBase.UI.Windows.GarbageMinigame
 {
     public class GarbageMinigameService
     {
-        private const int MaxQuestionCount = 5;
+        private const int MaxQuestionCount = 20;
         private GarbageMinigameFactory _garbageMinigameFactory;
         private Transform _garbageOptionParent;
         private Transform _garbageAnswerParent;
@@ -35,7 +35,7 @@ namespace CodeBase.UI.Windows.GarbageMinigame
 
         public bool TryGoNext()
         {
-            if (_questionCount >= MaxQuestionCount)
+            if (_questionCount + 1 >= MaxQuestionCount)
             {
                 _minigameFinished?.OnNext(Unit.Default);
                 return false;

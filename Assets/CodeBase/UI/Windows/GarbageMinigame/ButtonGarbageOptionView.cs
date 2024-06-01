@@ -10,8 +10,8 @@ namespace CodeBase.UI.Windows.GarbageMinigame
         public GarbageInfoPopupView GarbageInfoPopupView;
 
         private Button _button;
+        
         [Inject] private GarbageMinigameService _garbageMinigameService;
-
 
         private void Awake()
         {
