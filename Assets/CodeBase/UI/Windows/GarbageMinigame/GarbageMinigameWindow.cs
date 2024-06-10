@@ -2,6 +2,7 @@ using System;
 using CodeBase.UI.GoldPopup;
 using CodeBase.UI.Windows;
 using CodeBase.UI.Windows.GarbageMinigame;
+using CodeBase.UI.Windows.Hud;
 using CodeBase.UI.Windows.Pause;
 using UniRx;
 using UnityEngine;
@@ -40,6 +41,7 @@ public class GarbageMinigameWindow : WindowBase
     public override void Close()
     {
         _garbageMinigameService.CleanUp();
+        WindowService.Open<HudWindow>();
         base.Close();
     }
 }

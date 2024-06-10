@@ -147,11 +147,11 @@ MonoBehaviour:
     SerializationNodes:
     - Name: AnswerIcons
       Entry: 7
-      Data: 0|System.Collections.Generic.Dictionary`2[[CodeBase.ScriptableObjects.Quest.AnswerButtonType,
+      Data: 0|System.Collections.Generic.Dictionary`2[[CodeBase.Gameplay.Quest.AnswerButtonType,
         Assembly-CSharp],[UnityEngine.Sprite, UnityEngine.CoreModule]], mscorlib
     - Name: comparer
       Entry: 7
-      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[CodeBase.ScriptableObjects.Quest.AnswerButtonType,
+      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[CodeBase.Gameplay.Quest.AnswerButtonType,
         Assembly-CSharp]], mscorlib
     - Name: 
       Entry: 12
@@ -269,8 +269,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5f58c05479cb14f588efcdfcbdab347c, type: 2}
+  m_sharedMaterial: {fileID: 7423409246693961632, guid: 5f58c05479cb14f588efcdfcbdab347c,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -294,12 +295,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 31
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 31
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512

@@ -7,8 +7,9 @@ namespace CodeBase.Gameplay.Tutorial
 {
     public class TutorialRunner
     {
+        private readonly UIFactory _uiFactory;
+        
         private AbstractTutorialStep _lastStep;
-        private UIFactory _uiFactory;
 
         public TutorialContainer TutorialContainer { get; private set; }
 

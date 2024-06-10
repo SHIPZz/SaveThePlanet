@@ -16,12 +16,22 @@ MonoBehaviour:
   deleteDllAfterBuilds: 1
   AutomateForAllAOTPlatforms: 1
   automateForPlatforms: 0900000014000000
-  lastScan: 638457624995899457
+  lastScan: 638528897604732815
   supportSerializedTypes:
+  - TypeName: CodeBase.Gameplay.Quest.AnswerButtonType, Assembly-CSharp
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Boolean, mscorlib
+    IsCustom: 0
+    Emit: 1
   - TypeName: CodeBase.Gameplay.CameraPans.CameraPan, Assembly-CSharp
     IsCustom: 0
     Emit: 1
   - TypeName: CodeBase.Enums.CameraPanType, Assembly-CSharp
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.Dictionary`2[[CodeBase.Gameplay.Quest.AnswerButtonType,
+      Assembly-CSharp],[UnityEngine.Sprite, UnityEngine.CoreModule]], mscorlib
     IsCustom: 0
     Emit: 1
   - TypeName: System.Collections.Generic.Dictionary`2[[CodeBase.Enums.CameraPanType,
@@ -34,6 +44,18 @@ MonoBehaviour:
       mscorlib
     IsCustom: 0
     Emit: 1
+  - TypeName: System.Collections.Generic.Dictionary`2[[System.String, mscorlib],[System.Boolean,
+      mscorlib]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.Dictionary`2[[CodeBase.Enums.TutorialType,
+      Assembly-CSharp],[System.Boolean, mscorlib]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.EnumEqualityComparer`1[[CodeBase.Gameplay.Quest.AnswerButtonType,
+      Assembly-CSharp]], mscorlib
+    IsCustom: 0
+    Emit: 1
   - TypeName: System.Collections.Generic.EnumEqualityComparer`1[[CodeBase.Enums.CameraPanType,
       Assembly-CSharp]], mscorlib
     IsCustom: 0
@@ -42,7 +64,19 @@ MonoBehaviour:
       Assembly-CSharp]], mscorlib
     IsCustom: 0
     Emit: 1
+  - TypeName: System.Collections.Generic.EnumEqualityComparer`1[[CodeBase.Enums.TutorialType,
+      Assembly-CSharp]], mscorlib
+    IsCustom: 0
+    Emit: 1
   - TypeName: CodeBase.Enums.GarbageSpawnZoneType, Assembly-CSharp
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.GenericEqualityComparer`1[[System.String,
+      mscorlib]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.IEqualityComparer`1[[CodeBase.Gameplay.Quest.AnswerButtonType,
+      Assembly-CSharp]], mscorlib
     IsCustom: 0
     Emit: 1
   - TypeName: System.Collections.Generic.IEqualityComparer`1[[CodeBase.Enums.CameraPanType,
@@ -53,10 +87,34 @@ MonoBehaviour:
       Assembly-CSharp]], mscorlib
     IsCustom: 0
     Emit: 1
+  - TypeName: System.Collections.Generic.IEqualityComparer`1[[System.String, mscorlib]],
+      mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.IEqualityComparer`1[[CodeBase.Enums.TutorialType,
+      Assembly-CSharp]], mscorlib
+    IsCustom: 0
+    Emit: 1
   - TypeName: CodeBase.Gameplay.Tutorial.ITutoriable, Assembly-CSharp
     IsCustom: 0
     Emit: 1
   - TypeName: System.Collections.Generic.List`1[[CodeBase.Gameplay.Tutorial.ITutoriable,
       Assembly-CSharp]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.List`1[[CodeBase.Gameplay.Quest.Question,
+      Assembly-CSharp]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: CodeBase.Gameplay.Quest.Question, Assembly-CSharp
+    IsCustom: 0
+    Emit: 1
+  - TypeName: UnityEngine.Sprite, UnityEngine.CoreModule
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.String, mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: CodeBase.Enums.TutorialType, Assembly-CSharp
     IsCustom: 0
     Emit: 1

@@ -84975,7 +84975,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d98147f6ef24769aea53e051c663fff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _count: 10
+  _count: 2
   _spawnPoints:
   - {fileID: 114115317}
   - {fileID: 1348342984}
@@ -95069,7 +95069,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d98147f6ef24769aea53e051c663fff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _count: 10
+  _count: 2
   _spawnPoints:
   - {fileID: 1648987174}
   - {fileID: 928405989}
